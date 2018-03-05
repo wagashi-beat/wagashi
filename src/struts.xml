@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+ <constant name="struts.devMode" value="true" />
+ <package name="Action" extends="struts-default">
+
+		<!-- ログイン -->
+		 <action name="LoginAction" class="wagashi.Action" method="execute">
+		 	<result name="success">login.jsp</result>
+		 	<result name="error">error.jsp</result>
+
+		 </action>
+
+		<!-- カート -->
+		  <action name="CartAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">cart.jsp</result>
+
+		 </action>
+
+		<!-- 宛先完了 -->
+		 <action name="DestinationCompleateAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">destinationCompleate.jsp</result>
+
+		 </action>
+
+		<!-- 宛先確認 -->
+		 <action name="DestinationConfirmAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">destinationConfirm.jsp</result>
+
+		 </action>
+
+		<!-- 宛先登録 -->
+		 <action name="DestinationCreateAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">destinationCreate.jsp</result>
+
+		 </action>
+
+		<!-- マイページ -->
+		 <action name="MyPageAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">myPage.jsp</result>
+
+		 </action>
+
+		<!-- 商品詳細 -->
+		 <action name="ProductDetailAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">productDetail.jsp</result>
+
+		 </action>
+
+		<!-- 商品一覧 -->
+		 <action name="ProductListAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">productList.jsp</result>
+
+		 </action>
+
+		<!-- 購入履歴 -->
+		 <action name="PurchaseHistryAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">purchaseHistry.jsp</result>
+
+		 </action>
+
+		<!-- 決済完了 -->
+		 <action name="SettlementCompleateAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">settlementCompleate.jsp</result>
+
+		 </action>
+
+		<!-- 決済確認 -->
+		 <action name="SettlementConfirmAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">settlementConfirm.jsp</result>
+
+		 </action>
+
+		<!-- 新規登録 -->
+		 <action name="UserCreateAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">userCreate.jsp</result>
+
+		 </action>
+
+		 <action name="UserCreateCompleateAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">userCreateCompleate.jsp</result>
+
+		 </action>
+
+		 <action name="UserCreateConfirmAction" class="com.wagashi.Action" method="execute">
+		 	<result name="success">userCreateConfirm.jsp</result>
+
+		 </action>
+
+
+ </package>
+</struts>
