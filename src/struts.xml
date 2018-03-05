@@ -89,6 +89,10 @@
 		 	<result name="success">userCreateConfirm.jsp</result>
 
 		 </action>
+		 <!-- ログイン画面遷移 -->
+		 <action name="LoginMoveAction" class="com.wagashi.Action" method="excute">
+		 	<result name="success">login.jsp</result>
+		 </action>
 
 
  </package>
