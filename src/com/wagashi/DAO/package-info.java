@@ -1,8 +1,8 @@
 /**
- * 
+ *
  */
 /**
  * @author a-nishioka
  *
  */
-package com.wagashi.dao;
+package com.wagashi.DAO;

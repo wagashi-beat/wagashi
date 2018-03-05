@@ -1,4 +1,4 @@
-package com.wagashi.action;
+package com.wagashi.Action;
 
 import org.apache.struts2.interceptor.SessionAware;
 

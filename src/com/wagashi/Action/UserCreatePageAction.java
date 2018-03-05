@@ -1,4 +1,4 @@
-package com.wagashi.action;
+package com.wagashi.Action;
 
 import com.opensymphony.xwork2.ActionSupport;
 

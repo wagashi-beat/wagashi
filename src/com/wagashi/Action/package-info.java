@@ -1,8 +1,8 @@
 /**
- * 
+ *
  */
 /**
  * @author a-nishioka
  *
  */
-package com.wagashi.action;
+package com.wagashi.Action;

@@ -1,6 +1,7 @@
 package com.wagashi.util;
 
-import org.apache.struts2.components.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateUtil {
 

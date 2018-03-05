@@ -1,11 +1,11 @@
-package com.wagashi.dao;
+package com.wagashi.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import util.DBConnector;
-import util.DateUtil;
+import com.wagashi.util.DBConnector;
+import com.wagashi.util.DateUtil;
 
 public class UserCreateDAO {
 	private DBConnector db= new DBConnector();

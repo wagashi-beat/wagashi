@@ -1,4 +1,4 @@
-package com.wagashi.dto;
+package com.wagashi.DTO;
 
 public class LoginDTO {
 	private String loginId;
