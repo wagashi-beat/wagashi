@@ -10,7 +10,7 @@
 <body>
 	<table>
 
-		<iterator value="myPageDTOList">
+		<s:iterator value="myPageDTOList">
 			<tr>
 				<td>USER ID</td> <td><s:property value="userId"/></td>
 			</tr>
@@ -18,11 +18,21 @@
 				<td>FIRST NAME</td> <td><s:property value="first_name"/>
 			</tr>
 			<tr>
-				<td>FIRMILY NAME</td> <td><s:property value="family_name"/></td>
+				<td>FAMILY NAME</td> <td><s:property value="family_name"/></td>
 			</tr>
 			<tr>
 				<td>FIRST NAME KANA</td> <td><s:property value="first_name_kana"/></td>
 			</tr>
+			<tr>
+				<td>FAMILY NAME KANA</td> <td><s:property value="family_name_kana"/></td>
+			</tr>
+			<tr>
+				<td>SEX</td> <td><s:property value="sex"/></td>
+			</tr>
+			<tr>
+				<td>EMAIL</td> <td><s:property value="email"/></td>
+			</tr>
+		</s:iterator>
 
 	</table>
 
