@@ -1,8 +1,8 @@
 /**
- * 
+ *
  */
 /**
  * @author a-nishioka
  *
  */
-package com.wagashi.dto;
+package com.wagashi.DTO;
