@@ -1,13 +1,13 @@
 package com.wagashi.DTO;
 
-public class CartDTO {
+public class CartDTO extends ProductInfoDTO{
 
 	private String userId;
 
 	private String tempUserId;
 
 	private int productId;
-
+//購入個数
 	private int productCount;
 
 	private int price;
