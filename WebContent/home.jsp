@@ -12,7 +12,7 @@
 
 	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>
 
-	<p><a href="<s:url action='myPage'/>">マイページ画面</a></p>
+	<p><a href="<s:url action='MyPageAction'/>">マイページ画面</a></p>
 
 
 </body>

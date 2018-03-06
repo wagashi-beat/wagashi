@@ -5,13 +5,13 @@ package com.wagashi.DTO;
 public class MyPageDTO {
 	private String userId;
 
-	private String famiry_name;
+	private String familyName;
 
-	private String first_name;
+	private String firstName;
 
-	private String famiry_name_kana;
+	private String familyNameKana;
 
-	private String first_name_kana;
+	private String firstNameKana;
 
 	private String sex;
 
@@ -25,36 +25,36 @@ public class MyPageDTO {
 		this.userId = userId;
 	}
 
-	public String getFamiry_name() {
-		return famiry_name;
+	public String getFamilyName() {
+		return familyName;
 	}
 
-	public void setFamiry_name(String famiry_name) {
-		this.famiry_name = famiry_name;
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getFamiry_name_kana() {
-		return famiry_name_kana;
+	public String getFamilyNameKana() {
+		return familyNameKana;
 	}
 
-	public void setFamiry_name_kana(String famiry_name_kana) {
-		this.famiry_name_kana = famiry_name_kana;
+	public void setFamilyNameKana(String familyNameKana) {
+		this.familyNameKana = familyNameKana;
 	}
 
-	public String getFirst_name_kana() {
-		return first_name_kana;
+	public String getFirstNameKana() {
+		return firstNameKana;
 	}
 
-	public void setFirst_name_kana(String first_name_kana) {
-		this.first_name_kana = first_name_kana;
+	public void setFirstNameKana(String firstNameKana) {
+		this.firstNameKana = firstNameKana;
 	}
 
 	public String getSex() {

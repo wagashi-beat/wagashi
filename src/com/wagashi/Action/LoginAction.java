@@ -38,6 +38,8 @@ private LoginDTO loginDTO = new LoginDTO();
 			session.put("user_id",loginDTO.getLoginId());
 			session.put("password",loginDTO.getLoginPassword());
 
+			System.out.println(session.get("user_id").toString());
+
 			return result;
 
 		}

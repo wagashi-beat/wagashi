@@ -10,29 +10,27 @@
 <body>
 	<table>
 
-		<s:iterator value="myPageDTOList">
 			<tr>
-				<td>USER ID</td> <td><s:property value="userId"/></td>
+				<td>USER ID</td> <td><s:property value="dto.userId"/></td>
 			</tr>
 			<tr>
-				<td>FIRST NAME</td> <td><s:property value="first_name"/>
+				<td>FIRST NAME</td> <td><s:property value="dto.firstName"/></td>
 			</tr>
 			<tr>
-				<td>FAMILY NAME</td> <td><s:property value="family_name"/></td>
+				<td>FAMILY NAME</td> <td><s:property value="dto.familyName"/></td>
 			</tr>
 			<tr>
-				<td>FIRST NAME KANA</td> <td><s:property value="first_name_kana"/></td>
+				<td>FIRST NAME KANA</td> <td><s:property value="dto.firstNameKana"/></td>
 			</tr>
 			<tr>
-				<td>FAMILY NAME KANA</td> <td><s:property value="family_name_kana"/></td>
+				<td>FAMILY NAME KANA</td> <td><s:property value="dto.familyNameKana"/></td>
 			</tr>
 			<tr>
-				<td>SEX</td> <td><s:property value="sex"/></td>
+				<td>SEX</td> <td><s:property value="dto.sex"/></td>
 			</tr>
 			<tr>
-				<td>EMAIL</td> <td><s:property value="email"/></td>
+				<td>EMAIL</td> <td><s:property value="dto.email"/></td>
 			</tr>
-		</s:iterator>
 
 	</table>
 

@@ -1,7 +1,6 @@
 package com.wagashi.Action;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -19,9 +18,10 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	//ユーザー情報リスト
 
-	private ArrayList<MyPageDTO> myPageDTOList = new ArrayList<MyPageDTO>();
-
+	private MyPageDTO dto = new MyPageDTO();
 	public String execute() throws SQLException {
+
+		System.out.println(session.get("user_id").toString());
 
 		String result = ERROR;
 
@@ -29,11 +29,12 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 		if(session.containsKey("user_id")){
 
-		myPageDTOList=myPageDAO.getUserInfo(session.get("user_id").toString());
+		dto=myPageDAO.getUserInfo(session.get("user_id").toString());
 
 		result=SUCCESS;
 
 		}
+		System.out.println(dto.getFamilyName());
 
 		return result;
 	}
@@ -48,12 +49,14 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		this.session = session;
 	}
 
-	public ArrayList<MyPageDTO> getMyPageDTOList() {
-		return myPageDTOList;
+	public MyPageDTO getDto() {
+		return dto;
 	}
 
-	public void setMyPageDTOList(ArrayList<MyPageDTO> myPageDTOList) {
-		this.myPageDTOList = myPageDTOList;
+	public void setDto(MyPageDTO dto) {
+		this.dto = dto;
 	}
+
+
 
 }

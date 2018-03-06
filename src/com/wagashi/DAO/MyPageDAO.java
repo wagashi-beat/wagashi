@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.wagashi.DTO.MyPageDTO;
 import com.wagashi.util.DBConnector;
@@ -16,25 +15,24 @@ public class MyPageDAO {
 
 	//ユーザー情報取得メソッド
 
-	public ArrayList<MyPageDTO> getUserInfo(String user_id)throws SQLException{
-		ArrayList<MyPageDTO> myPageDTOList = new ArrayList<MyPageDTO>();
+	public MyPageDTO getUserInfo(String userId)throws SQLException{
+		MyPageDTO dto = new MyPageDTO();
 
 		String sql="select * from user_info where user_id = ?";
 
 		try{
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			preparedStatement.setString(1,userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			while(resultSet.next()){
-				MyPageDTO dto = new MyPageDTO();
+			if(resultSet.next()){
 				dto.setUserId(resultSet.getString("user_id"));
-				dto.setFirst_name(resultSet.getString("first_name"));
-				dto.setFamiry_name(resultSet.getString("family_name"));
-				dto.setFirst_name_kana(resultSet.getString("first_name_kana"));
-				dto.setFamiry_name_kana(resultSet.getString("family_name_kana"));
+				dto.setFamilyName(resultSet.getString("first_name"));
+				dto.setFirstName(resultSet.getString("family_name"));
+				dto.setFamilyNameKana(resultSet.getString("first_name_kana"));
+				dto.setFirstNameKana(resultSet.getString("family_name_kana"));
 				dto.setSex(resultSet.getString("sex"));
 				dto.setEmail(resultSet.getString("email"));
-				myPageDTOList.add(dto);
 				}
 			}catch(SQLException e){
 				e.printStackTrace();
@@ -42,7 +40,7 @@ public class MyPageDAO {
 		finally{
 			con.close();
 		}
-		return myPageDTOList;
+		return dto;
 	}
 
 }
