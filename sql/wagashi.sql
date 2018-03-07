@@ -88,3 +88,7 @@ update_date datetime
 
 
 insert into user_info values (1, "taro", "123", "山田", "太郎", "やまだ", "たろう", 0, "taro@yahoo.com", 1, 1, "2018/03/01", "2018/03/05");
+insert into m_category(id,category_id,category_name,category_description,insert_date)
+ values (1,1,"団子","団子のカテゴリーです。","2018-03-07 11:10:10");
+insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
+ values (1,1,"団子","だんご","三色団子です。",1,100,"./img/dango.jpg","dango.jpg","2018-03-07 11:10:10");

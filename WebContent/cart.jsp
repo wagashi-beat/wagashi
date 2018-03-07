@@ -10,7 +10,18 @@
 <body>
 	<table>
 		<s:iterator value="cartDTOList">
-
+			<tr>
+				<td><s:property value=""/></td>
+			</tr>
+			<tr>
+				<td><s:property value="productName"/>
+			</tr>
+			<tr>
+				<td><s:property value="productCount"/>点</td>
+			</tr>
+			<tr>
+				<td><s:property value="price"/>円<td>
+			</td>
 		</s:iterator>
 	</table>
 
