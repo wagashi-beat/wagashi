@@ -8,6 +8,7 @@
 <title>ホーム画面(テスト)</title>
 </head>
 <body>
+
 	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
 
 	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>
