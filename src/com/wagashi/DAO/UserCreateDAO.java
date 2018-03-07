@@ -16,6 +16,7 @@ public class UserCreateDAO {
 
 	// create作成
 	public void create(String userId, String password, String familyName, String firstName, String familyNameKana, String firstNameKana, int sex, String email) throws SQLException {
+
 		try {
 			PreparedStatement ps= con.prepareStatement(sql);
 			ps.setString(1, userId);

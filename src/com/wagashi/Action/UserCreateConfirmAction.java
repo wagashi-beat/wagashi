@@ -25,13 +25,15 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 
 	public Map<String, Object> session;
 
+	LoginDTO loginDTO= new LoginDTO();
+
 	// エラーメッセージ
 	private List<String> errorList= new ArrayList<>();
 	private String error;
 
-	LoginDTO loginDTO= new LoginDTO();
 
 
+	// 実行
 	public String execute() throws SQLException {
 		String ret= ERROR;
 		int errorCount= 0;
@@ -44,29 +46,30 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 			error= "未入力項目があります。";
 			errorList.add(error);
 			errorCount++;
+
 		}
 
 		else {
-			if (userId.equals(loginDTO.getLoginId())) {
+			if  (userId.equals(loginDTO.getLoginId())) {
 				error= "そのIDは既に登録されています。";
 				errorList.add(error);
 				errorCount++;
 			}
 		}
 
-		if (errorCount >0) {
+		if (errorCount>0) {
+			session.put("error", error);
 			ret= ERROR;
 		}
+
 		else {
-
-
 			session.put("userId", userId);
 			session.put("password", password);
 			session.put("familyName", familyName);
 			session.put("firstName", firstName);
 			session.put("familyNameKana", familyNameKana);
 			session.put("firstNameKana", firstNameKana);
-			session.put("sex", sexNum);
+			session.put("sex", sex);
 			session.put("email", email);
 
 			ret= SUCCESS;
@@ -198,8 +201,5 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	public void setLoginDTO(LoginDTO loginDTO) {
 		this.loginDTO = loginDTO;
 	}
-
-
-
 
 }
