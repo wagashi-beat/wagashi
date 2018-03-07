@@ -106,5 +106,4 @@ private LoginDTO loginDTO = new LoginDTO();
 		this.loginDTO = loginDTO;
 	}
 
-
 }

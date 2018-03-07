@@ -23,13 +23,13 @@ public class LoginDAO {
 	 * @return LoginDTO
 	 */
 
-public LoginDTO getUserInfo(String user_id,String password){
+public LoginDTO getUserInfo(String userId,String password){
 
 	String sql = "SELECT * FROM user_info where user_id = ? AND password = ?";
 
 	try {
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1,user_id);
+		preparedStatement.setString(1,userId);
 		preparedStatement.setString(2,password);
 
 		ResultSet resultSet = preparedStatement.executeQuery();
