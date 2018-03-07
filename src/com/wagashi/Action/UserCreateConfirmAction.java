@@ -13,7 +13,7 @@ import com.wagashi.DTO.LoginDTO;
 public class UserCreateConfirmAction extends ActionSupport implements SessionAware {
 
 	// インスタンス化
-	private String userId;
+	private String user_id;
 	private String password;
 	private String familyName;
 	private String firstName;
@@ -38,7 +38,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		String ret= ERROR;
 		int errorCount= 0;
 
-		if (userId.equals("") || password.equals("") ||
+		if (user_id.equals("") || password.equals("") ||
 				familyName.equals("") || firstName.equals("") ||
 				familyNameKana.equals("") || firstNameKana.equals("") ||
 				email.equals("")) {
@@ -50,7 +50,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		}
 
 		else {
-			if  (userId.equals(loginDTO.getLoginId())) {
+			if  (user_id.equals(loginDTO.getLoginId())) {
 				error= "そのIDは既に登録されています。";
 				errorList.add(error);
 				errorCount++;
@@ -63,7 +63,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		}
 
 		else {
-			session.put("userId", userId);
+			session.put("user_id", user_id);
 			session.put("password", password);
 			session.put("familyName", familyName);
 			session.put("firstName", firstName);
@@ -79,12 +79,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	}
 
 
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId (String userId) {
-		this.userId= userId;
-	}
+
 
 	public String getPassword() {
 		return password;
@@ -200,6 +195,20 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 
 	public void setLoginDTO(LoginDTO loginDTO) {
 		this.loginDTO = loginDTO;
+	}
+
+
+
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+
+
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 }

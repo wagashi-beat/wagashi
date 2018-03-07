@@ -14,11 +14,9 @@
 <s:form action= "UserCreateConfirmAction">
 
 	<s:if test= "error">
-		<s:iterator value= "errorList">
-			<s:property value= "error" escape= "false" />
-			</s:iterator></s:if>
+			<s:property value= "#session.error" escape= "false" /></s:if>
 
-	<input type= "text" name= "userId" value= "" placeholder= "ユーザーID"><br>
+	<input type= "text" name= "user_id" value= "" placeholder= "ユーザーID"><br>
 	<input type= "password" name= "password" value= "" placeholder= "パスワード"><br>
 	<input type= "text" name= "familyName" value= "" placeholder= "苗字"><br>
 	<input type= "text" name= "firstName" value= "" placeholder= "名前"><br>

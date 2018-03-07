@@ -28,6 +28,7 @@
 
 		 </action>
 
+
 		<!-- 宛先完了 -->
 		 <action name="DestinationCompleateAction" class="com.wagashi.Action.DestinationCompleateAction" method="execute">
 		 	<result name="success">destinationCompleate.jsp</result>
@@ -37,6 +38,7 @@
 		<!-- 宛先確認 -->
 		 <action name="DestinationConfirmAction" class="com.wagashi.Action.DestinationConfirmAction" method="execute">
 		 	<result name="success">destinationConfirm.jsp</result>
+		 	<result name= "error">destinationCreate.jsp</result>
 
 		 </action>
 
@@ -45,6 +47,7 @@
 		 	<result name="success">destinationCreate.jsp</result>
 
 		 </action>
+
 
 		<!-- マイページ -->
 		 <action name="MyPageAction" class="com.wagashi.Action.MyPageAction" method="execute">
@@ -82,45 +85,36 @@
 		 	<result name="success">settlementConfirm.jsp</result>
 
 		 </action>
-
-		 <!-- 新規登録 -->
+	 <!-- 新規登録遷移 -->
 		<action name= "UserCreatePageAction" class= "com.wagashi.Action.UserCreatePageAction" method= "execute">
 			<result name= "success">userCreate.jsp</result>
 		</action>
 
+		<!-- 新規登録完了 -->
 		 <action name="UserCreateCompleateAction" class="com.wagashi.Action.UserCreateCompleateAction" method="execute">
 		 	<result name="success">userCreateCompleate.jsp</result>
-
 		 </action>
 
+		<!-- 新規登録確認 -->
 		 <action name="UserCreateConfirmAction" class="com.wagashi.Action.UserCreateConfirmAction" method="execute">
 		 	<result name="success">userCreateConfirm.jsp</result>
 		 	<result name= "error">userCreate.jsp</result>
-		 	<result name= "back">userCreate.jsp</result>
-
 		 </action>
+
 		 <!-- ログイン画面遷移 -->
 		 <action name="LoginMoveAction" class="com.wagashi.Action.LoginMoveAction" method="execute">
 		 	<result name="success">login.jsp</result>
 		 </action>
 
-		 <action name = "SearchItemAction"
-		         class = "com.wagashi.Action.SearchItemAction"
-		         method = "execute">
-		 	<result name = "success">searchResult.jsp</result>
+		 		 <!-- ログアウト機能 -->
+		 <action name= "LogoutAction" class= "com.wagashi.Action.LogoutAction" method= "execute">
+		 	<result name= "success">home.jsp</result>
 		 </action>
 
-		 <action name = "SortSearchAction"
-		 		 class = "com.wagashi.Action.SortSearchAction"
-		 		 method = "execute">
-		 	<result name = "success">searchResult.jsp</result>
-		 </action>
-
-		 <action name = "SearchPageAction"
-		 		 class = "com.wagashi.Action.SearchPageAction"
-		 		 method = "execute">
-		 	<result name = "success">searchResult.jsp</result>
-		 </action>
+		 <!-- ホーム画面遷移 -->
+		 <action name= "HomeMoveAction" class= "com.wagashi.Action.HomeMoveAction" method= "execute">
+		 	<result name= "success">home.jsp</result>
+		 	</action>
 
 
  </package>

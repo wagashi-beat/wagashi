@@ -13,7 +13,7 @@
 <s:form action= "UserCreateCompleateAction">
 	<h3>以下の内容で登録しますか？</h3>
 		<h5>
-			ユーザーID：<s:property value= "session.userId" /><br>
+			ユーザーID：<s:property value= "session.user_id" /><br>
 			パスワード：<s:property value= "session.password" /><br>
 			苗字：<s:property value= "session.familyName" /><br>
 			名前：<s:property value= "session.firstName" /><br>
