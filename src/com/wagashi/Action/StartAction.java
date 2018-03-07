@@ -8,7 +8,7 @@ import com.wagashi.util.RandomId;
 
 public class StartAction extends ActionSupport implements SessionAware{
 	private Map<String,Object> session;
-
+//ランダムＩＤ発行
 	public String execute(){
 
 		RandomId randomId = new RandomId();
