@@ -2,6 +2,7 @@ package com.wagashi.Action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -26,6 +27,8 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 	private String deleteFlg;
 
+	private Collection<String> deleteList;
+
 
 	public String execute() throws SQLException{
 		String result=ERROR;
@@ -38,9 +41,12 @@ public class CartAction extends ActionSupport implements SessionAware{
 			if(!(addFlg==null)){
 
 				cartDAO.loginCartAdd(session.get("userId").toString(), productId, productCount, price);
-			}else if(!(addFlg==null)){
+			}else if(!(deleteFlg==null)&&!(deleteList==null)){
 
-				cartDAO.loginCartDelete(session.get("userId").toString(), productId);
+				for(String check:deleteList){
+					int id=Integer.parseInt(check);
+					cartDAO.loginCartDelete(session.get("userId").toString(), id);
+				}
 			}
 
 			cartDTOList=cartDAO.loginGetCartInfo(session.get("userId").toString());

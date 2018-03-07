@@ -10,9 +10,10 @@
 <body>
 
 	<table>
+	<s:form action="CartAction">
 		<s:iterator value="cartDTOList">
 			<tr>
-				<td><s:property value=""/></td>
+				<td><s:property value="image_file_path"/></td>
 			</tr>
 			<tr>
 				<td><s:property value="productName"/>
@@ -21,9 +22,13 @@
 				<td><s:property value="productCount"/>点</td>
 			</tr>
 			<tr>
-				<td><s:property value="price"/>円<td>
-			</td>
+				<td><s:property value="price"/>円</td>
+			</tr>
+			<tr>
+				<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
+			</tr>
 		</s:iterator>
+	</s:form>
 	</table>
 
 </body>

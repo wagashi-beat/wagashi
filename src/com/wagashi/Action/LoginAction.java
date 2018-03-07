@@ -1,11 +1,15 @@
 package com.wagashi.Action;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.wagashi.DAO.CartDAO;
 import com.wagashi.DAO.LoginDAO;
+import com.wagashi.DTO.CartDTO;
 import com.wagashi.DTO.LoginDTO;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -22,9 +26,11 @@ private LoginDAO loginDAO = new LoginDAO();
 
 private LoginDTO loginDTO = new LoginDTO();
 
+private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
 
-	public String execute() {
+
+	public String execute() throws SQLException {
 
 		result = ERROR;
 
@@ -39,12 +45,33 @@ private LoginDTO loginDTO = new LoginDTO();
 			session.put("password",loginDTO.getLoginPassword());
 
 			System.out.println(session.get("user_id").toString());
+			//未ログイン時のカート情報統合
+			CartDAO cartDAO = new CartDAO();
+			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("tempUserId").toString());
+			if(!(cartDTOList==null)){
+
+				for(CartDTO dto:cartDTOList){
+					cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+				}
+			}
 
 			return result;
 
 		}
 
 		return result;
+	}
+
+
+
+	public ArrayList<CartDTO> getCartDTOList() {
+		return cartDTOList;
+	}
+
+
+
+	public void setCartDTOList(ArrayList<CartDTO> cartDTOList) {
+		this.cartDTOList = cartDTOList;
 	}
 
 
