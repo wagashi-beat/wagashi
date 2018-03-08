@@ -57,7 +57,7 @@ public class ProductDetailDAO {
 
 	//同じカテゴリーの商品を取得
 
-	public ArrayList<ProductInfoDTO> categoryList(int categoryId,int removeProduct_Id) throws SQLException{
+	public ArrayList<ProductInfoDTO> categoryList(int categoryId,int Product_Id) throws SQLException{
 			ArrayList<ProductInfoDTO> categoryList = new ArrayList<ProductInfoDTO>();
 		String sql =""
 				+"SELECT * "
@@ -73,7 +73,7 @@ public class ProductDetailDAO {
 		try{
 			PreparedStatement preparedStatement=connection.prepareStatement(sql);
 			preparedStatement.setInt(1, categoryId);
-			preparedStatement.setInt(2, removeProduct_Id);
+			preparedStatement.setInt(2, Product_Id);
 			ResultSet resultSet=preparedStatement.executeQuery();
 
 			while(resultSet.next()){
