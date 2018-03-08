@@ -27,7 +27,7 @@ header {
     border:1px solid #aaa;
     border-radius:6px;
     margin-left: 100px;
-    max-width: 400px;
+    max-width: 600px;
 
 }
 
@@ -35,11 +35,11 @@ header {
 	    border-radius:6px;
 	border: none;
 	height: 33px;
-	width: 120px;
+	width: 130px;
 }
 
 .search input[type=text]{
-    padding:0 0 10px 10px;
+	padding-left: 10px;
     border: none;
 }
 
@@ -51,7 +51,7 @@ header {
     border-radius: 0 5px 5px 0;
     color: #fff;
     width: 45px;
-    height: 33px;
+    height: 31px;
 }
 
 #searchButton .searchIcon {
