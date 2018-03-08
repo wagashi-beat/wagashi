@@ -12,7 +12,7 @@ import com.wagashi.DTO.SearchItemInfoDTO;
 
 
 public class SearchItemAction extends ActionSupport implements SessionAware{
-	//private String itemCategory;
+	private String itemCategory;
 	private String searchWord;
 	private String[] searchWordList;
 	private String searchErrorMessage;
@@ -39,11 +39,11 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 		searchWordList = result.split(" ");
 
 		//スペースが連なった状態を解消（たぶん現在は必要ない）
-		/*for(int i=0; i<searchWordList.length; i++){
+		for(int i=0; i<searchWordList.length; i++){
 			if(!(searchWordList[i].equals(" ") || searchWordList[i].equals("　"))){
 				reformedSearchWordList.add(searchWordList[i]);
 			}
-		}*/
+		}
 
 		//検索ワードをノーマライズ
 		for(int i=0; i<reformedSearchWordList.size(); i++){
@@ -59,7 +59,7 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 		}
 
 		//検索カテゴリー・ワードを全商品と比較
-		/*if(!(itemCategory.equals("0"))){
+		if(!(itemCategory.equals("0"))){
 			for(int i=0; i<searchItemDTOList.size(); i++){
 				for(int j=0; j<normalSearchWordList.size(); j++){
 					if(!(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j))) ||
@@ -77,7 +77,7 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 					}
 				}
 			}
-		}*/
+		}
 
 		//検索該当商品のみ抜き出してリストに入れる
 		for(int i=0; i<searchItemDTOList.size(); i++){
@@ -124,7 +124,7 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 	}
 
 
-/*
+
 	public String getItemCategory() {
 		return itemCategory;
 	}
@@ -133,7 +133,7 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 
 	public void setItemCategory(String itemCategory) {
 		this.itemCategory = itemCategory;
-	}*/
+	}
 
 
 
@@ -188,5 +188,6 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
 
 }

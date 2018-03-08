@@ -12,6 +12,9 @@ public class SearchComparator implements Comparator<SearchItemInfoDTO>{
 		int no2 = b.getPrice();
 
 		if(no1 > no2){
+			return 1;
+
+		}else if(no1 == no2){
 			return 0;
 		}else{
 			return -1;
