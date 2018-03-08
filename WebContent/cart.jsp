@@ -32,6 +32,9 @@
 			</s:iterator>
 
 		</s:form>
+		<s:form action="SettlementConfirmAction">
+			<s:submit value=" 購入 " method="execute"/>
+		</s:form>
 	</table>
 
 </body>

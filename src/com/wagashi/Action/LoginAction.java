@@ -28,6 +28,8 @@ private LoginDTO loginDTO = new LoginDTO();
 
 private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
+private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
+
 
 
 	public String execute() throws SQLException {
@@ -48,18 +50,41 @@ private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 			//未ログイン時のカート情報統合
 			CartDAO cartDAO = new CartDAO();
 			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("tempUserId").toString());
+			loginCartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 			if(!(cartDTOList==null)){
 
 				for(CartDTO dto:cartDTOList){
-					cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+					for(CartDTO lcdto:loginCartDTOList){
+						if(dto.getProductId()==lcdto.getProductId()){
+							int updateCount=dto.getProductCount()+lcdto.getProductCount();
+							cartDAO.updateCartAdd(session.get("user_id").toString(),dto.getProductId(), updateCount);
+						}else{
+						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+						}
+					}
+
+
 				}
 			}
+			session.remove("tempUserId");
 
 			return result;
 
 		}
 
 		return result;
+	}
+
+
+
+	public ArrayList<CartDTO> getLoginCartDTOList() {
+		return loginCartDTOList;
+	}
+
+
+
+	public void setLoginCartDTOList(ArrayList<CartDTO> loginCartDTOList) {
+		this.loginCartDTOList = loginCartDTOList;
 	}
 
 
