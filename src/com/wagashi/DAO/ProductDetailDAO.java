@@ -13,7 +13,7 @@ public class ProductDetailDAO {
 
 	private DBConnector dbConnector=new DBConnector();
 	private Connection connection=dbConnector.getConnection();
-	public ProductInfoDTO productInfoDTO=new ProductInfoDTO();
+//	public ProductInfoDTO productInfoDTO=new ProductInfoDTO();
 
 	//商品詳細を取得
 
@@ -22,8 +22,8 @@ public class ProductDetailDAO {
 
 		String sql=""
 					+ "SELECT * "
-					+ "FROM product_info"
-					+ "INNER JOIN m_category"
+					+ "FROM product_info "
+					+ "INNER JOIN m_category "
 					+ "ON product_info.category_id = m_category.category_id "
 					+ "where product_id = ?";
 
@@ -65,8 +65,8 @@ public class ProductDetailDAO {
 				+"INNER JOIN m_category"
 				+"ON product_info.category_id = m_category.category_id"
 				+"where product_info.category_id=?"
-				+"AND product_into.product_id !=?"
-				+"order by rand()"
+				+"AND product_info.product_id !=?"
+				+"ORDER BY RAND()"
 				+"LIMIT 3";
 
 
