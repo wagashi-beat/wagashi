@@ -6,7 +6,7 @@ header {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #27262E;
+	background-color: #2F3039;
 	color: white;
 }
 
@@ -69,39 +69,57 @@ header {
 	margin: 5px 10px 5px 10px;
 }
 
-.search #searchButton input[type= image]: hover{
+#searchButton:hover{
 	background: #DE8B47;
 }
 
 
-.search input: hover{
-	border: 1px solid #FEAD51;
-}
 
 
 
-.cart {
-	display: inline-block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 80px;
-	height: 45px;
-}
-
-
-.search .cart: hover #cartIcon{
+.search .cart:hover #cartIcon{
 	 border:1px solid #FEAD51;
 	border-radius: 8px;
 
 }
 
 
-#cartIcon{
-	margin-left: 20px;
-	margin-top: 5px;
+
+
+header .menu {
+	font-size: 15px;
+	list-style: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 500px;
+	height: 40px;
 }
 
+ul li a{
+	float: left;
+	width: 75px;
+	height: 30px;
+	padding: 10px;
+	text-align: center;
+	border: 2px solid #2F3039;
+	color: white;
+	text-decoration: none;
+}
+
+
+ul li:hover a {
+	width: 75px;
+	height: 30px;
+    border: 2px solid #535353;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+#cartIcon {
+	right: 0;
+	padding-bottom: 10px;
+}
 
 
 .main {

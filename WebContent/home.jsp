@@ -51,10 +51,17 @@
     		<a href= '<s:url action= "MyPageAction" />'>マイページ</a>
     	</li>
 
-    	<li class= "acount"
-    <div class= "cart">
-    	<a href= '<s:url action= "CartAction" />'><img src= "./img/cartIcon.png" height= "35px" id= "cartIcon"></a>
-    </div>
+    	<li class= "acount">
+    		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
+    	</li>
+
+    	<li class= "acount">
+    	<div class= "cart">
+    		<a href= '<s:url action= "CartAction" />'><img src= "./img/cartIcon.png" height= "35px" id= "cartIcon"></a>
+  		 </div>
+  		 </li>
+
+  		 </ul>
 
 
 
