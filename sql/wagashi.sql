@@ -92,13 +92,17 @@ insert into user_info values (1, "taro", "123", "山田", "太郎", "やまだ",
 insert into m_category(id,category_id,category_name,category_description,insert_date)
  values (1,1,"団子","団子のカテゴリーです。","2018-03-07 11:10:10");
 insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (1,1,"団子","だんご","三色団子です。",1,100,"./img/dango.jpg","dango.jpg","2018-03-07 11:10:10");
+values (1,1,"団子","だんご","三色団子です。",1,100,"./img/dango.png","dango.png","2018-03-07 11:10:10");
 insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (2,2,"みたらし団子","みたらしだんご","みたらし団子です。",1,100,"./img/dango2.jpg","dango2.jpg","2018-03-07 11:10:10");
+values (2,2,"みたらし団子","みたらしだんご","みたらし団子です。",1,100,"./img/dango2.png","dango2.png","2018-03-07 11:10:10");
 insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (3,3,"あんこ団子","あんこだんご","あんこの団子です。",1,100,"./img/dango3.jpg","dango3.jpg","2018-03-07 11:10:10");
+values (3,3,"あんこ団子","あんこだんご","あんこの団子です。",1,100,"./img/dango3.png","dango3.png","2018-03-07 11:10:10");
 insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (4,4,"焼き団子","やきだんご","焼き団子です。",1,100,"./img/dango4.jpg","dango4.jpg","2018-03-07 11:10:10");
+values (4,4,"焼き団子","やきだんご","焼き団子です。",1,100,"./img/dango4.png","dango4.png","2018-03-07 11:10:10");
+insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
+values (5,5,"きなこ団子","きなこだんご","きなこ団子です。",1,150,"./img/dango5.png","dango5.png","2018-03-07 11:10:10");
+insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
+values (6,6,"ごま団子","ごまだんご","ごま団子です。",1,200,"./img/dango6.png","dango6.png","2018-03-07 11:10:10");
 
 insert into cart_info(user_id,product_id,product_name,product_count,price,regist_date)
 values ("taro",1,"団子",1,100,"2018-03-07 11:10:10");
