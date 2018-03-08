@@ -25,7 +25,7 @@ public class ProductDetailDAO {
 					+ "FROM product_info "
 					+ "INNER JOIN m_category "
 					+ "ON product_info.category_id = m_category.category_id "
-					+ "where product_id = ?";
+					+ "where product_id = ? ";
 
 
 		try{
@@ -43,7 +43,7 @@ public class ProductDetailDAO {
 				productInfoDTO.setProductDescription(resultSet.getString("product_description"));
 				productInfoDTO.setCategoryId(resultSet.getString("category_id"));
 				productInfoDTO.setPrice(resultSet.getInt("price"));
-				productInfoDTO.setImageFileName(resultSet.getString("image_file_path"));
+				productInfoDTO.setImageFilePath(resultSet.getString("image_file_path"));
 				productInfoDTO.setImageFileName(resultSet.getString("image_file_name"));
 				productDetailList.add(productInfoDTO);
 
@@ -61,13 +61,13 @@ public class ProductDetailDAO {
 			ArrayList<ProductInfoDTO> categoryList = new ArrayList<ProductInfoDTO>();
 		String sql =""
 				+"SELECT * "
-				+"FROM product_info"
-				+"INNER JOIN m_category"
-				+"ON product_info.category_id = m_category.category_id"
-				+"where product_info.category_id=?"
-				+"AND product_info.product_id !=?"
-				+"ORDER BY RAND()"
-				+"LIMIT 3";
+				+"FROM product_info "
+				+"INNER JOIN m_category "
+				+"ON product_info.category_id = m_category.category_id "
+				+"where product_info.category_id=? "
+				+"AND product_info.product_id !=? "
+				+"ORDER BY RAND() "
+				+"LIMIT 3 ";
 
 
 		try{
@@ -85,7 +85,7 @@ public class ProductDetailDAO {
 				productInfoDTO.setProductDescription(resultSet.getString("product_description"));
 				productInfoDTO.setCategoryId(resultSet.getString("category_id"));
 				productInfoDTO.setPrice(resultSet.getInt("price"));
-				productInfoDTO.setImageFileName(resultSet.getString("image_file_path"));
+				productInfoDTO.setImageFilePath(resultSet.getString("image_file_path"));
 				productInfoDTO.setImageFileName(resultSet.getString("image_file_name"));
 
 				categoryList.add(productInfoDTO);
