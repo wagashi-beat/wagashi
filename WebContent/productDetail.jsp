@@ -53,22 +53,13 @@
 			<a href="<s:url action=ProductDetailAction">
 				<s:param name= "productId" value="productId"/>
 				<s:param name= "categoryId" value="categoryId"/>
-
 				<img src="<s:property value="imageFilePath"/>" class="itemImage">
 				<br>
 				<s:property value="productName" />
 				<s:property value="price"/>
 
-
 			</a>
 		</s:iterator>
-
-
-
-
-
-
-
 
 
 
