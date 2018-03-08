@@ -43,7 +43,7 @@
 
 
 	<HR>
-
+<%--
 	<p>
 			同じカテゴリーの商品
 			(<s:property value="categooryName"/>)
@@ -60,7 +60,7 @@
 
 			</a>
 		</s:iterator>
-
+--%>
 
 
 

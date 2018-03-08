@@ -24,6 +24,7 @@ public class ProductDetailAction extends ActionSupport implements SessionAware{
 	public String execute() {
 
 		String result =ERROR;
+		System.out.println(productId);
 
 		try{
 			productDetailList = productDetailDAO.getDetail(productId);
@@ -34,7 +35,7 @@ public class ProductDetailAction extends ActionSupport implements SessionAware{
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-
+System.out.println(productDetailList.size());
 		result = SUCCESS;
 		return result;
 

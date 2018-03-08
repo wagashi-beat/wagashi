@@ -20,10 +20,12 @@
 	<a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a>
 
 	<p><a href="<s:url action='CartAction'/>">カート画面</a>
-	
 
-	<p><a href="<s:url action='ProductDetailAction'><s:param name="productId" value="productId"/>
-			 		<s:param name="categoryId" value="categoryId"/></s:url>">詳細画面</a></p>
+
+	<p><a href="<s:url action='ProductDetailAction'>
+					<s:param name="productId" value="1"/>
+			 		<s:param name="categoryId" value="1"/>
+			 		</s:url>">詳細画面</a></p>
 
 
 </body>
