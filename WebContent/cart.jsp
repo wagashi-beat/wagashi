@@ -10,25 +10,28 @@
 <body>
 
 	<table>
-	<s:form action="CartAction">
-		<s:iterator value="cartDTOList">
-			<tr>
-				<td><s:property value="image_file_path"/></td>
-			</tr>
-			<tr>
-				<td><s:property value="productName"/>
-			</tr>
-			<tr>
-				<td><s:property value="productCount"/>点</td>
-			</tr>
-			<tr>
-				<td><s:property value="price"/>円</td>
-			</tr>
-			<tr>
-				<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
-			</tr>
-		</s:iterator>
-	</s:form>
+		<s:form action="CartAction">
+			<s:iterator value="cartDTOList">
+				<tr>
+					<td><img src="<s:property value='imageFilePath'/>"></td>
+				</tr>
+				<tr>
+					<td><s:property value="productName"/>
+				</tr>
+				<tr>
+					<td><s:property value="productCount"/>点</td>
+				</tr>
+				<tr>
+					<td><s:property value="price"/>円</td>
+				</tr>
+				<tr>
+					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
+				</tr>
+				<input type="hidden" name="deleteFlg" value="1"/>
+				チェック済の商品は削除できます<s:submit value=" 削除 " method="execute"/>
+			</s:iterator>
+
+		</s:form>
 	</table>
 
 </body>

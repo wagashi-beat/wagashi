@@ -65,23 +65,27 @@ public ArrayList<CartDTO> loginGetCartInfo(String userId)throws SQLException{
 	ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
 	String sql = "select * from cart_info left join product_info on cart_info.product_id = product_info.product_id where cart_info.user_id = ?";
-		PreparedStatement preparedStatement = con.prepareStatement(sql);
-		preparedStatement.setString(1, userId);
-		ResultSet resultSet = preparedStatement.executeQuery();
+		try{
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			preparedStatement.setString(1, userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-		while(resultSet.next()){
-			CartDTO dto = new CartDTO();
-			dto.setUserId(resultSet.getString("user_id"));
-			dto.setProductId(resultSet.getInt("product_id"));
-			dto.setProductName(resultSet.getString("product_name"));
-			dto.setProductCount(resultSet.getInt("product_count"));
-			dto.setPrice(resultSet.getInt("price"));
-			dto.setImageFilePath(resultSet.getString("image_file_path"));
-			dto.setImageFileName(resultSet.getString("image_file_name"));
-			cartDTOList.add(dto);
+			while(resultSet.next()){
+				CartDTO dto = new CartDTO();
+				dto.setUserId(resultSet.getString("user_id"));
+				dto.setProductId(resultSet.getInt("product_id"));
+				dto.setProductName(resultSet.getString("product_name"));
+				dto.setProductCount(resultSet.getInt("product_count"));
+				dto.setPrice(resultSet.getInt("price"));
+				dto.setImageFilePath(resultSet.getString("image_file_path"));
+				dto.setImageFileName(resultSet.getString("image_file_name"));
+				cartDTOList.add(dto);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			con.close();
 		}
-
-	con.close();
 	return cartDTOList;
 }
 
@@ -91,23 +95,27 @@ public ArrayList<CartDTO> noLoginGetCartInfo(String tempUserId)throws SQLExcepti
 	ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
 	String sql = "select * from cart_info where user_id = ?";
+	try{
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		preparedStatement.setString(1, tempUserId);
+		ResultSet resultSet = preparedStatement.executeQuery();
 
-	PreparedStatement preparedStatement = con.prepareStatement(sql);
-	preparedStatement.setString(1, tempUserId);
-	ResultSet resultSet = preparedStatement.executeQuery();
-
-	while(resultSet.next()){
-		CartDTO dto = new CartDTO();
-		dto.setTempUserId(resultSet.getString("temp_user_id"));
-		dto.setProductId(resultSet.getInt("product_id"));
-		dto.setProductName(resultSet.getString("product_name"));
-		dto.setProductCount(resultSet.getInt("product_count"));
-		dto.setPrice(resultSet.getInt("price"));
-		dto.setImageFilePath(resultSet.getString("image_file_path"));
-		dto.setImageFileName(resultSet.getString("image_file_name"));
-		cartDTOList.add(dto);
+			while(resultSet.next()){
+				CartDTO dto = new CartDTO();
+				dto.setTempUserId(resultSet.getString("temp_user_id"));
+				dto.setProductId(resultSet.getInt("product_id"));
+				dto.setProductName(resultSet.getString("product_name"));
+				dto.setProductCount(resultSet.getInt("product_count"));
+				dto.setPrice(resultSet.getInt("price"));
+				dto.setImageFilePath(resultSet.getString("image_file_path"));
+				dto.setImageFileName(resultSet.getString("image_file_name"));
+				cartDTOList.add(dto);
+		}
+	}catch(SQLException e){
+		e.printStackTrace();
+	}finally{
+		con.close();
 	}
-	con.close();
 	return cartDTOList;
 }
 
@@ -116,22 +124,33 @@ public ArrayList<CartDTO> noLoginGetCartInfo(String tempUserId)throws SQLExcepti
 public void loginCartDelete(String userId,int productId) throws SQLException{
 
 	String sql="delete from cart_info where user_id = ? and product_id = ?";
+	try{
 
-	PreparedStatement preparedStatement = con.prepareStatement(sql);
-	preparedStatement.setString(1, userId);
-	preparedStatement.setInt(2, productId);
-	preparedStatement.execute();
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		preparedStatement.setString(1, userId);
+		preparedStatement.setInt(2, productId);
+		preparedStatement.execute();
+	}catch(SQLException e){
+		e.printStackTrace();
+	}finally {
+		con.close();
+	}
 }
 
 //未ログイン時のカート内の商品削除
 
 public void noLoginCartDelete(String tempUserId,int productId)throws SQLException{
 	String sql = "delete from cart_info where user_id = ? and product_id = ?";
-
-	PreparedStatement preparedStatement = con.prepareStatement(sql);
-	preparedStatement.setString(1, tempUserId);
-	preparedStatement.setInt(2, productId);
-	preparedStatement.execute();
+	try{
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		preparedStatement.setString(1, tempUserId);
+		preparedStatement.setInt(2, productId);
+		preparedStatement.execute();
+	}catch(SQLException e){
+		e.printStackTrace();
+	}finally {
+		con.close();
+	}
 }
 
 }

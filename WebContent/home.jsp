@@ -19,6 +19,8 @@
 
 	<a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a>
 
+	<p><a href="<s:url action='CartAction'/>">カート画面</a>
+
 
 </body>
 </html>

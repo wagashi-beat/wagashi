@@ -40,20 +40,21 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 			if(!(addFlg==null)){
 
-				cartDAO.loginCartAdd(session.get("userId").toString(), productId, productCount, price);
+				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price);
 			}else if(!(deleteFlg==null)&&!(deleteList==null)){
 
 				for(String check:deleteList){
 					int id=Integer.parseInt(check);
-					cartDAO.loginCartDelete(session.get("userId").toString(), id);
+					cartDAO.loginCartDelete(session.get("user_id").toString(), id);
 				}
 			}
 
-			cartDTOList=cartDAO.loginGetCartInfo(session.get("userId").toString());
+			cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
+
 			result = SUCCESS;
 		}
 		//未ログイン時の処理
-		if(!(session.containsKey("userId"))){
+		if(!(session.containsKey("user_id"))){
 			if(!(addFlg==null)){
 				cartDAO.noLoginCartAdd(session.get("tempUserId").toString(), productId, productCount, price);
 			}else if(!(deleteFlg==null)){
@@ -135,6 +136,16 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 	public void setDeleteFlg(String deleteFlg) {
 		this.deleteFlg = deleteFlg;
+	}
+
+
+	public Collection<String> getDeleteList() {
+		return deleteList;
+	}
+
+
+	public void setDeleteList(Collection<String> deleteList) {
+		this.deleteList = deleteList;
 	}
 
 
