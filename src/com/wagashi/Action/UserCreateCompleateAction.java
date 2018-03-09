@@ -26,7 +26,7 @@ public class UserCreateCompleateAction extends ActionSupport implements SessionA
 
 	// 実行
 	public String execute() throws SQLException {
-		userCreateDAO.create(session.get("userId").toString(),
+		userCreateDAO.create(session.get("user_id").toString(),
 				session.get("password").toString(),
 				session.get("familyName").toString(),
 				session.get("firstName").toString(),

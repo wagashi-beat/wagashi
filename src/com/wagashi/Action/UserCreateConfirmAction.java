@@ -46,7 +46,6 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 			error= "未入力項目があります。";
 			errorList.add(error);
 			errorCount++;
-
 		}
 
 		else {

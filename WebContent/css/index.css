@@ -92,7 +92,8 @@ header .menu {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: 500px;
+	width:600px;
+	max-width: 600px;
 	height: 40px;
 }
 
@@ -102,15 +103,15 @@ ul li a{
 	height: 30px;
 	padding: 10px;
 	text-align: center;
-	border: 2px solid #2F3039;
+	border: none;
 	color: white;
 	text-decoration: none;
 }
 
 
 ul li:hover a {
-	width: 75px;
-	height: 30px;
+	width: 71px;
+	height: 26px;
     border: 2px solid #535353;
     border-radius: 5px 5px 5px 5px;
 }

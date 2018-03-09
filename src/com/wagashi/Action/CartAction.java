@@ -44,7 +44,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 					if(dto.getProductId()==productId){
 						int updateCount = productCount+dto.getProductCount();
 						cartDAO.updateCartAdd(session.get("user_id").toString(), productId, updateCount);
-						cartDTOList=cartDAO.loginGetCartInfo(session.get("usser_id").toString());
+						cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 						result=SUCCESS;
 						return result;
 					}
