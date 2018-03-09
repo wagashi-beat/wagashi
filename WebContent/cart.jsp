@@ -72,6 +72,7 @@
 
 
 	<div class= "main">
+	<p>チェックした商品はカートから削除されます。</p>
 
 	<table>
 		<s:form action="CartAction">
@@ -92,7 +93,7 @@
 					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
 				</tr>
 				<input type="hidden" name="deleteFlg" value="1"/>
-				チェック済の商品は削除できます<s:submit value=" 削除 " method="execute"/>
+				<s:submit value=" 削除 " method="execute"/>
 			</s:iterator>
 
 		</s:form>
