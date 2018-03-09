@@ -12,7 +12,7 @@ public class PasswordChangeCompleteAction extends ActionSupport implements Sessi
 	private PasswordChangeDAO passwordChangeDAO= new PasswordChangeDAO();
 
 	public String execute() {
-		passwordChangeDAO.newPassword(session.get("user_id").toString(), session.get("newPassword").toString());
+		passwordChangeDAO.newPassword(session.get("newPassword").toString(), session.get("userId").toString());
 		return SUCCESS;
 	}
 

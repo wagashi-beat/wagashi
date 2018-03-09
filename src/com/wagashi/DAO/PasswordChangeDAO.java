@@ -9,13 +9,13 @@ public class PasswordChangeDAO {
 	DBConnector db= new DBConnector();
 	Connection con= db.getConnection();
 
-	public void newPassword(String userId, String newPassword) {
+	public void newPassword(String newPassword, String userId) {
 		String sql= "update user_info set password= ? where user_id= ?";
 
 		try {
 			PreparedStatement ps= con.prepareStatement(sql);
-			ps.setString(1, userId);
-			ps.setString(2, newPassword);
+			ps.setString(1, newPassword);
+			ps.setString(2, userId);
 			ps.executeUpdate();
 		}
 

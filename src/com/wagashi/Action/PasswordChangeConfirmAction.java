@@ -7,14 +7,14 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.wagashi.DAO.LoginDAO;
-import com.wagashi.DTO.LoginDTO;
+import com.wagashi.DTO.MyPageDTO;
 
 public class PasswordChangeConfirmAction extends ActionSupport implements SessionAware {
 	private String userId;
 	private String newPassword;
 
 	public Map<String, Object> session;
-	private LoginDTO loginDTO= new LoginDTO();
+	private MyPageDTO myPageDTO= new MyPageDTO();
 	private LoginDAO loginDAO= new LoginDAO();
 
 
@@ -27,9 +27,7 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		}
 
 		else {
-			session.put("newPassword", newPassword);
-
-			if (!userId.equals(loginDTO.getLoginId())) {
+			if (!(loginDAO.userCheck(userId)>0)) {
 				errorCount++;
 			}
 		}
@@ -39,12 +37,15 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		}
 
 		else {
+			session.put("userId", userId);
 			session.put("newPassword", newPassword);
 			ret= SUCCESS;
 		}
 
 		return ret;
 	}
+
+
 
 
 	public String getUserId() {
@@ -77,16 +78,6 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 	}
 
 
-	public LoginDTO getLoginDTO() {
-		return loginDTO;
-	}
-
-
-	public void setLoginDTO(LoginDTO loginDTO) {
-		this.loginDTO = loginDTO;
-	}
-
-
 	public LoginDAO getLoginDAO() {
 		return loginDAO;
 	}
@@ -97,8 +88,12 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 	}
 
 
+	public MyPageDTO getMyPageDTO() {
+		return myPageDTO;
+	}
 
 
-
-
+	public void setMyPageDTO(MyPageDTO myPageDTO) {
+		this.myPageDTO = myPageDTO;
+	}
 }

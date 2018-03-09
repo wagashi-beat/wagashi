@@ -51,17 +51,17 @@ return loginDTO;
 
 }
 
-	public boolean userCheck(String userId) {
-		boolean result= false;
 
-		String sql1= "select * from user_info where user_id= ?";
+	String sql2= "select count(*) from user_info where user_id= ?";
+	public int userCheck(String userId) throws SQLException {
+		int userCount= 0;
+
 		try {
-			PreparedStatement preparedStatement= connection.prepareStatement(sql1);
-			preparedStatement.setString(1, userId);
-			ResultSet resultSet= preparedStatement.executeQuery();
-
-			if (resultSet.next()){
-				result= true;
+			PreparedStatement ps= connection.prepareStatement(sql2);
+			ps.setString(1, userId);
+			ResultSet rs= ps.executeQuery();
+			if(rs.next()){
+				userCount= rs.getInt("count(*)");
 			}
 		}
 
@@ -69,8 +69,9 @@ return loginDTO;
 			e.printStackTrace();
 		}
 
-		return result;
+		return userCount;
 	}
+
 
 public LoginDTO getLoginDTO() {
 	return loginDTO;

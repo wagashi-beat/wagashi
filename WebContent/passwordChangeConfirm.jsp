@@ -76,7 +76,7 @@
 
 		<table>
 			<tr><th>ログインID：</th>
-				<td><s:property value= "session.user_id" /></td></tr>
+				<td><s:property value= "session.userId" /></td></tr>
 
 			<tr><th>パスワード：</th>
 				<td><s:property value= "session.newPassword" /></td></tr>
