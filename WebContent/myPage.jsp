@@ -108,6 +108,7 @@
 	</table>
 
 	</div>
+	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴</a>
 
 </body>
 </html>

@@ -87,38 +87,37 @@
 						<img src="<s:property value="imageFilePath"/>" class="image">
 					</div>
 
-					<div class="right">
-						<div class="product-right">
-								<s:property value="productName" />
-								(<s:property value="productNameKana" />)
-								<br>
-								<br>
-								商品詳細<br>
-								<s:property value ="productDescription" /><br><br>
+						<div class="right">
+							<div class="product-right">
+									<s:property value="productName" />
+									(<s:property value="productNameKana" />)
+									<br>
+									<br>
+									商品詳細<br>
+									<s:property value ="productDescription" /><br><br>
 
+									値段
+									<input type="hidden" name="price" value='<s:property value="price"/>'>
+									<s:property value ="price"/>円
+									<br>
+									購入個数
+									<select name="productCount">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+									</select>
 
-								値段
-								<input type="hidden" name="price" value='<s:property value="price"/>'>
-								<s:property value ="price"/>円
-								<br>
-								購入個数
-								<select name="productCount">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-								</select>
+									<input type="hidden" name="addFlg" value="1">
+									<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 
-								<input type="hidden" name="addFlg" value="1">
-								<input type="hidden" name="productId" value='<s:property value="productId"/>'>
+									<s:form>
+									<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
+									</s:form>
 
-								<s:form>
-								<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
-								</s:form>
-
+							</div>
 						</div>
-					</div>
 				</div>
 
 				<div class="aa"></div>
@@ -129,21 +128,20 @@
 					<p>
 
 
-				</s:iterator>
-			</s:form>
+			</s:iterator>
+		</s:form>
 
 
 
-					<s:iterator value="categoryList">
-
+				<s:iterator value="categoryList">
 						<section class="item item-pr">
 
 
 
-						<a href="<s:url action="ProductDetailAction">
+							<a href="<s:url action="ProductDetailAction">
 			 								<s:param name= "productId" value="productId"/>
 			 								<s:param name="categoryId" value="categoryId"/>
-			 							</s:url>">
+			 						</s:url>">
 							<img src="<s:property value="imageFilePath"/>" class="itemImage">
 							<br>
 
@@ -153,7 +151,7 @@
 
 							</a>
 						</section>
-					</s:iterator>
+				</s:iterator>
 			<div class="aa"></div>
 
 
