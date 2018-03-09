@@ -10,8 +10,6 @@
 	<title>商品一覧</title>
 </head>
 
-</head>
-
 <body>
 	<!-- ここから前頁共通 -->
 	<header class= "amazon">

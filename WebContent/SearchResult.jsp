@@ -10,8 +10,6 @@
 	<title>Result</title>
 </head>
 
-</head>
-
 <body>
 	<!-- ここから前頁共通 -->
 	<header class= "amazon">

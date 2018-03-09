@@ -9,7 +9,6 @@
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
 	<title>宛先登録画面</title>
 </head>
-</head>
 
 <body>
 	<!-- ここから前頁共通 -->

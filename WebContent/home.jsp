@@ -17,7 +17,6 @@
 			<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
 		</div>
 
-
 	<s:form action= "SearchItemAction">
 	<div class="search">
 		<select name= "itemCategory" class= "category">

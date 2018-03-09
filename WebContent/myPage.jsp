@@ -10,7 +10,6 @@
 	<title>マイページ</title>
 </head>
 
-</head>
 
 <body>
 	<!-- ここから前頁共通 -->

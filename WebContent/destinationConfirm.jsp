@@ -10,8 +10,6 @@
 	<title>宛先登録確認画面</title>
 </head>
 
-</head>
-
 <body>
 	<!-- ここから前頁共通 -->
 	<header class= "amazon">
