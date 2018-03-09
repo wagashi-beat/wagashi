@@ -19,11 +19,11 @@
 
 	<s:form action= "SearchItemAction">
 	<div class="search">
-		<select name= "itemCategory" class= "category">
-			<option value= "">全てのカテゴリー</option>
-			<option value= "">１</option>
-			<option value= "">２</option>
-			<option value= "">３</option>
+		<select name= "categoryId" class= "category">
+			<option value= 1>全てのカテゴリー</option>
+			<option value= 2>１</option>
+			<option value= 3>２</option>
+			<option value= 4>３</option>
 		</select>
 
         	<input type="text" class="searchBox" value="" placeholder="Search">

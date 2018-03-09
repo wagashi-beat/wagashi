@@ -1,79 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html>
-
+<%@ taglib prefix="s" uri="/struts-tags"  %>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
-	<title>Result</title>
+	<title>Cherry</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mt_style.css">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>
 
-<body>
-	<!-- ここから前頁共通 -->
-	<header class= "amazon">
-		<div class= "logo">
-			<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
-		</div>
+<body class="home">
 
 
-	<s:form action= "SearchItemAction">
-	<div class="search">
-		<select name= "itemCategory" class= "category">
-			<option value= "">全てのカテゴリー</option>
-			<option value= "">１</option>
-			<option value= "">２</option>
-			<option value= "">３</option>
-		</select>
+<!-- メインコンテンツ -->
+<div class="top_main clearfix">
+			<h1>
+				<s:if test="categoryId == 1">
+					<span class="category orange">&nbsp;&nbsp;全てのカテゴリ</span>
+				</s:if>
+				<s:if test="categoryId == 2">
+					<span class="category orange">&nbsp;&nbsp;本</span>
+				</s:if>
+				<s:if test="categoryId == 3">
+					<span class="category blue">&nbsp;&nbsp;家電&amp;パソコン</span>
+				</s:if>
+				<s:if test="categoryId == 4">
+					<span class="category green">&nbsp;&nbsp;おもちゃ&amp;ゲーム</span>
+				</s:if>
+			</h1>
 
-        	<input type="text" class="searchBox" value="" placeholder="Search">
+		<s:iterator value="msgList">
+			<h1>検索キーワード "<s:property />"</h1>
+		</s:iterator>
+		<s:if test="searchDTOList.size()==0">
+			<h1>検索結果がありません。</h1>
+		</s:if>
+	<ul>
+		<s:iterator value="searchDTOList">
+		<li>
+			<s:url id="url" action="ProDetailAction">
+				<s:param name="id" value="productId"/>
 
-        	<div id= "searchButton">
-	        	<input type= "image" src= "./img/searchIcon.png" width= "25px" height= "25px" class= "searchIcon" />
-	        </div>
-	        </div>
-    </s:form>
+			</s:url>
 
-
-    <ul class= "menu">
-
-    	<li class= "acount">
-    		<a href= '<s:url action= "HomeMoveAction" />'>ホーム</a>
-    	</li>
-
-    	<li class= "acount">
-    		<a href= '<s:url action= "UserCreatePageAction" />'>新規登録</a>
-    	</li>
-
-    	<li class= "acount">
-    		<a href= '<s:url action= "LoginMoveAction" />'>ログイン</a>
-    	</li>
-
-    	<li class= "acount">
-    		<a href= '<s:url action= "MyPageAction" />'>マイページ</a>
-    	</li>
-
-    	<li class= "acount">
-    		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
-    	</li>
-
-    	<li class= "acount">
-    	<div class= "cart">
-    		<a href= '<s:url action= "CartAction" />'><img src= "./img/cartIcon.png" height= "35px" id= "cartIcon"></a>
-  		 </div>
-  		 </li>
-  		 </ul>
+			<s:a href="%{url}">
+				<s:if test="categoryId == 2">
+					<span class="category orange">&nbsp;&nbsp;本</span>
+				</s:if>
+				<s:if test="categoryId == 3">
+					<span class="category blue">&nbsp;&nbsp;家電&amp;パソコン</span>
+				</s:if>
+				<s:if test="categoryId == 4">
+					<span class="category green">&nbsp;&nbsp;おもちゃ&amp;ゲーム</span>
+				</s:if>
 
 
-	</header>
+				<div><img src='<s:property value="imageFileName"/>' alt="画像なし"/></div>
+					<p class="name"><s:property value="productName"/></p>
+					<p class="price">\<span><s:property value="price"/></span></p>
+			</s:a>
+		</li>
+		</s:iterator>
 
-	<!-- ここまで -->
-
-
-	<div class= "main">
-
-test
+	</ul>
 </div>
+
+<script>
+$(function() {
+
+	for(var i = 0; i < $(".home .top_main ul li img").length; i++){
+	var arra_w = $('.home .top_main ul li img').eq(i).width() - 14;
+
+	var arra_h = $('.home .top_main ul li img').eq(i).height();
+	if(arra_w < arra_h || arra_w == arra_h){
+		$('.home .top_main ul li img').eq(i).css('max-height','245px');
+	}else{
+		$('.home .top_main ul li img').eq(i).css('max-width','281px');
+	}
+	};	//配列をまわす
+
+});	//function
+</script>
 </body>
 </html>

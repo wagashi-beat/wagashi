@@ -1,193 +1,292 @@
 package com.wagashi.Action;
 
+import java.sql.SQLException;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.wagashi.DTO.SearchItemInfoDTO;
+import com.wagashi.DAO.SearchDAO;
+import com.wagashi.DTO.SearchDTO;
+import com.wagashi.util.ToHiragana;
 
+public class SearchItemAction {
+	public class SearchAction extends ActionSupport implements SessionAware {
+		private String searchWord;
+		private String keyword;
+		private int categoryId;
+		private SearchDAO searchDAO = new SearchDAO();
+		private List<SearchDTO> searchDTOList = new ArrayList<SearchDTO>();
+		private ToHiragana toHiragana = new ToHiragana();
+		private String[] searchWords;
+		public Map<String, Object> session;
+		private ArrayList<String> msgList = new ArrayList<String>();
 
-public class SearchItemAction extends ActionSupport implements SessionAware{
-	private String itemCategory;
-	private String searchWord;
-	private String[] searchWordList;
-	private String searchErrorMessage;
-	public Map<String,Object> session;
-	private List<SearchItemInfoDTO> searchResultList = new ArrayList<SearchItemInfoDTO>();
-	private List<String> reformedSearchWordList = new ArrayList<String>();
-	private List<String> normalSearchWordList = new ArrayList<String>();
-	private List<SearchItemInfoDTO> pageItemList = new ArrayList<SearchItemInfoDTO>();
-	private int page;
-	private List<Integer> pageNumList = new ArrayList<Integer>();
-	private int nowPage;
+		public String execute() throws SQLException {
 
+			String ret = ERROR;
 
-	public String execute(){
-		String ret = ERROR;
-		nowPage=0;
-
-		session.put("priceSortFlg", "0");
-
-		//検索ワードを整備しリスト化
-		char[] c={'\u3000'};
-		String wspace=new String(c);
-		String result=searchWord.replaceAll(wspace," ");
-		searchWordList = result.split(" ");
-
-		//スペースが連なった状態を解消（たぶん現在は必要ない）
-		for(int i=0; i<searchWordList.length; i++){
-			if(!(searchWordList[i].equals(" ") || searchWordList[i].equals("　"))){
-				reformedSearchWordList.add(searchWordList[i]);
+			if (searchWord.length() > 16) {
+				msgList.add("16字以内で検索してください");
+				ret = SUCCESS;
+				return ret;
+			} else {
+				msgList.add(searchWord);
 			}
-		}
 
-		//検索ワードをノーマライズ
-		for(int i=0; i<reformedSearchWordList.size(); i++){
-			String normSW = Normalizer.normalize(reformedSearchWordList.get(i).toString(),Normalizer.Form.NFKC );
-			normalSearchWordList.add(normSW);
-		}
-
-		//全商品取得
-		List<SearchItemInfoDTO> searchItemDTOList =(List<SearchItemInfoDTO>)session.get("allItem");
-
-		for(int i=0; i<searchItemDTOList.size(); i++){
-			searchItemDTOList.get(i).setSearchFlg("1");
-		}
-
-		//検索カテゴリー・ワードを全商品と比較
-		if(!(itemCategory.equals("0"))){
-			for(int i=0; i<searchItemDTOList.size(); i++){
-				for(int j=0; j<normalSearchWordList.size(); j++){
-					if(!(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j))) ||
-						!(searchItemDTOList.get(i).getCategoryId().equals(itemCategory))){
-						searchItemDTOList.get(i).setSearchFlg("0");
-				}
-				}
+			/*---------------------------------------------------------
+					検索値を全て全角に変換、適切な値に加工
+			-----------------------------------------------------------*/
+			keyword = Normalizer.normalize(searchWord, Normalizer.Form.NFKC);
+			keyword = toHiragana.toZenkakuHiragana(keyword);
+			System.out.println(keyword);
+			keyword = keyword.trim();
+			if (keyword.matches("^[\\p{Punct}]+$")) {
+				msgList.add("一般的な検索ワードを使ってください");
+				ret = SUCCESS;
+				return ret;
 			}
-		}else{
-			for(int i=0; i<searchItemDTOList.size(); i++){
-				for(int j=0; j<normalSearchWordList.size(); j++){
-					if(!(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j)))){
-						searchItemDTOList.get(i).setSearchFlg("0");
 
-					}
-				}
-			}
-		}
+			/*---------------------------------------------------------
+					複数検索 カテゴリーなし
+			-----------------------------------------------------------*/
+			/*
+			空白の場所を確認
+			*/
+			int kuuhakunobasho = keyword.indexOf(" ");
 
-		//検索該当商品のみ抜き出してリストに入れる
-		for(int i=0; i<searchItemDTOList.size(); i++){
-			if(searchItemDTOList.get(i).getSearchFlg().toString().equals("1")){
-				searchResultList.add(searchItemDTOList.get(i));
-			}
-		}
-		session.put("searchResultList", searchResultList);
+			if (categoryId == 1 && kuuhakunobasho > 0) {
 
-		// 1ページ目の9商品抜き出し
-		page = searchResultList.size() / 9 + 1;
-		for(int i=0; i<page; i++){
-			pageNumList.add(i + 1);
-		}
+				List<SearchDTO> notUniqueSearchDTOList = new ArrayList<SearchDTO>();
 
-		for(int i=0; i<1; i++){
-			if(searchResultList.size() >= 9){
-				for(int j=0; j<9; j++){
-					pageItemList.add(i,searchResultList.get(j));
+				String[] searchWords = keyword.replace("|", "hogehoge").replace("_", "|_").replace("　", " ")
+						.replace("~", "～").replace("%", "|%").split("[\\s]+");
+				for (String str : searchWords) {
+					System.out.println(str);
 				}
 
-			}else{
-				for(int j=0; j<searchResultList.size(); j++){
-					pageItemList.add(i,searchResultList.get(j));
+				/*
+				 * 検索ワードを作って重複ありのリストを作成
+				 *
+				 */ for (String str : searchWords) {
+					notUniqueSearchDTOList = searchDAO.BySerchWord(str);
 				}
+				/*
+				 * 重複ありのidリストを作成
+				 *
+				 *
+				 */ List<Integer> idList = new ArrayList<Integer>();
+				for (int i = 0; i < notUniqueSearchDTOList.size(); i++) {
+					int id = notUniqueSearchDTOList.get(i).getId();
+					idList.add(id);
+				}
+				/*
+				 * jspで引っ張られてしまうので、削除
+				 */
+				notUniqueSearchDTOList.clear();
+
+				/*
+				 * 重複なしのリストを作成
+				 *
+				 */
+
+				List<Integer> uniqueIdList = new ArrayList<Integer>(new HashSet<>(idList));
+				System.out.println("重複削除後は" + uniqueIdList);
+				/*
+				 * 検索開始
+				 *
+				 */ for (int uniqueId : uniqueIdList) {
+
+					searchDTOList = searchDAO.ByPrductId(uniqueId);
+				}
+
+				for (int i = 0; i < searchDTOList.size(); i++) {
+
+					System.out.println("検索結果は" + searchDTOList.get(i).getProductName());
+				}
+				ret = SUCCESS;
+				return ret;
+
+				/*---------------------------------------------------------
+						複数検索 カテゴリーあり
+				-----------------------------------------------------------*/
+
+			} else if (categoryId >= 1 && kuuhakunobasho > 0) {
+
+				List<SearchDTO> notUniqueSearchDTOList = new ArrayList<SearchDTO>();
+
+				String[] searchWords = keyword.replace("|", "hogehoge").replace("_", "|_").replace("　", " ")
+						.replace("~", "～").replace("%", "|%").split("[\\s]+");
+				for (String str : searchWords) {
+					System.out.println(str);
+				}
+
+				/*
+				 * 検索ワードを作って重複ありのリストを作成
+				 *
+				 */ for (String str : searchWords) {
+					notUniqueSearchDTOList = searchDAO.BySerchWord(str);
+				}
+				/*
+				 * 重複ありのidリストを作成
+				 *
+				 *
+				 */ List<Integer> idList = new ArrayList<Integer>();
+				for (int i = 0; i < notUniqueSearchDTOList.size(); i++) {
+					int id = notUniqueSearchDTOList.get(i).getId();
+					idList.add(id);
+				}
+				/*
+				 * jspで引っ張られてしまうので、リストを削除
+				 */
+				notUniqueSearchDTOList.clear();
+
+				List<Integer> uniqueIdList = new ArrayList<Integer>(new HashSet<>(idList));
+				System.out.println("重複削除後は" + uniqueIdList);
+				/*
+				 * 検索開始
+				 *
+				 */ for (int uniqueId : uniqueIdList) {
+
+					searchDTOList = searchDAO.ByPrductIdANDcate(uniqueId, categoryId);
+				}
+
+				for (int i = 0; i < searchDTOList.size(); i++) {
+
+					System.out.println("検索結果は" + searchDTOList.get(i).getProductName());
+				}
+				ret = SUCCESS;
+				return ret;
 			}
+
+			/*---------------------------------------------------------
+						全件検索(カテゴリ、検索値なし)
+			-----------------------------------------------------------*/
+
+			else if (categoryId == 1 && keyword.isEmpty()) {
+				setSearchDTOList(searchDAO.allProductInfo());
+				ret = SUCCESS;
+
+			}
+
+			/*---------------------------------------------------------
+					ひらがな、カタカナ検索
+			-----------------------------------------------------------*/
+			else if (categoryId == 1
+					&& (keyword.matches("^[\\u3040-\\u30FF]+$") || keyword.matches("^[\\u30A0-\\u30FF]+$"))) {
+				keyword = toHiragana.toZenkakuHiragana(keyword);
+				System.out.println(keyword);
+				setSearchDTOList(searchDAO.BySerchWordKana(keyword));
+				ret = SUCCESS;
+
+			} else if (categoryId > 1
+					&& (keyword.matches("^[\\u3040-\\u30FF]+$") || keyword.matches("^[\\u30A0-\\u30FF]+$"))) {
+				keyword = toHiragana.toZenkakuHiragana(keyword);
+				System.out.println(keyword);
+				setSearchDTOList(searchDAO.ByCategoryANDSerchWordKana(categoryId, keyword));
+				ret = SUCCESS;
+
+			}
+
+			/*---------------------------------------------------------
+					カテゴリ有り、検索値なし
+			-----------------------------------------------------------*/
+			else if (categoryId > 1 && keyword.isEmpty()) {
+
+				setSearchDTOList(searchDAO.ByProductCategory(categoryId));
+				ret = SUCCESS;
+			}
+
+			/*---------------------------------------------------------
+					カテゴリなし、検索値あり
+			-----------------------------------------------------------*/
+			else if (categoryId == 1 && !(keyword.isEmpty())) {
+				setSearchDTOList(searchDAO.BySerchWord(keyword));
+				ret = SUCCESS;
+			}
+
+			/*---------------------------------------------------------
+					カテゴリあり、検索値あり
+			-----------------------------------------------------------*/
+			else {
+				setSearchDTOList(searchDAO.ByCategoryANDSerchWord(categoryId, keyword));
+				System.out.println(keyword);
+				ret = SUCCESS;
+
+			}
+			keyword = getSearchWord();
+			return ret;
 		}
 
-
-
-
-		//検索にヒットしているか判定
-		if(!(pageItemList.isEmpty())){
-			session.put("searchItemList", pageItemList);
-			searchErrorMessage = "";
-			ret = SUCCESS;
-		}else{
-			ret = ERROR;
-			searchErrorMessage = "検索結果がありません";
-			session.put("searchErrorMessage", searchErrorMessage);
+		public String getSearchWord() {
+			return searchWord;
 		}
-		session.put("searchErrorMessage", searchErrorMessage);
-		return ret;
+
+		public void setSearchWord(String searchWord) {
+			this.searchWord = searchWord;
+		}
+
+		public int getCategoryId() {
+			return categoryId;
+		}
+
+		public void setCategoryId(int categoryId) {
+			this.categoryId = categoryId;
+		}
+
+		public SearchDAO getSearchDAO() {
+			return searchDAO;
+		}
+
+		public void setSearchDAO(SearchDAO searchDAO) {
+			this.searchDAO = searchDAO;
+		}
+
+		public List<SearchDTO> getSearchDTOList() {
+			return searchDTOList;
+		}
+
+		public void setSearchDTOList(List<SearchDTO> searchDTOList) {
+			this.searchDTOList = searchDTOList;
+		}
+
+		public ToHiragana getToHiragana() {
+			return toHiragana;
+		}
+
+		public void setToHiragana(ToHiragana toHiragana) {
+			this.toHiragana = toHiragana;
+		}
+
+		public ArrayList<String> getMsgList() {
+			return msgList;
+		}
+
+		public void setMsgList(ArrayList<String> msgList) {
+			this.msgList = msgList;
+		}
+
+		public Map<String, Object> getSession() {
+			return session;
+		}
+
+		@Override
+		public void setSession(Map<String, Object> arg0) {
+			// TODO 自動生成されたメソッド・スタブ
+
+		}
+
+		public String[] getSearchWords() {
+			return searchWords;
+		}
+
+		public void setSearchWords(String[] searchWords) {
+			this.searchWords = searchWords;
+		}
+
 	}
-
-
-
-	public String getItemCategory() {
-		return itemCategory;
-	}
-
-
-
-	public void setItemCategory(String itemCategory) {
-		this.itemCategory = itemCategory;
-	}
-
-
-
-	public String getSearchWord() {
-		return searchWord;
-	}
-
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
-	}
-
-
-
-	public int getPage() {
-		return page;
-	}
-
-
-
-	public void setPage(int page) {
-		this.page = page;
-	}
-
-
-
-	public List<Integer> getPageNumList() {
-		return pageNumList;
-	}
-
-
-
-	public void setPageNumList(List<Integer> pageNumList) {
-		this.pageNumList = pageNumList;
-	}
-
-
-
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-
-
 }
