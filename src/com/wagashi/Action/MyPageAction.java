@@ -20,9 +20,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	private MyPageDTO dto = new MyPageDTO();
 	public String execute() throws SQLException {
-
-		System.out.println(session.get("user_id").toString());
-
 		String result = ERROR;
 
 		MyPageDAO myPageDAO = new MyPageDAO();

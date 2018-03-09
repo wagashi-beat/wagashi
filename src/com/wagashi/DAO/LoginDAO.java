@@ -3,6 +3,7 @@ package com.wagashi.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.wagashi.DTO.LoginDTO;
 import com.wagashi.util.DBConnector;
@@ -49,6 +50,27 @@ public LoginDTO getUserInfo(String userId,String password){
 return loginDTO;
 
 }
+
+	public boolean userCheck(String userId) {
+		boolean result= false;
+
+		String sql1= "select * from user_info where user_id= ?";
+		try {
+			PreparedStatement preparedStatement= connection.prepareStatement(sql1);
+			preparedStatement.setString(1, userId);
+			ResultSet resultSet= preparedStatement.executeQuery();
+
+			if (resultSet.next()){
+				result= true;
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 public LoginDTO getLoginDTO() {
 	return loginDTO;

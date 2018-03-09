@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
-	<title>ログイン画面</title>
+	<title>パスワード再設定完了</title>
 </head>
 
 <body>
@@ -70,22 +70,8 @@
 
 	<!-- ここまで -->
 
-
 	<div class= "main">
-
-	<h1>ログイン</h1>
-
-	<div>
-		<s:form action = "LoginAction">
-			<s:textfield name="user_id"/>
-			<s:password name="password"/>
-			<s:submit value="ログイン"/>
-		</s:form>
-	</div>
-
-	<a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更はこちら</a>
-
-	</div>
-
+		変更が完了しました！
+		<a href= '<s:url action= "LoginMoveAction" />'>ログインへ</a></div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
-	<title>ログイン画面</title>
+	<title>パスワード再設定</title>
 </head>
 
 <body>
@@ -70,20 +70,19 @@
 
 	<!-- ここまで -->
 
-
 	<div class= "main">
+	<s:form action= "PasswordChangeConfirmAction">
+		<table>
+			<tr><th>ログインＩＤ：</th>
+				<td><input type= "text" value= "" name= "userId" /></td></tr>
 
-	<h1>ログイン</h1>
+			<tr><th>新しいパスワード：</th>
+				<td><input type= "password" value= "" name= "newPassword" /></td></tr>
 
-	<div>
-		<s:form action = "LoginAction">
-			<s:textfield name="user_id"/>
-			<s:password name="password"/>
-			<s:submit value="ログイン"/>
-		</s:form>
-	</div>
-
-	<a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更はこちら</a>
+			<tr><th></th>
+				<td><s:submit value= "へんこう" /></td></tr>
+		</table>
+	</s:form>
 
 	</div>
 
