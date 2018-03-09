@@ -72,6 +72,7 @@
 
 
 	<div class= "main">
+	購入が完了しました！<a href= '<s:url action= "HomeMoveAction" />'>ホーム</a>
 	</div>
 
 </body>

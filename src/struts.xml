@@ -78,13 +78,13 @@
 		<!-- 決済完了 -->
 		 <action name="SettlementCompleateAction" class="com.wagashi.Action.SettlementCompleateAction" method="execute">
 		 	<result name="success">settlementCompleate.jsp</result>
-
+		 	<result name= "error">error.jsp</result>
 		 </action>
 
 		<!-- 決済確認 -->
 		 <action name="SettlementConfirmAction" class="com.wagashi.Action.SettlementConfirmAction" method="execute">
 		 	<result name="success">settlementConfirm.jsp</result>
-
+		 	<result name= "error">error.jsp</result>
 		 </action>
 	 <!-- 新規登録遷移 -->
 		<action name= "UserCreatePageAction" class= "com.wagashi.Action.UserCreatePageAction" method= "execute">
