@@ -6,11 +6,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css"/>
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/productDetail.css">
 	<title>商品詳細</title>
 </head>
 
 <body>
+
 	<!-- ここから前頁共通 -->
 	<header class= "amazon">
 		<div class= "logo">
@@ -70,73 +73,91 @@
 
 	<!-- ここまで -->
 
-	<div class= "main">
-
-	<s:form action="CartAction">
-
-		<s:iterator value="productDetailList">
-
-			<img src="<s:property value="imageFilePath"/>">
 
 
-				<s:property value="productName" /><br>
-				<s:property value="productNameKana" />
-				商品詳細<br>
-				<s:property value ="productDescription" />
+	<div id= "main">
+
+		<s:form action="CartAction">
+
+			<s:iterator value="productDetailList">
+
+				<div class="main-container">
+
+					<div class="left">
+						<img src="<s:property value="imageFilePath"/>" class="image">
+					</div>
+
+					<div class="right">
+						<div class="product-right">
+								<s:property value="productName" />
+								(<s:property value="productNameKana" />)
+								<br>
+								<br>
+								商品詳細<br>
+								<s:property value ="productDescription" /><br><br>
 
 
-				値段
-				<input type="hidden" name="price" value='<s:property value="price"/>'>
-				<s:property value ="price"/>
-				<br>
-				購入個数
-				<select name="productCount">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-				</select>
+								値段
+								<input type="hidden" name="price" value='<s:property value="price"/>'>
+								<s:property value ="price"/>円
+								<br>
+								購入個数
+								<select name="productCount">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+								</select>
 
-				<input type="hidden" name="addFlg" value="1">
-				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
+								<input type="hidden" name="addFlg" value="1">
+								<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 
-				<div><s:submit value="カートに入れる" method="execute"/></div>
+								<s:form>
+								<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
+								</s:form>
 
+						</div>
+					</div>
+				</div>
 
-
-
-
+				<div class="aa"></div>
 				<HR>
-				<p>
-				同じカテゴリーの商品
-			(<s:property value="categoryName"/>)
-			<p>
+					<p>
+						同じカテゴリーの商品
+					(<s:property value="categoryName"/>)
+					<p>
 
 
-		</s:iterator>
-	</s:form>
-
-
-	<p>
-		<s:iterator value="categoryList">
+				</s:iterator>
+			</s:form>
 
 
 
-			<a href="<s:url action="ProductDetailAction">
- 								<s:param name= "productId" value="productId"/>
- 								<s:param name="categoryId" value="categoryId"/>
- 							</s:url>">
-				<img src="<s:property value="imageFilePath"/>" class="itemImage">
-				<br>
-				<s:property value="productName" />
-				<s:property value="price"/>
+					<s:iterator value="categoryList">
 
-			</a>
-		</s:iterator>
+						<section class="item item-pr">
 
-		</p>
-		</div>
+
+
+						<a href="<s:url action="ProductDetailAction">
+			 								<s:param name= "productId" value="productId"/>
+			 								<s:param name="categoryId" value="categoryId"/>
+			 							</s:url>">
+							<img src="<s:property value="imageFilePath"/>" class="itemImage">
+							<br>
+
+							<s:property value="productName" /><br>
+							<s:property value="price"/>円
+
+
+							</a>
+						</section>
+					</s:iterator>
+			<div class="aa"></div>
+
+
+	</div>
 
 
 </body>
