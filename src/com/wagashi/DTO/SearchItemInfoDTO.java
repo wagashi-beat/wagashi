@@ -1,17 +1,33 @@
 package com.wagashi.DTO;
 
 public class SearchItemInfoDTO {
+	private String id;
 	private String productId;
 	private String productName;
 	private String productNameKana;
 	private String productDescription;
-	private int price;
-	private String searchFlg;
-	private String descriptionAll;
 	private String categoryId;
+	private int price;
+	private String priceStr;
+	private String imageFilePath;
+	private String imageFileName;
+	private String releaseDate;
 	private String releaseCompany;
+	private int status;
+	private String searchFlg = "1";
+	private String descriptionAll = productDescription;
 	private String searchWords;
+	private float avgvalue;
+	private int countvalue;
+	private int productCountSum;
+	private int rank;
 
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getProductId() {
 		return productId;
 	}
@@ -36,7 +52,12 @@ public class SearchItemInfoDTO {
 	public void setProductDescription(String productDescription) {
 		this.productDescription = productDescription;
 	}
-
+	public String getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
 	public int getPrice() {
 		return price;
 	}
@@ -44,24 +65,29 @@ public class SearchItemInfoDTO {
 		this.price = price;
 	}
 
-	public String getSearchFlg() {
-		return searchFlg;
+	public String getPriceStr() {
+		return priceStr;
 	}
-	public void setSearchFlg(String searchFlg) {
-		this.searchFlg = searchFlg;
+	public void setPriceStr(String priceStr) {
+		this.priceStr = priceStr;
 	}
-
-	public String getDescriptionAll() {
-		return descriptionAll;
+	public String getImageFilePath() {
+		return imageFilePath;
 	}
-	public void setDescriptionAll(String descriptionAll) {
-		this.descriptionAll = descriptionAll;
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
 	}
-	public String getCategoryId() {
-		return categoryId;
+	public String getImageFileName() {
+		return imageFileName;
 	}
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 	public String getReleaseCompany() {
 		return releaseCompany;
@@ -69,14 +95,57 @@ public class SearchItemInfoDTO {
 	public void setReleaseCompany(String releaseCompany) {
 		this.releaseCompany = releaseCompany;
 	}
-	public void setSearchWords(String searchWords) {
-		this.searchWords = searchWords;
-
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getSearchFlg() {
+		return searchFlg;
+	}
+	public void setSearchFlg(String searchFlg) {
+		this.searchFlg = searchFlg;
+	}
+	public String getDescriptionAll() {
+		return descriptionAll;
+	}
+	public void setDescriptionAll(String descriptionAll) {
+		this.descriptionAll = descriptionAll;
 	}
 	public String getSearchWords() {
 		return searchWords;
 	}
+	public void setSearchWords(String searchWords) {
+		this.searchWords = searchWords;
+	}
+	public float getAvgvalue() {
+		return avgvalue;
+	}
+	public void setAvgvalue(float avgvalue) {
+		this.avgvalue = avgvalue;
+	}
+	public int getCountvalue() {
+		return countvalue;
+	}
+	public void setCountvalue(int countvalue) {
+		this.countvalue = countvalue;
+	}
+	public int getProductCountSum() {
+		return productCountSum;
+	}
+	public void setProductCountSum(int productCountSum) {
+		this.productCountSum = productCountSum;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 
 
 
-}
+
+
+	}
