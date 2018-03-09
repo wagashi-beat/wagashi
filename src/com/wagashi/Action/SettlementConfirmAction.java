@@ -43,6 +43,7 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 		}
 
 
+
 		return result;
 	}
 
