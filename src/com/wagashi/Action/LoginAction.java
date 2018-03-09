@@ -36,6 +36,12 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 
 		result = ERROR;
 
+		if(session.containsKey("user_id")){
+			result = ERROR;
+			return result;
+		}
+
+
 		loginDTO = loginDAO.getUserInfo(user_id,password);
 
 		session.put("loginUser", loginDTO);
@@ -71,6 +77,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			return result;
 
 		}
+
 
 		return result;
 	}
