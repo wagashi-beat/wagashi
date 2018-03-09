@@ -64,11 +64,12 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 						if(dto.getProductId()==lcdto.getProductId()){
 							int updateCount=dto.getProductCount()+lcdto.getProductCount();
 							cartDAO.updateCartAdd(session.get("user_id").toString(),dto.getProductId(), updateCount);
-						}else{
-						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+							dto=null;
 						}
 					}
-
+					if(!(dto==null)){
+						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+						}
 
 				}
 			}
