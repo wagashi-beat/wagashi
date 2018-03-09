@@ -101,20 +101,26 @@
 				<input type="hidden" name="addFlg" value="1">
 				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 
-				<s:submit value="カートに入れる" method="execute"/>
+				<div><s:submit value="カートに入れる" method="execute"/></div>
+
+
+
+
+
+				<HR>
+				<p>
+				同じカテゴリーの商品
+			(<s:property value="categoryName"/>)
+			<p>
+
 
 		</s:iterator>
 	</s:form>
 
 
-	<HR>
-
-	<p>
-		  	同じカテゴリーの商品
-			(<s:property value="categoryName"/>)
-
 	<p>
 		<s:iterator value="categoryList">
+
 
 
 			<a href="<s:url action="ProductDetailAction">

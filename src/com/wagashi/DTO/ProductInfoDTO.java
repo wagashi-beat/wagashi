@@ -1,6 +1,6 @@
 package com.wagashi.DTO;
 
-public class ProductInfoDTO {
+public class ProductInfoDTO extends CategoryDTO {
 
 	private int productId;
 
@@ -10,7 +10,7 @@ public class ProductInfoDTO {
 
 	private String productDescription;
 
-	private String categoryId;
+	private int categoryId;
 
 	private int price;
 
@@ -50,11 +50,11 @@ public class ProductInfoDTO {
 		this.productDescription = productDescription;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 
