@@ -17,7 +17,7 @@
 			<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
 		</div>
 
-	<s:form action= "SearchItemAction">
+	<s:form action= "ItemSearchAction">
 	<div class="search">
 		<select name= "categoryId" class= "category">
 			<option value= 1>全てのカテゴリー</option>

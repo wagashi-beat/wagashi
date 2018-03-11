@@ -20,7 +20,7 @@
 		</div>
 
 
-	<s:form action= "SearchItemAction">
+	<s:form action= "ItemSearchAction">
 	<div class="search">
 		<select name= "itemCategory" class= "category">
 			<option value= "">全てのカテゴリー</option>
