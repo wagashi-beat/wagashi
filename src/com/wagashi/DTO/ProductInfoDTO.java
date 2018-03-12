@@ -10,7 +10,7 @@ public class ProductInfoDTO extends CategoryDTO {
 
 	private String productDescription;
 
-	private int categoryId;
+	private String categoryId;
 
 	private int price;
 
@@ -50,11 +50,11 @@ public class ProductInfoDTO extends CategoryDTO {
 		this.productDescription = productDescription;
 	}
 
-	public int getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 
