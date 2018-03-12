@@ -69,12 +69,8 @@
 	</header>
 
 	<!-- ここまで -->
+				<br>
 
-
-			<br>
-				<div id="title">
-					<span>HISTORY</span>
-				</div>
 
 			<div id="error">
 			   	<s:if test = "message != null">
@@ -86,7 +82,7 @@
 					<h1>購入情報はありません</h1>
 						<br>
 					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
-						<br><br><br><br><br><br><br><br><br><br><br><br>
+
 				</s:if>
 			 	<h1 class="cart">商品詳細</h1>
 				 	<s:form method = "delete" action = "PurchaseHistoryAction">
@@ -121,10 +117,11 @@
 						<br>
 
 
-		<s:iterator value="purchaseHistoryDTOList">
-		<s:property value="getProductName()" />
-		</s:iterator>
+
 
 
 </body>
 </html>
+
+
+
