@@ -10,176 +10,57 @@ import com.wagashi.DTO.PurchaseHistoryDTO;
 import com.wagashi.util.DBConnector;
 
 public class PurchaseHistoryDAO {
-	/*--------------------------------------------------------------
-	 * 購入履歴表示メソッド
-	 * @param userId
-	 * @purchaseHistoryDTOList
-	------------------------------------------------ */
 
+	DBConnector dbConnector = new DBConnector();
+	Connection connection = dbConnector.getConnection();
 
-		public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String userId) throws SQLException{
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-			ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
+	public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String user_id) throws SQLException {
+		ArrayList<PurchaseHistoryDTO> purchaseHistoryDTO = new ArrayList<PurchaseHistoryDTO>();
 
-			/*
-			 * piはproduct_infoの略
-			 * phiはpurchase_history_infoの略
-			 */
-			String sql = "SELECT phi.id, pi.product_name, pi.product_name_kana, pi.image_file_name,  phi.price, phi.product_count, pi.release_company, pi.release_date, phi.regist_date  FROM purchase_history_info phi LEFT JOIN product_info pi ON phi.product_id = pi.product_id  WHERE phi.user_id = ? ORDER BY regist_date DESC";
+		String sql = "SELECT * FROM purchase_history_info LEFT JOIN product_info ON purchase_history_info.product_id = product_info.product_id WHERE user_id  =? ";
 
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user_id);
 
-			try{
-				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setString(1, userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-				ResultSet rs = ps.executeQuery();
-
-				while(rs.next()){
-					PurchaseHistoryDTO dto = new PurchaseHistoryDTO();
-					dto.setId(rs.getInt("id"));
-					dto.setProductName(rs.getString("product_name"));
-					dto.setProductNameKana(rs.getString("product_name_kana"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setCount(rs.getInt("product_count"));
-					dto.setReleaseCompany(rs.getString("release_company"));
-					dto.setReleaseDate(rs.getString("release_date"));
-					dto.setRegistDate(rs.getString("regist_date"));
-					dto.setProductImage(rs.getString("image_file_name"));
-
-					purchaseHistoryDTOList.add(dto);
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			} finally{
-				con.close();
+			while(resultSet.next()) {
+				PurchaseHistoryDTO dto = new PurchaseHistoryDTO();
+				dto.setProductName(resultSet.getString("product_name"));
+				dto.setProductNameKana(resultSet.getString("product_name_kana"));
+				dto.setImageFilePath(resultSet.getString("image_file_path"));
+				dto.setPrice(resultSet.getString("price"));
+				dto.setProductCount(resultSet.getInt("product_Count"));
+				dto.setId(resultSet.getInt("id"));
+				purchaseHistoryDTO.add(dto);
 			}
-			return purchaseHistoryDTOList;
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 
-		/*--------------------------------------------------------------
-		 *	金額高い順にならびかえるメソッド
-		 --------------------------------------------------------------*/
-		public ArrayList<PurchaseHistoryDTO> sortPrice(String userId) throws SQLException{
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-			ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
+		return purchaseHistoryDTO;
+	}
 
-			/*
-			 * piはproduct_infoの略
-			 * phiはpurchase_history_infoの略
-			 */
-			String sql = "SELECT phi.id, pi.product_name, pi.product_name_kana, pi.image_file_name,  phi.price, phi.product_count, pi.release_company, pi.release_date, phi.regist_date  FROM purchase_history_info phi LEFT JOIN product_info pi ON phi.product_id = pi.product_id  WHERE phi.user_id = ? ORDER BY price DESC";
+	//チェックの入った商品履歴を削除
 
+	public boolean purchaseHistoryDelete(String user_id,int id) throws SQLException{
+		String sql="DELETE FROM purchase_history_info  WHERE user_id=? AND id=?";
+		PreparedStatement ps;
 
-			try{
-				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setString(1, userId);
+		try{
+			ps=connection.prepareStatement(sql);
+			ps.setString(1, user_id);
+			ps.setInt(2, id);
 
-				ResultSet rs = ps.executeQuery();
-
-				while(rs.next()){
-					PurchaseHistoryDTO dto = new PurchaseHistoryDTO();
-					dto.setId(rs.getInt("id"));
-					dto.setProductName(rs.getString("product_name"));
-					dto.setProductNameKana(rs.getString("product_name_kana"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setCount(rs.getInt("product_count"));
-					dto.setReleaseCompany(rs.getString("release_company"));
-					dto.setReleaseDate(rs.getString("release_date"));
-					dto.setRegistDate(rs.getString("regist_date"));
-					dto.setProductImage(rs.getString("image_file_name"));
-
-					purchaseHistoryDTOList.add(dto);
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			} finally{
-				con.close();
-			}
-			return purchaseHistoryDTOList;
+			ps.executeUpdate();
+			return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+			return false;
 		}
+	}
 
 
-
-		/*--------------------------------------------------------------
-		 * すべて削除するメソッド
-		 * @param userId
-		 --------------------------------------------------------------*/
-		public int deleteHistory(String userId) throws SQLException{
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-			String sql = "DELETE FROM purchase_history_info where user_id = ?";
-
-			PreparedStatement ps;
-			int result = 0;
-			try{
-				ps = con.prepareStatement(sql);
-				ps.setString(1, userId);
-
-				result = ps.executeUpdate();
-			}catch (SQLException e){
-				e.printStackTrace();
-			} finally {
-				con.close();
-			}
-			return result;
-
-		}
-
-
-
-		/*--------------------------------------------------------------
-		 * 個別削除メソッド
-		 * @param id(auto incrementのID)
-		 --------------------------------------------------------------*/
-		public int deletePart(int id) throws SQLException{
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-			String sql = "DELETE  FROM purchase_history_info where id = ?";
-			PreparedStatement ps;
-			int result2 = 0;
-			try{
-				ps = con.prepareStatement(sql);
-				ps.setInt(1, id);
-
-				result2 = ps.executeUpdate();
-				System.out.println(result2);
-
-				con.close();
-			}catch (SQLException e){
-				e.printStackTrace();
-			}
-			return result2;
-		}
-
-		/*
-		 * 選択削除メソッド
-		 * jspからのcheckBoxのchooseListを取得
-
-		public int deleteChoose(List<String> chooseList) throws SQLException{
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-
-			String sql = "DELETE  FROM purchase_history_info where id = ?";
-
-			PreparedStatement ps;
-			int result3 = 0;
-			try{
-				ps = con.prepareStatement(sql);
-
-				for(int i = 0;i < chooseList.size();i++){
-					String chooseId = chooseList.get(i);
-					ps.setString(1, chooseId);
-					result3 += ps.executeUpdate();
-				}
-			}catch(SQLException e){
-				e.printStackTrace();
-			} finally {
-				con.close();
-			}
-			return result3;
-		}
-		*/
 
 	}

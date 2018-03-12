@@ -70,9 +70,9 @@
 		 </action>
 
 		<!-- 購入履歴 -->
-		 <action name="PurchaseHistoryAction" class="com.wagashi.Action.PurchaseHistoryAction" method="execute">
-		 	<result name="success">purchaseHistory.jsp</result>
-
+		<action name = "PurchaseHistoryAction" class = "com.wagashi.Action.PurchaseHistoryAction" method = "execute">
+		 	<result name = "success">purchaseHistory.jsp</result>
+		 	<result name = "error">home.jsp</result>
 		 </action>
 
 		<!-- 決済完了 -->
@@ -136,11 +136,7 @@
 			<result name="success">productList.jsp</result>
 		</action>
 
-		 <!-- 履歴 -->
-		 <action name = "PurchaseHistoryAction" class = "com.wagashi.Action.PurchaseHistoryAction" method = "execute">
-		 	<result name = "success">purchaseHistory.jsp</result>
-		 	<result name = "error">home.jsp</result>
-		 </action>
+
 
 
  </package>

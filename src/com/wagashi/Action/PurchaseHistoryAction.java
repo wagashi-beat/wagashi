@@ -2,8 +2,8 @@ package com.wagashi.Action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -13,257 +13,97 @@ import com.wagashi.DAO.PurchaseHistoryDAO;
 import com.wagashi.DTO.PurchaseHistoryDTO;
 
 public class PurchaseHistoryAction extends ActionSupport implements SessionAware {
-	/*
-	 *セッション
-	 */
+	//処理結果を格納
+	private String result;
+	//ログイン情報を格納
 	public Map<String, Object> session;
-
-	/*
-	 * 商品購入履歴取得DAO
-	 */
-	private PurchaseHistoryDAO purchaseHistoryDAO = new PurchaseHistoryDAO();
-
-	/*
-	 * 商品購入履歴格納DTO List
-	 */
-	public ArrayList<PurchaseHistoryDTO> historyList = new ArrayList<PurchaseHistoryDTO>();
-
-	/*
-	 * 削除フラグ
-	 * 1 = 全件削除
-	 * 2 = 個別ボタン削除
-	 * 3 = チェックボックス削除
-	 */
-	private String deleteFlg;
-
-	/*
-	 * 削除メッセージ
-	 */
+	//デリートフラグ
+	private String deleteFlg = "";
+	//削除後のメッセージ
 	private String message;
+	//チェックボックスの判定に使用
+    private Collection<String> checkList;
 
-	/*
-	 * 個別削除id取得
-	 */
-	private int id;
+	public ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
+	PurchaseHistoryDAO purchaseHistoryDAO = new PurchaseHistoryDAO();
 
-	/*
-	 * checkBoxの値
-	 */
-	private  List<String> chooseList;
-
-
-	//ソート
-	private int sort;
-
-
-
-
-
-	/*
-	 * 商品購入履歴取得メソッド
-	 */
-
-
-	public String execute()throws SQLException{
-
-		//ログインしてなければログインに飛ばす
-		if (!session.containsKey("userId")) {
-			return ERROR;
+	public String execute() throws SQLException {
+		if (!(session.containsKey("user_id"))){
+			return "ERROR";
 		}
+		if(deleteFlg != null && checkList != null){
+			purchaseHistoryDTOList = purchaseHistoryDAO.getPurchaseHistory(session.get("user_id").toString());
+			//購入履歴情報リストをまわす
+	        	for(int i=0;i<purchaseHistoryDTOList.size();i++){
+	        		//チェック済の数だけ削除をまわす
+	        		for (String check : checkList) {
+	        			long id = Long.parseLong(check);
+	        			historyDelete((int)id);
+	        	        }
+	        	}
+		}
+		//削除後に改めて購入履歴情報を読み込む
+		purchaseHistoryDTOList = purchaseHistoryDAO.getPurchaseHistory(session.get("user_id").toString());
 
-		String result = SUCCESS;
-
-		//sessionからuserId取得
-		String userId = (String) session.get("userId");
-
-		if(deleteFlg == null){
-			//購入履歴表示メソッド
-			historyList = purchaseHistoryDAO.getPurchaseHistory(userId);
-			System.out.println("List = "+ historyList);
-
-			Iterator<PurchaseHistoryDTO> iterator = historyList.iterator();
-
+			//情報がなければnullにする
+			Iterator<PurchaseHistoryDTO> iterator=purchaseHistoryDTOList.iterator();
 			if(!(iterator.hasNext())){
-				historyList = null;
+				purchaseHistoryDTOList=null;
 			}
-		} else if(deleteFlg.equals("1")){
-			/*
-			 * すべて削除するメソッド
-			 * deleteFlg="1"
-			 */
-			delete();
-			//historyList = null;
 
-		} else if(deleteFlg.equals("2")){
-			/*
-			 * 個別削除するメソッド
-			 * deleteFlg="2"
-			 */
-			System.out.println("ID:"+id);
-			deletePart(id);
-
-			historyList = purchaseHistoryDAO.getPurchaseHistory(userId);
-
-		}else if(deleteFlg.equals("3")){
-			/*
-			 * 選択した項目を削除
-			 * deleteFlg="3"
-			 * 機能実装はしてない
-			 */
-			/*System.out.println("chooseList:"+ chooseList);
-			//deleteChoose(chooseList);
-
-			historyList = purchaseHistoryDAO.getPurchaseHistory(userId);
-*/
-		}
-		/*-----------------------------------
-		 * ソート機能↓
-		 *---------------------------------- */
-		if(sort == 1){
-			System.out.println("注文日！");
-		}else if(sort == 2){
-			System.out.println("値段！！");
-			historyList = purchaseHistoryDAO.sortPrice(userId);
-
-		}
-		/*-----------------------------------
-		 * ソート機能↑
-		 *---------------------------------- */
-
-		/*historyList = purchaseHistoryDAO.getPurchaseHistory(userId);
-		System.out.println("List = "+ historyList);*/
+		result=SUCCESS;
 		return result;
 	}
 
+	//履歴を削除するメソッド
+    public void historyDelete(int id) throws SQLException{
+    	purchaseHistoryDAO.purchaseHistoryDelete(session.get("user_id").toString(),id);
+    }
 
 
-
-
-
-
-	/*
-	 * 全件削除メソッド------------------------
-	 */
-	public void delete() throws SQLException{
-		//sessionからもってこれるようにする
-		String user_id = session.get("userId").toString();;
-
-
-		int res = purchaseHistoryDAO.deleteHistory(user_id);
-		System.out.println("削除しようとする件数："+res);
-		if(res > 0){
-			System.out.println("削除した");
-			historyList = null;
-			setMessage("注文履歴をすべて削除しました");
-		}else if(res == 0){
-			System.out.println("削除失敗");
-			//setMessage("商品の削除に失敗しました。");
-		}
-
+	public ArrayList<PurchaseHistoryDTO> getPurchaseHistoryInfoDTO() {
+		return purchaseHistoryDTOList;
+	}
+	public void setPurchaseHistoryInfoDTO(ArrayList<PurchaseHistoryDTO> purchaseHistoryDTO) {
+		this.purchaseHistoryDTOList = purchaseHistoryDTO;
 	}
 
-
-
-
-	/*
-	 * 個別削除メソッド------------------------
-	 */
-	public void deletePart(int id) throws SQLException{
-		//jspからもってきた
-		id = this.id;
-
-		purchaseHistoryDAO.deletePart(id);
-	}
-
-
-
-
-	/*
-	 * 選択削除メソッド
-
-	public void deleteChoose(List<String> chooseList) throws SQLException{
-		//jspからもってきたchooseList
-			chooseList = this.chooseList;
-
-		//何件削除したかもらう
-			int res = purchaseHistoryDAO.deleteChoose(chooseList);
-
-		//削除したときのメッセージ
-			if(res > 0){
-				setMessage(res + "件削除しました");
-			} else if(res == 0){
-				setMessage("削除しっぱぁぁぁぁぁい！！！");
-			}
-	}*/
-
-
-
-/*----------------------------------------------------------------
- *
- * ゲット  セット
- *
- *
- ----------------------------------------------------------------*/
-
-
-	/*
-	 *deleteFlg
-	 */
-	public String getDeleteFlg(){
-		return deleteFlg;
-	}
-	public void setDeleteFlg(String deleteFlg){
-		this.deleteFlg = deleteFlg;
-	}
-
-	/*
-	 * jspからIDもってくる
-	 */
-	public int getId(){
-		return id;
-	}
-	public void setId(int id){
-		this.id = id;
-	}
-
-	/*
-	 * 削除メッセージ
-	 */
-	public String getMessage(){
-		return message;
-	}
-	public void setMessage(String message){
-		this.message = message;
-	}
-
-	/*
-	 * session
-	 */
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	public void setSession(Map<String, Object> session){
+	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
 
-	/*
-	 * checkBoxの値
-	 */
-	public List<String> getChooseList(){
-		return chooseList;
-	}
-	public void setChooseList(List<String> chooseList){
-		this.chooseList = chooseList;
+	public String getDeleteFlg() {
+		return deleteFlg;
 	}
 
-	//ソートのげっっとセット
-	public int getSort() {
-		return sort;
+	public void setDeleteFlg(String deleteFlg) {
+		this.deleteFlg = deleteFlg;
 	}
 
-	public void setSort(int sort) {
-		this.sort = sort;
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Collection<String> getCheckList() {
+		return checkList;
+	}
+	public void setCheckList(Collection<String> checkList) {
+		this.checkList = checkList;
+	}
+
+	public ArrayList<PurchaseHistoryDTO> getPurchaseHistoryDTOList() {
+		return purchaseHistoryDTOList;
+	}
+
+	public void setPurchaseHistoryDTOList(ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList) {
+		this.purchaseHistoryDTOList = purchaseHistoryDTOList;
 	}
 
 }
-

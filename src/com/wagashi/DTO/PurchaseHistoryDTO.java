@@ -1,102 +1,67 @@
 package com.wagashi.DTO;
 
 public class PurchaseHistoryDTO {
-	private int id;
-	//商品名
-	private String productName;
 
-	//商品名かな
-	private String productNameKana;
+	public String productName;
 
-	//商品画像
-	private String productImage;
+	public String productNameKana;
 
-	//値段
-	private int price;
+	public String imageFilePath;
 
-	//個数
-	private int count;
+	public String price;
 
-	//発売会社
-	private String releaseCompany;
+	public int productCount;
 
-	//発売年月日
-	private String releaseDate;
+	public int id;
 
-	//注文日
-	private String registDate;
 
-/*----------------------ゲッ他セッタ--------------------------------*/
-	//ID
-	public int getId(){
-		return id;
-	}
-	public void setId(int id){
-		this.id = id;
-	}
-
-	//商品名
-	public String getProductName(){
+	public String getProductName() {
 		return productName;
 	}
-	public void setProductName(String productName){
+
+	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 
-	//商品名かな
-	public String getProductNameKana(){
+	public String getProductNameKana() {
 		return productNameKana;
 	}
-	public void setProductNameKana(String productNameKana){
+
+	public void setProductNameKana(String productNameKana) {
 		this.productNameKana = productNameKana;
 	}
 
-	//値段
-	public int getPrice(){
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
+	}
+
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price){
+
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	//個数
-	public int getCount(){
-		return count;
-	}
-	public void setCount(int count){
-		this.count = count;
+
+	public int getProductCount() {
+		return productCount;
 	}
 
-	//発売会社
-	public String getReleaseCompany(){
-		return releaseCompany;
-	}
-	public void setReleaseCompany(String releaseCompany){
-		this.releaseCompany = releaseCompany;
+	public void setProductCount(int productCount) {
+		this.productCount = productCount;
 	}
 
-	//発売年月日
-	public String getReleaseDate(){
-		return releaseDate;
-	}
-	public void setReleaseDate(String releaseDate){
-		this.releaseDate = releaseDate;
+	public int getId() {
+		return id;
 	}
 
-	//注文日
-	public String getRegistDate(){
-		return registDate;
-	}
-	public void setRegistDate(String registDate){
-		this.registDate = registDate;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-
-	//商品画像
-	public String getProductImage(){
-		return productImage;
-	}
-	public void setProductImage(String productImage){
-		this.productImage = productImage;
-	}
 }

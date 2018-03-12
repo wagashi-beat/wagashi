@@ -71,8 +71,60 @@
 	<!-- ここまで -->
 
 
-	<div class= "main">
-	</div>
+			<br>
+				<div id="title">
+					<span>HISTORY</span>
+				</div>
+
+			<div id="error">
+			   	<s:if test = "message != null">
+					<s:property value = "message" />
+				</s:if>
+			</div>
+
+				<s:if test = "purchaseHistoryDTO ==null">
+					<h1>購入情報はありません</h1>
+						<br>
+					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
+						<br><br><br><br><br><br><br><br><br><br><br><br>
+				</s:if>
+			 	<h1 class="cart">商品詳細</h1>
+				 	<s:form method = "delete" action = "PurchaseHistoryAction">
+						<s:iterator value="purchaseHistoryDTOList">
+							<table>
+								<tr>
+									<td class="sample01"><s:checkbox name="checkList" value="checked" fieldValue="%{id}"/><!-- fieldValueを使ってcheckListにidを入れる --></td>
+									<td><img src="<s:property value='imageFilePath'/>" id="cartImg"></td>
+
+									<td>
+									<s:property value="getProductName()" />&nbsp;(<s:property value="getProductNameKana()" />)
+									<br>
+									<br>
+
+									<s:property value="getPriceComma()" />&nbsp;<s:property value="productCount"/>点
+									<br>
+									<br>
+								</tr>
+							</table>
+						</s:iterator>
+
+						<br>
+						<br>
+						<br>
+						<br>
+						<div class="sample02">
+							チェック済の履歴は削除できます
+								<input type = "hidden" name="deleteFlg" value="1">
+								<s:submit value=" 削除 " method="execute"/>
+						</div>
+					</s:form>
+						<br>
+
+
+		<s:iterator value="purchaseHistoryDTOList">
+		<s:property value="getProductName()" />
+		</s:iterator>
+
 
 </body>
 </html>
