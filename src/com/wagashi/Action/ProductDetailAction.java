@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.wagashi.DAO.ProductDetailDAO;
+import com.wagashi.DAO.ProductDetailsDAO;
 import com.wagashi.DTO.ProductInfoDTO;
 
 public class ProductDetailAction extends ActionSupport implements SessionAware{
@@ -15,7 +15,7 @@ public class ProductDetailAction extends ActionSupport implements SessionAware{
 //	private int id;
 	public int productId;
 	private int categoryId;
-	public ProductDetailDAO productDetailDAO = new ProductDetailDAO();
+	public ProductDetailsDAO productDetailDAO = new ProductDetailsDAO();
 	public ProductInfoDTO dto;
 	public ArrayList<ProductInfoDTO> productDetailList;
 	public ArrayList<ProductInfoDTO> categoryList;

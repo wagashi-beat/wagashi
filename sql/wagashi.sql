@@ -1,29 +1,108 @@
 set names utf8;
-set foreign_key_checks= 1;
+set foreign_key_checks = 0;
 drop database if exists wagashi;
 
 create database if not exists wagashi;
 use wagashi;
 
 
-create table if not exists user_info(
+-- -----------↓会員情報テーブル↓----------------------------
+drop table if exists user_info;
+create table user_info(
 id int not null primary key auto_increment,
-user_id varchar(16) not null unique,
-password varchar(16) not null,
-family_name varchar(32) not null,
-first_name varchar(32) not null,
-family_name_kana varchar(32) not null,
-first_name_kana varchar(32) not null,
-sex tinyint default 0,
-email varchar(32) not null,
-status tinyint default 0 not null,
-logined tinyint default 0 not null,
-regist_date datetime not null,
+user_id varchar(16) unique,
+password varchar(16),
+family_name varchar(32),
+first_name varchar(32),
+family_name_kana varchar(32),
+first_name_kana varchar(32),
+sex tinyint,
+email varchar(32),
+status tinyint,
+logined tinyint,
+regist_date datetime,
 update_date datetime
 );
 
 
-create table if not exists destination_info(
+
+
+-- -----------↓商品情報テーブル↓----------------------------
+drop table if exists product_info;
+create table product_info(
+id int not null primary key auto_increment,
+product_id int unique,
+product_name varchar(100),
+product_name_kana varchar(100),
+product_description varchar(255),
+category_id int,
+price int,
+image_file_path varchar(100),
+image_file_name varchar(50),
+release_date varchar(16),
+release_company varchar(50),
+status tinyint DEFAULT 0,
+regist_date datetime,
+update_date datetime,
+item_stock int DEFAULT 0,
+current_cost double -- ----------------- NEW -------------------
+);
+
+
+drop table if exists cart_info;
+
+create table cart_info(
+id int not null primary key auto_increment,
+user_id varchar(25),
+product_id int,
+product_count int,
+price int,
+regist_date datetime,
+update_date datetime,
+total_price int
+);
+
+drop table if exists favorite_info;
+
+create table favorite_info(
+id int not null primary key auto_increment,
+user_id varchar(16),
+product_id int,
+regist_date datetime,
+unique(user_id,product_id)
+);
+
+drop table if exists review_info;
+
+create table review_info(
+id int not null primary key auto_increment,
+user_id varchar(16),
+product_id int,
+buy_item_date datetime,
+review_id varchar(255),
+evaluation_count int
+);
+
+
+-- -----------↓購入履歴テーブル↓----------------------------
+drop table if exists purchase_history_info;
+create table purchase_history_info(
+id int not null primary key auto_increment,
+user_id varchar(16), -- unique消しました
+product_id int,
+product_count int,
+price int,
+at_cost double, -- ----------------- NEW -------------------
+regist_date datetime,
+update_date datetime,
+status int default 0,
+image_file_path varchar(100),
+image_file_name varchar(50)
+);
+
+drop table if exists destination_info;
+
+create table destination_info(
 id int not null primary key auto_increment,
 user_id varchar (16),
 family_name varchar(32) not null,
@@ -37,72 +116,239 @@ regist_date datetime not null,
 update_date datetime
 );
 
+drop table if exists m_category;
 
-create table if not exists m_category(
+create table m_category(
 id int not null primary key auto_increment,
-category_id int not null unique,
-category_name varchar(20) not null unique,
+category_id int unique,
+category_name varchar(20) unique,
 category_description varchar(100),
-insert_date datetime not null,
+insert_date datetime,
 update_date datetime
 );
 
+-- ---------------↓INSERT文↓--------------------------------------
 
-create table if not exists product_info(
-id int not null primary key auto_increment,
-product_id int not null unique,
-product_name varchar(100) not null unique,
-product_name_kana varchar(100) not null unique,
-product_description varchar(255) not null,
-category_id int not null,
-price int,
-image_file_path varchar(100),
-image_file_name varchar(50),
-regist_date datetime not null,
-update_date datetime
+INSERT INTO product_info(-- ------商品情報テーブルへ--------------
+			product_id, -- 商品ID
+			product_name,-- 商品名
+			product_name_kana, -- 商品名かな
+			product_description, -- 商品詳細
+			category_id, -- カテゴリID
+			price, -- 販売価格
+			image_file_path, -- 画像ファイルパス
+			image_file_name, -- 画像ファイル名
+			release_date, -- 発売日
+			release_company, -- 発売会社
+			regist_date, -- 登録日
+			item_stock, -- 在庫
+			current_cost -- 現在の平均原価
+) VALUES(
+			10000001, -- 商品ID
+			"団子1", -- 商品名
+			"だんごいち", -- 商品名かな
+			"団子1です。", -- 商品詳細
+			1, -- カテゴリID
+			6000, -- 販売価格
+			"./images/dango.png", -- 画像ファイルパス
+			"dango.png", -- 画像ファイル名
+			"2010/02", -- 発売日
+			"amezoooon", -- 発売会社
+			now(), -- 登録日
+			10, -- 在庫
+			700 -- 現在の平均原価
+		),
+
+		(
+			10000002, -- 商品ID
+			"団子2", -- 商品名
+			"だんごに", -- 商品名かな
+			"団子2です。", -- 商品詳細
+			1, -- カテゴリID
+			15000, -- 販売価格
+			"./images/dango2.png", -- 画像ファイルパス
+			"dango2.png", -- 画像ファイル名
+			"2018/01", -- 発売日
+			"capcum", -- 発売会社
+			now(), -- 登録日
+			100, -- 在庫
+			6500 -- 現在の平均原価
+		),
+
+		(
+			10000003, -- 商品ID
+			"だんご3", -- 商品名
+			"だんごさん", -- 商品名かな
+			"だんご3です。", -- 商品詳細
+			2, -- カテゴリID
+			6000, -- 販売価格
+			"./images/dango3.png", -- 画像ファイルパス
+			"dango3.png", -- 画像ファイル名
+			"2000/02", -- 発売日
+			"お宝倉庫", -- 発売会社
+			now(), -- 登録日
+			20, -- 在庫
+			1500 -- 現在の平均原価
+		),
+
+		(
+			10000004, -- 商品ID
+			"だんご4", -- 商品名
+			"だんごよん", -- 商品名かな
+			"だんご4です。", -- 商品詳細
+			2, -- カテゴリID
+			60000, -- 販売価格
+			"./images/dango4.png", -- 画像ファイルパス
+			"dango4.png", -- 画像ファイル名
+			"2017/08", -- 発売日
+			"sharq", -- 発売会社
+			now(), -- 登録日
+			15, -- 在庫
+			40000 -- 現在の平均原価
+		),
+
+		(
+			10000005, -- 商品ID
+			"dango5", -- 商品名
+			"だんごご", -- 商品名かな
+			"dango5です。", -- 商品詳細
+			3, -- カテゴリID
+			29800, -- 販売価格
+			"./images/dango5.png", -- 画像ファイルパス
+			"dango5.png", -- 画像ファイル名
+			"2018/02", -- 発売日
+			"満天堂", -- 発売会社
+			now(), -- 登録日
+			40, -- 在庫
+			10000 -- 現在の平均原価
+		),
+
+		(
+			10000020, -- 商品ID
+			"dango6", -- 商品名
+			"だんごろく", -- 商品名かな
+			"dango6。", -- 商品詳細
+			3, -- カテゴリID
+			1400, -- 販売価格
+			"./images/dango6.png", -- 画像ファイルパス
+			"dango6.png", -- 画像ファイル名
+			"2015/12", -- 発売日
+			"sany", -- 発売会社
+			now(), -- 登録日
+			15, -- 在庫
+			600 -- 現在の平均原価
+		);
+
+
+
+
+insert into user_info values
+(1,
+"taro",
+"123",
+"山田",
+"太郎",
+"やまだ",
+"たろう",
+0,
+"taro@yahoo.com",
+1,
+1,
+"2018/03/01",
+"2018/03/05"
 );
 
 
-create table if not exists cart_info(
-id int not null primary key auto_increment,
-user_id varchar(16),
-temp_user_id varchar(128),
-product_id int not null,
-product_name varchar(255),
-product_count int not null,
-price int not null,
-regist_date datetime not null,
-update_date datetime
-);
 
 
-create table if not exists purchase_history_info(
-id int not null primary key auto_increment,
-user_id varchar(16),
-product_id int not null,
-product_count int not null,
-price int not null,
-regist_date datetime not null,
-update_date datetime
-);
 
 
-insert into user_info values (1, "taro", "123", "山田", "太郎", "やまだ", "たろう", 0, "taro@yahoo.com", 1, 1, "2018/03/01", "2018/03/05");
 
-insert into m_category(id,category_id,category_name,category_description,insert_date)
- values (1,1,"団子","団子のカテゴリーです。","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (1,1,"団子","だんご","三色団子です。",1,100,"./img/dango.png","dango.jpg","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (2,2,"みたらし団子","みたらしだんご","みたらし団子です。",1,100,"./img/dango2.png","dango2.jpg","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (3,3,"あんこ団子","あんこだんご","あんこの団子です。",1,100,"./img/dango3.png","dango3.jpg","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (4,4,"焼き団子","やきだんご","焼き団子です。",1,100,"./img/dango4.png","dango4.jpg","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (5,5,"きなこ団子","きなこだんご","きなこ団子です。",1,150,"./img/dango5.png","dango5.jpg","2018-03-07 11:10:10");
-insert into product_info(id,product_id,product_name,product_name_kana,product_description,category_id,price,image_file_path,image_file_name,regist_date)
-values (6,6,"ごま団子","ごまだんご","ごま団子です。",1,200,"./img/dango6.png","dango6.jpg","2018-03-07 11:10:10");
+INSERT INTO purchase_history_info(-- ------購入履歴テーブルへ--------------
+			user_id,  -- ユーザーID
+			product_id,-- 商品ID
+			product_count, -- 購入数
+			price, -- 購入時販売価格
+			at_cost, -- 購入時原価
+			regist_date -- 購入日時
+)VALUES(
+			"test",  -- ユーザーID
+			10000005,-- 商品ID
+			1, -- 購入数
+			1728, -- 購入時販売価格
+			1000, -- 購入時原価
+			"2016/01/01" -- 購入日時
+		),
 
-insert into cart_info(user_id,product_id,product_name,product_count,price,regist_date)
-values ("taro",1,"団子",1,100,"2018-03-07 11:10:10");
+		(
+			"test1",  -- ユーザーID
+			10000003,-- 商品ID
+			2, -- 購入数
+			6000, -- 購入時販売価格
+			1500, -- 購入時原価
+			now() -- 購入日時
+		),
+
+		(
+			"test",  -- ユーザーID
+			10000005,-- 商品ID
+			10, -- 購入数
+			1728, -- 購入時販売価格
+			1000, -- 購入時原価
+			now() -- 購入日時
+		),
+
+		(
+			"test1",  -- ユーザーID
+			10000020,-- 商品ID
+			2, -- 購入数
+			40000, -- 購入時販売価格
+			20000, -- 購入時原価
+			"2017/02/01" -- 購入日時
+		),
+
+		(
+			"test1",  -- ユーザーID
+			10000050,-- 商品ID
+			30, -- 購入数
+			4000, -- 購入時販売価格
+			100, -- 購入時原価
+			"2017/01/01" -- 購入日時
+		),
+
+		(
+			"test",  -- ユーザーID
+			10000004,-- 商品ID
+			1, -- 購入数
+			60000, -- 購入時販売価格
+			40000, -- 購入時原価
+			"2017/01/01" -- 購入日時
+		);
+
+INSERT INTO m_category VALUES(1,1,"団子","団子です","2016/01/01","2016/01/01");
+INSERT INTO m_category VALUES(2,2,"だんご","だんごです","2016/01/01","2016/01/01");
+INSERT INTO m_category VALUES(3,3,"dango","dangoです","2016/01/01","2016/01/01");
+
+
+
+
+INSERT INTO favorite_info VALUES(1,"test",1,"2016/01/01");
+INSERT INTO favorite_info VALUES(2,"test1",2,"2016/01/01");
+
+
+INSERT INTO review_info VALUES(1,"test",10000004,"2016/01/01","いいキーボードです",3);
+INSERT INTO review_info VALUES(2,"test",10000004,"2016/01/01","いい本です",1);
+INSERT INTO review_info VALUES(3,"test1",10000004,"2016/01/01","いいキーボードだった",5);
+
+
+
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("domon",10000002,"2018/01/03","モンハン",5);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("d",10000002,"2018/01/02","さいこう",5);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("n",10000002,"2018/01/01","かよ！！！",5);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("do",10000001,"2018/01/03","くそ",1);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("d",10000003,"2018/01/02","ふつう",3);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("n",10000004,"2018/01/01","いい！！！",5);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("do",10000004,"2018/01/03","まあまあ",3);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("d",10000001,"2018/01/02","さいこう",5);
+INSERT INTO review_info(user_id,product_id,buy_item_date,review_id,evaluation_count) VALUES("n",10000001,"2018/01/01","ｆｋんがｄふいがいうｓｐｈｖｆんｖ",2);
+

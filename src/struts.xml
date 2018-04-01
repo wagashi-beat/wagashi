@@ -131,9 +131,15 @@
 		 	<result name= "success">passwordChangeComplete.jsp</result>
 		 </action>
 
-		 <!-- 検索 -->
-		<action name="ItemSearchAction" class="com.wagashi.Action.ItemSearchAction" method="execute">
+		<!-- ItemSearchAction -->
+		<action name="ItemSearchAction"
+			class="com.wagashi.Action.ItemSearchAction" method="execute">
 			<result name="success">productList.jsp</result>
+		</action>
+
+		<action name = "ProductDetailsAction"
+		    class = "com.wagashi.Action.ProductDetailsAction" method = "execute">
+		    <result name = "success">productDetails.jsp</result>
 		</action>
 
 

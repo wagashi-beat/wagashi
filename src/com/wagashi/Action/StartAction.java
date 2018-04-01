@@ -1,22 +1,25 @@
 package com.wagashi.Action;
+
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.wagashi.util.RandomId;
 
-public class StartAction extends ActionSupport implements SessionAware{
-	private Map<String,Object> session;
-//ランダムＩＤ発行
-	public String execute(){
+public class StartAction extends ActionSupport implements SessionAware {
 
-		RandomId randomId = new RandomId();
+	private Map<String, Object> session;
 
-		session.clear();
+	public String execute() {
 
-		session.put("tempUserId", randomId.getTempUserId());
+		if (!(session.containsKey("trueID"))) {
 
+			if (!(session.containsKey("temp_user_id"))) {
+				Random rnd = new Random();
+				session.put("temp_user_id", rnd);
+			}
+		}
 		return SUCCESS;
 	}
 
