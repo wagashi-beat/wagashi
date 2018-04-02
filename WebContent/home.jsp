@@ -34,7 +34,6 @@
 	        </div>
     </s:form>
 
-
     <ul class= "menu">
 
     	<li class= "acount">
