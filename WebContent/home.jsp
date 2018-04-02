@@ -69,7 +69,6 @@
 
 	<!-- ここまで -->
 
-
 	<div class= "main">
 <s:if test= "#session =! null"><s:property value= "dto.familyName" />さん、こんにちは</s:if>
 	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
