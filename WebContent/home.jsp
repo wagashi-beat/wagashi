@@ -44,7 +44,6 @@
 
 			</div>
 
-
     <ul class= "menu">
 
     	<li class= "acount">
@@ -78,7 +77,6 @@
 	</header>
 
 	<!-- ここまで -->
-
 
 	<div class= "main">
 <s:if test= "#session =! null"><s:property value= "dto.familyName" />さん、こんにちは</s:if>
