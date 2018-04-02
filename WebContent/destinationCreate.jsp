@@ -19,20 +19,30 @@
 
 
 	<s:form action= "ItemSearchAction">
-	<div class="search">
-		<select name= "itemCategory" class= "category">
-			<option value= "">全てのカテゴリー</option>
-			<option value= "">１</option>
-			<option value= "">２</option>
-			<option value= "">３</option>
-		</select>
+	  <div class="search">
+	    <table class = "table-header">
+	      <s:form method = "post" action = "ItemSearchAcion" class = "kensaku">
+	        <tr>
+	          <td>
+		  		<select name= "itemCategory" class= "category">
+				  <option value= "0">全ての団子</option>
+			  	  <option value= "1">団子</option>
+			      <option value= "2">だんご</option>
+			      <option value= "3">dango</option>
+		        </select>
+		      </td>
 
-        	<input type="text" class="searchBox" value="" placeholder="Search">
+    	    <td>
+        	  <input type= "text" class = "searchBox" placeholder = "Search">
 
         	<div id= "searchButton">
 	        	<input type= "image" src= "./img/searchIcon.png" width= "25px" height= "25px" class= "searchIcon" />
 	        </div>
-	        </div>
+	        </td>
+	      </tr>
+	    </s:form>
+	    </table>
+	    </div>
     </s:form>
 
 
