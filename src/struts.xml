@@ -46,6 +46,7 @@
 		<!-- 宛先登録 -->
 		 <action name="DestinationCreateAction" class="com.wagashi.Action.DestinationCreateAction" method="execute">
 		 	<result name="success">destinationCreate.jsp</result>
+		 	<result name= "error">login.jsp</result>
 
 		 </action>
 

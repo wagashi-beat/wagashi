@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="./css/productList.css">
 <link rel="stylesheet" href="./css/craftdenki.css">
 
-
 <title>商品一覧画面</title>
 
 </head>
