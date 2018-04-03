@@ -77,46 +77,26 @@
 
 
 
-			<s:form action="CartAction" id="form" name="form">
+			<s:form action="CartAction" >
 
-				<s:if test="session.d_item_stock > 0">
-
-					<p>&nbsp;</p>
-
-			購入個数
-	  		<s:select name="product_count" list="stockList" />			★
+				<input type="hidden" name="price" value='<s:property value="price"/>'>
+		購入個数
+					<select name="productCount">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+					</select>
 
 				<input type="hidden" name="addFlg" value="1" />
 				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 
-
-					<div class=pd-cart>
-
-						<s:token />
 						<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
 							<s:hidden name="product_id" value="%{session.d_product_id}" />
 
+					</s:form>
 
-					</div>
-
-				</s:if>
-				<s:else>
-					<p>在庫がありません。</p>
-					<s:hidden name="product_id" value="%{session.d_product_id}" />
-
-				</s:else>
-				<br>
-				<%--非ログイン時は非表示 --%>
-				<s:if test="#session.containsKey('trueID')">
-					<div class="favlist">
-						<s:submit value=" お気に入りリストに入れる" onclick="goFavoriteAction();">
-							<s:hidden name="favoriteInsertFlg" value="1" />
-						</s:submit>
-					</div>
-				</s:if>
-
-			</s:form>
-		</div>
 
 		<h3>おすすめ関連商品</h3>
 
