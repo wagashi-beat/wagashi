@@ -28,6 +28,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private String deleteFlg;
 
 	private Collection<String> deleteList;
+	//aaa
 
 
 	public String execute() throws SQLException{
