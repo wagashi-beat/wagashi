@@ -86,16 +86,17 @@
 			購入個数
 	  		<s:select name="product_count" list="stockList" />			★
 
-				<input type="hidden" name="insertFlg" value="1" />
+				<input type="hidden" name="addFlg" value="1" />
+				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 
 
 					<div class=pd-cart>
 
 						<s:token />
-						<s:submit value=" カートに入れる" onclick="goCartInsertAction();">
+						<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
 							<s:hidden name="product_id" value="%{session.d_product_id}" />
 
-						</s:submit>
+
 					</div>
 
 				</s:if>
