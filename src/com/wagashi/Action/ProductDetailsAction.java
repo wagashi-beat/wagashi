@@ -50,6 +50,7 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 		// String[] productIdList = product_id.split(", ", 0);
 
 		// 商品詳細情報取得メソッド
+		//aaa
 		try {
 
 			detail = productDetailsDAO.getProductDetailsInfo(product_id);
