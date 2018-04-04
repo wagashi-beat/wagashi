@@ -15,29 +15,37 @@
 <body>
 
 	<!-- ここから前頁共通 -->
-	<header class= "amazon">
-		<div class= "logo">
-			<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
-		</div>
+		<header class = "amazon">
+	    <div class = "logo">
+	    	<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
+	    </div>
+
+			<a href='<s:url action="StartAction" />'></a>
+			<div class="searchBox">
+				<table class="table-header">
+					<s:form method="post" action="ItemSearchAction" class="search">
+						<tr>
+							<td>
+								<select name="category" id="select1">
+									<option value="0" selected="selected">すべての団子</option>
+									<option value="1">団子</option>
+									<option value="2">だんご</option>
+									<option value="3">dango</option>
+								</select>
 
 
-	<s:form action= "ItemSearchAction">
-	<div class="search">
-		<select name= "itemCategory" class= "category">
-			<option value= "">全てのカテゴリー</option>
-			<option value= "">１</option>
-			<option value= "">２</option>
-			<option value= "">３</option>
-		</select>
 
-        	<input type="text" class="searchBox" value="" placeholder="Search">
+								<input type="text" class = "searchBox"
+									   placeholder = "Search" maxlength="16"class="searchBox" />
 
-        	<div id= "searchButton">
-	        	<input type= "image" src= "./img/searchIcon.png" width= "25px" height= "25px" class= "searchIcon" />
-	        </div>
-	        </div>
-    </s:form>
+								<input type="image" src="./img/searchIcon.png"
+									   alt="検索" value="検索" id = "searchButton" width = "25px" height = "25" />
+							</td>
+						</tr>
+					</s:form>
+				</table>
 
+			</div>
 
     <ul class= "menu">
 
@@ -70,7 +78,6 @@
 
 
 	</header>
-
 	<!-- ここまで -->
 
 
