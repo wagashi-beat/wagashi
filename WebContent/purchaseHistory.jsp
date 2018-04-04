@@ -84,20 +84,21 @@
 					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
 
 				</s:if>
-			 	<h1 class="cart">商品詳細</h1>
+			 	<h1 class="cart">購入履歴</h1>
 				 	<s:form method = "delete" action = "PurchaseHistoryAction">
 						<s:iterator value="purchaseHistoryDTOList">
 							<table>
 								<tr>
 									<td class="sample01"><s:checkbox name="checkList" value="checked" fieldValue="%{id}"/><!-- fieldValueを使ってcheckListにidを入れる --></td>
-									<td><img src="<s:property value='imageFilePath'/>" id="cartImg"></td>
+									<td><img src="<s:property value='session.d_image_file_path'/>" id="cartImg"></td>
 
 									<td>
-									<s:property value="getProductName()" />&nbsp;(<s:property value="getProductNameKana()" />)
+									<s:property value="session.d_product_name" />&nbsp;(<s:property value="session.d_product_name_kana" />)
 									<br>
 									<br>
 
-									<s:property value="getPriceComma()" />&nbsp;<s:property value="productCount"/>点
+									<s:property value="getPrice()" />円&nbsp;<s:property value="productCount"/>点
+									<s:property value="getProductName()" />
 									<br>
 									<br>
 								</tr>
