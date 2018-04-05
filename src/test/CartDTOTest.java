@@ -97,6 +97,8 @@ public class CartDTOTest {
 
 	}
 
+
+
 	@Test
 	public void testGetTempUserId1() {
 		CartDTO dto = new CartDTO();
@@ -186,6 +188,8 @@ public class CartDTOTest {
 		assertEquals(expected,actual);
 	}
 
+
+
 	@Test
 	public void testGetProductId1(){
 		CartDTO dto = new CartDTO();
@@ -241,6 +245,120 @@ public class CartDTOTest {
 		}
 	}
 
+
+
+	@Test
+	public void testGetProductCount1() {
+		CartDTO dto = new CartDTO();
+		int expected = 0;
+
+		dto.setProductId(expected);
+
+		assertEquals(expected,dto.getProductCount());
+
+	}
+
+	@Test
+	public void testGetProductCount2() {
+		CartDTO dto = new CartDTO();
+		int expected = 2147483647;
+
+		dto.setProductCount(expected);
+		assertEquals(expected,dto.getProductCount());
+
+	}
+
+	@Test
+	public void testGetProductCount3() {
+		CartDTO dto = new CartDTO();
+
+		int expected =-2147483647;
+		dto.setProductCount(expected);
+		assertEquals(expected,dto.getProductCount());
+
+	}
+
+	@Test
+	public void testGetProductCount4() {
+		CartDTO dto = new CartDTO();
+		try {
+				int postalMin = Integer.parseInt("-2147483649");
+				dto.setProductId(postalMin);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(),"For input string: \"-2147483649\"");
+
+		}
+	}
+
+
+	@Test
+	public void testGetProductCount5() {
+		CartDTO dto = new CartDTO();
+		try{
+			int postalMax = Integer.parseInt("2147483648");
+			dto.setProductId(postalMax);
+
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input string: \"2147483648\"");
+		}
+	}
+
+
+
+
+	@Test
+	public void testGetPrice1() {
+		CartDTO dto = new CartDTO();
+		int expected = 0;
+
+		dto.setPrice(expected);
+		assertEquals(expected,dto.getPrice());
+
+	}
+
+	@Test
+	public void testGetPrice2() {
+		CartDTO dto = new CartDTO();
+		int expected = 2147483647;
+
+		dto.setPrice(expected);
+		assertEquals(expected,dto.getPrice());
+	}
+
+	@Test
+	public void testGetPrice3() {
+		CartDTO dto = new CartDTO();
+		int expected = -2147483647;
+
+		dto.setPrice(expected);
+		assertEquals(expected,dto.getPrice());
+	}
+
+	@Test
+	public void testGetPrice4() {
+		CartDTO dto = new CartDTO();
+		try{
+			int postalMin = Integer.parseInt("-2147483649");
+			dto.setPrice(postalMin);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(),"For input string: \"-2147483649\"");
+		}
+	}
+
+	@Test
+	public void testGetPrice5() {
+		CartDTO dto = new CartDTO();
+		try{
+			int postalMax = Integer.parseInt("2147483648");
+			dto.setPrice(postalMax);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(),"For input string: \"2147483648\"");
+		}
+	}
+
+
+
+
 	private void assertThat(String message, String string) {
 		assertEquals(message,string);
 
@@ -248,11 +366,6 @@ public class CartDTOTest {
 
 
 
-
-
-
-
-
-	}
+}
 
 
