@@ -1,6 +1,5 @@
 package com.wagashi.Action;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -26,6 +25,7 @@ public class ProductDetailAction extends ActionSupport implements SessionAware{
 		String result =ERROR;
 		System.out.println(productId);
 
+		/*
 		try{
 			productDetailList = productDetailDAO.getDetail(productId);
 
@@ -34,7 +34,7 @@ public class ProductDetailAction extends ActionSupport implements SessionAware{
 
 		}catch(SQLException e){
 			e.printStackTrace();
-		}
+		}*/
 System.out.println(productDetailList.size());
 		result = SUCCESS;
 		return result;
