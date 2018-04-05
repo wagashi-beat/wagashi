@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import com.wagashi.DTO.SearchDTO;
@@ -403,22 +401,72 @@ public class SearchDTOTest {
 	}
 
 	@Test
-	public void testGetProductId4() {
+	public void testGetCategoryId4() {
 		SearchDTO dto = new SearchDTO();
 		try {
 			int postalMin = Integer.parseInt("-2147483649");
-			dto.setProductId(postalMin);
+			dto.setCategoryId(postalMin);
 		}catch(RuntimeException e){
 			assertThat(e.getMessage(),"For input string: \"-2147483649\"");
 		}
 	}
 
 	@Test
-	public void testGetProductId5() {
+	public void testGetCategoryId5() {
 		SearchDTO dto = new SearchDTO();
 		try {
 			int postalMin = Integer.parseInt("2147483648");
-			dto.setProductId(postalMin);
+			dto.setCategoryId(postalMin);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(),"For input string: \"2147483648\"");
+		}
+	}
+
+
+	@Test
+	public void testGetPrice() {
+		SearchDTO dto = new SearchDTO();
+		int expected = 0;
+
+		dto.setPrice(expected);
+		assertEquals(expected, dto.getPrice());
+	}
+
+	@Test
+	public void testGetPrice2() {
+		SearchDTO dto = new SearchDTO();
+		int expected = 2147483647;
+
+		dto.setPrice(expected);
+		assertEquals(expected, dto.getPrice());
+	}
+
+	@Test
+	public void testGetPrice3() {
+		SearchDTO dto = new SearchDTO();
+		int expected = -2147483647;
+
+		dto.setPrice(expected);
+		assertEquals(expected, dto.getPrice());
+	}
+
+	@Test
+	public void testGetPrice4() {
+		SearchDTO dto = new SearchDTO();
+		try {
+			int postalMin = Integer.parseInt("-2147483649");
+			dto.setPrice(postalMin);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(),"For input string: \"-2147483649\"");
+		}
+	}
+
+	@Test
+	public void testGetPrice5() {
+		SearchDTO dto = new SearchDTO();
+		try {
+			int postalMin = Integer.parseInt("2147483648");
+			dto.setPrice(postalMin);
 		}catch(RuntimeException e){
 			assertThat(e.getMessage(),"For input string: \"2147483648\"");
 		}
@@ -426,100 +474,6 @@ public class SearchDTOTest {
 
 
 
-	@Test
-	public void testSetProductDescription() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetCategoryId() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetCategoryId() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetPrice() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetPrice() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetImageFilePath() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetImageFilePath() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetImageFileName() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetImageFileName() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetReleaseDate() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetReleaseDate() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetReleaseCompany() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetReleaseCompany() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetStatus() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetStatus() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetRegistDate() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetRegistDate() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testGetUpdateDate() {
-		fail("まだ実装されていません");
-	}
-
-	@Test
-	public void testSetUpdateDate() {
-		fail("まだ実装されていません");
-	}
 	private void assertThat(String message, String string) {
 		// TODO 自動生成されたメソッド・スタブ
 
