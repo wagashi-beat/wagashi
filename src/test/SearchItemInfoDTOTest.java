@@ -31,8 +31,116 @@ public class SearchItemInfoDTOTest {
 	}
 
 	@Test
+	public void testGetId3() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = " ";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetId4() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "　";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetId5() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "abc123";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetId6() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "あいう１２３";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetId7() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "abc123あいう１２３";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetId8() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "abc123あいう１２３漢字";
+
+		dto.setId(expected);
+		String actual = dto.getId();
+
+		assertEquals(expected, actual);
+	}
+
+
+
+	@Test
 	public void testGetProductId() {
-		fail("まだ実装されていません");
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = null;
+
+		dto.setProductId(expected);
+		assertEquals(expected, dto.getProductId());
+}
+
+	@Test
+	public void testGetProductId2() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "";
+
+		dto.setProductId(expected);
+		assertEquals(expected, dto.getProductId());
+	}
+
+	@Test
+	public void testGetProductId3() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = " ";
+
+		dto.setProductId(expected);
+		assertEquals(expected, dto.getProductId());
+	}
+
+	@Test
+	public void testGetProductId4() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "　";
+
+		dto.setProductId(expected);
+		assertEquals(expected, dto.getProductId());
+	}
+
+	@Test
+	public void testGetProductId5() {
+		SearchItemInfoDTO dto = new SearchItemInfoDTO();
+		String expected = "abc123";
+
+		dto.setProductId(expected);
+		assertEquals(expected, dto.getProductId());
 	}
 
 	@Test
