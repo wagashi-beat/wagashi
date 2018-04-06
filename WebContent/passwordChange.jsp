@@ -20,6 +20,7 @@
 			<a href='<s:url action="StartAction" />'></a>
 			<div class="searchBox">
 				<table class="table-header">
+
 					<s:form method="post" action="ItemSearchAction" class="search">
 						<tr>
 							<td>
@@ -29,17 +30,18 @@
 									<option value="2">だんご</option>
 									<option value="3">dango</option>
 								</select>
+							</td>
 
-
-
-								<input type="text" class = "searchBox"
-									   placeholder = "Search" maxlength="16"class="searchBox" />
+							<td>
+								<input type="text" name="searchWord" placeholder = "Search"
+								maxlength="16" class="searchBox" />
 
 								<input type="image" src="./img/searchIcon.png"
-									   alt="検索" value="検索" id = "searchButton" width = "25px" height = "25" />
+								alt="検索" value="検索" id="searchButton" width = "25px" height = "25px" />
 							</td>
 						</tr>
 					</s:form>
+
 				</table>
 
 			</div>
@@ -75,7 +77,6 @@
 
 
 	</header>
-
 	<!-- ここまで -->
 
 	<div class= "main">
