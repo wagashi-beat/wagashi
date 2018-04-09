@@ -2,6 +2,7 @@ package com.wagashi.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.wagashi.util.DBConnector;
@@ -40,4 +41,34 @@ public class UserCreateDAO {
 			con.close();
 		}
 	}
+
+
+	public boolean checkId(String user_id) throws SQLException {
+		boolean result= false;
+		Connection con= db.getConnection();
+
+		String sql= "select * from user_info where user_id= ?";
+
+		try {
+			PreparedStatement ps= con.prepareStatement(sql);
+			ps.setString(1, user_id);
+			ResultSet rs= ps.executeQuery();
+
+			if (rs.next()) {
+				result= true;
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			con.close();
+		}
+
+		return result;
+	}
+
+
 }

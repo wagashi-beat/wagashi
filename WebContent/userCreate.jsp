@@ -88,10 +88,9 @@
 	<table class= "form-table">
 
 
-	<s:if test= "errorList != null || errorIdList != null || errorPasswordList != null ||
-				 errorFamilyList != null || errorFirstList != null errorFamilyKanaList != null ||
-				 errorFirstKanaList != null || errorEmailList != null">
-		<s:property value= "error" escape= "false" /></s:if>
+					<s:if test="session.error != ''">
+						<s:property value="session.error"/>
+					</s:if>
 
 
 

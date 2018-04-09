@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.wagashi.DAO.UserCreateDAO;
 import com.wagashi.DTO.LoginDTO;
 
 public class UserCreateConfirmAction extends ActionSupport implements SessionAware {
@@ -25,6 +26,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 
 	public Map<String, Object> session;
 
+	UserCreateDAO dao= new UserCreateDAO();
 	LoginDTO loginDTO= new LoginDTO();
 
 	// エラーリスト
@@ -58,132 +60,132 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				familyName.equals("") || firstName.equals("") ||
 				familyNameKana.equals("") || firstNameKana.equals("") ||
 				email.equals("")) {
-			ret= ERROR;
 			error= "未入力項目があります。";
-			errorList.add(error);
+			session.put("error", error);
 			errorCount++;
 		}
 
+		else {
+			// ユーザーID
+			if (dao.checkId(user_id)) {
+				error= "そのIDは既に登録されています。";
+				errorList.add(errorId);
+				errorCount++;
+			}
 
-		// ユーザーID
-		if  (user_id.equals(loginDTO.getLoginId()) && !user_id.equals("")) {
-			error= "そのIDは既に登録されています。";
-			errorList.add(errorId);
-			errorCount++;
+			if (user_id.length()<3 || user_id.length()>16) {
+				errorId= "3文字以上16文字以内で入力してください。";
+				errorIdList.add(errorId);
+				errorCount++;
+			}
+
+			if (!user_id.matches("^[0-9a-zA-Z]+$")) {
+				errorId= "半角英数字で入力してください。";
+				errorIdList.add(errorId);
+				errorCount++;
+			}
+
+
+
+			// パスワード
+			if (password.equals(user_id)) {
+				errorPassword= "ユーザーIDをパスワードとして使用できません。";
+				errorPasswordList.add(errorPassword);
+				errorCount++;
+			}
+
+			if (password.length()<3 || password.length()>16) {
+				errorPassword= "3文字以上16文字以内で入力してください。";
+				errorPasswordList.add(errorPassword);
+				errorCount++;
+			}
+
+			if (!password.matches("^[0-9a-zA-Z]+$")) {
+				errorPassword= "半角英数字で入力してください。";
+				errorPasswordList.add(errorPassword);
+				errorCount++;
+			}
+
+
+
+			// 性
+			if (familyName.length()<1 || familyName.length()>16) {
+				errorFamily= "1文字以上16文字以内で入力してください。";
+				errorFamilyList.add(errorFamily);
+				errorCount++;
+			}
+
+			if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$")) {
+				errorFamily = "半角英字、ひらがな、カタカナ、漢字で入力してください。";
+				errorFamilyList.add(errorFamily);
+				errorCount++;
+			}
+
+
+
+			// 名
+			if(firstName.length()<1 || firstName.length()>16){
+				errorFirst ="1文字以上16文字以下で入力してください。";
+				errorFirstList.add(errorFirst);
+				errorCount++;
+			}
+
+			if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$")) {
+				errorFirst = "半角英字、ひらがな、カタカナ、漢字で入力してください。";
+				errorFirstList.add(errorFirst);
+				errorCount++;
+			}
+
+
+
+			//姓ふりがな
+			if(familyNameKana.length()<1 || familyNameKana.length()>16){
+				errorFamilyKana = "1文字以上16文字以下で入力してください。";
+				errorFamilyKanaList.add(errorFamilyKana);
+				errorCount++;
+			}
+
+			if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
+				errorFamilyKana = "ひらがなで入力してください。";
+				errorFamilyKanaList.add(errorFamilyKana);
+				errorCount++;
+			}
+
+
+
+			//名前ふりがな
+			if(firstNameKana.length()<1 || firstNameKana.length()>16){
+				errorFirstKana = "1文字以上16文字以下で入力してください。";
+				errorFirstKanaList.add(errorFirstKana);
+				errorCount++;
+			}
+
+			if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
+				errorFirstKana = "ひらがなで入力してください。";
+				errorFirstKanaList.add(errorFirstKana);
+				errorCount++;
+			}
+
+
+
+			//メール
+			if(email.length()<11 || email.length()>32){
+				errorEmail = "11文字以上32文字以下で入力してください。";
+				errorEmailList.add(errorEmail);
+				errorCount++;
+			}
+
+			if (!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+				errorEmail = "正しいメールアドレスの形式で入力してください。";
+				errorEmailList.add(errorEmail);
+				errorCount++;
+			}
 		}
-
-		if (user_id.length()<3 || user_id.length()>16 && !user_id.equals("")) {
-			errorId= "3文字以上16文字以内で入力してください。";
-			errorIdList.add(errorId);
-			errorCount++;
-		}
-
-		if (!user_id.matches("^[0-9a-zA-Z]+$") && !(user_id.equals(""))) {
-			errorId= "半角英数字で入力してください。";
-			errorIdList.add(errorId);
-			errorCount++;
-		}
-
-
-
-		// パスワード
-		if (password == user_id && !password.equals("")) {
-			errorPassword= "ユーザーIDをパスワードとして使用できません。";
-			errorPasswordList.add(errorPassword);
-			errorCount++;
-		}
-
-		if (password.length()<3 || password.length()>16 && !password.equals("")) {
-			errorPassword= "3文字以上16文字以内で入力してください。";
-			errorPasswordList.add(errorPassword);
-			errorCount++;
-		}
-
-		if (!password.matches("^[0-9a-zA-Z]+$") && !(password.equals(""))) {
-			errorPassword= "半角英数字で入力してください。";
-			errorPasswordList.add(errorPassword);
-			errorCount++;
-		}
-
-
-
-		// 性
-		if (familyName.length()<1 || familyName.length()>16 && !familyName.equals("")) {
-			errorFamily= "1文字以上16文字以内で入力してください。";
-			errorFamilyList.add(errorFamily);
-			errorCount++;
-		}
-
-		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$") && !(familyName.equals(""))) {
-			errorFamily = "半角英字、ひらがな、カタカナ、漢字で入力してください。";
-			errorFamilyList.add(errorFamily);
-			errorCount++;
-		}
-
-
-
-		// 名
-		if(firstName.length()<1 || firstName.length()>16 && !firstName.equals("")){
-			errorFirst ="1文字以上16文字以下で入力してください。";
-			errorFirstList.add(errorFirst);
-			errorCount++;
-		}
-
-		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$") && !(firstName.equals(""))) {
-			errorFirst = "半角英字、ひらがな、カタカナ、漢字で入力してください。";
-			errorFirstList.add(errorFirst);
-			errorCount++;
-		}
-
-
-
-		//姓ふりがな
-		if(familyNameKana.length()<1 || familyNameKana.length()>16 && !familyNameKana.equals("")){
-			errorFamilyKana = "1文字以上16文字以下で入力してください。";
-			errorFamilyKanaList.add(errorFamilyKana);
-			errorCount++;
-		}
-		if (!familyNameKana.matches("^[ぁ-ゞ]+$") && !(familyNameKana.equals(""))) {
-			errorFamilyKana = "ひらがなで入力してください。";
-			errorFamilyKanaList.add(errorFamilyKana);
-			errorCount++;
-		}
-
-
-
-		//名前ふりがな
-		if(firstNameKana.length()<1 || firstNameKana.length()>16 && !firstNameKana.equals("")){
-			errorFirstKana = "1文字以上16文字以下で入力してください。";
-			errorFirstKanaList.add(errorFirstKana);
-			errorCount++;
-		}
-
-		if (!firstNameKana.matches("^[ぁ-ゞ]+$") && !(firstNameKana.equals(""))) {
-			errorFirstKana = "ひらがなで入力してください。";
-			errorFirstKanaList.add(errorFirstKana);
-			errorCount++;
-		}
-
-
-
-		//メール
-		if(email.length()<14 || email.length()>32 && !email.equals("")){
-			errorEmail = "14文字以上32文字以下で入力してください。";
-			errorEmailList.add(errorEmail);
-			errorCount++;
-		}
-
-		if (!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$") && !(email.equals(""))) {
-			errorEmail = "正しいメールアドレスの形式で入力してください。";
-			errorEmailList.add(errorEmail);
-			errorCount++;
-		}
-
 
 
 		if (errorCount>0) {
-			session.put("error", error);
-			ret= ERROR;
+		session.put("error", error);
+		ret= ERROR;
 		}
 
 		else {

@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.wagashi.DAO.UserCreateDAO;
+import com.wagashi.DTO.LoginDTO;
 
 public class UserCreateCompleateAction extends ActionSupport implements SessionAware{
 
@@ -19,6 +20,7 @@ public class UserCreateCompleateAction extends ActionSupport implements SessionA
 	private String firstNameKana;
 	private int sex;
 	private String email;
+	private LoginDTO dto= new LoginDTO();
 
 	public Map<String, Object> session;
 	private UserCreateDAO userCreateDAO= new UserCreateDAO();
@@ -34,6 +36,8 @@ public class UserCreateCompleateAction extends ActionSupport implements SessionA
 				session.get("firstNameKana").toString(),
 				Integer.parseInt(session.get("sex").toString()),
 				session.get("email").toString());
+
+		dto.setLoginId(session.get("user_id").toString());
 
 		String ret = SUCCESS;
 		return ret;
@@ -132,6 +136,23 @@ public class UserCreateCompleateAction extends ActionSupport implements SessionA
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
+
+	public LoginDTO getDto() {
+		return dto;
+	}
+
+
+	public void setDto(LoginDTO dto) {
+		this.dto = dto;
+	}
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
 
 }
 
