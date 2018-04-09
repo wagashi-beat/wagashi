@@ -33,6 +33,8 @@ public class MyPageDAO {
 				dto.setFirstNameKana(resultSet.getString("family_name_kana"));
 				dto.setSex(resultSet.getString("sex"));
 				dto.setEmail(resultSet.getString("email"));
+				dto.setAddress(resultSet.getString("address"));
+				dto.setTelNumber(resultSet.getString("tel_number"));
 				}
 			}catch(SQLException e){
 				e.printStackTrace();

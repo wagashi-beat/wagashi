@@ -107,11 +107,19 @@
 			<tr>
 				<td>EMAIL</td> <td><s:property value="dto.email"/></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>ADDRESS</td> <td><s:property value="#session.address"/></td>
 			</tr>
 			<tr>
 				<td>TEL NUMBER</td> <td><s:property value="#session.telNumber"/></td>
+			</tr>-->
+
+			<tr>
+				<td>ADDRESS</td> <td><s:property value = "dto.address"/></td>
+			</tr>
+
+			<tr>
+				<td>TEL NUMBER</td> <td><s:property value = "dto.telNumber"/></td>
 			</tr>
 
 
