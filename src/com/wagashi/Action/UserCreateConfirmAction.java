@@ -86,7 +86,6 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 			}
 
 
-
 			// パスワード
 			if (password.equals(user_id)) {
 				errorPassword= "ユーザーIDをパスワードとして使用できません。";
