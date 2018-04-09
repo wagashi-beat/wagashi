@@ -56,17 +56,17 @@
     		<a href= '<s:url action= "UserCreatePageAction" />'>新規登録</a>
     	</li>
 
-    	<li class= "acount">
+    	<s:if test= "#session.loginUser == null"><li class= "acount">
     		<a href= '<s:url action= "LoginMoveAction" />'>ログイン</a>
-    	</li>
+    	</li></s:if>
 
-    	<li class= "acount">
+    	<s:if test= "#session.loginUser"><li class= "acount">
     		<a href= '<s:url action= "MyPageAction" />'>マイページ</a>
-    	</li>
+    	</li></s:if>
 
-    	<li class= "acount">
+    	<s:if test= "#session.loginUser"><li class= "acount">
     		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
-    	</li>
+    	</li></s:if>
 
     	<li class= "acount">
     	<div class= "cart">
