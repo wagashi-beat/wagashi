@@ -87,8 +87,52 @@
 
 	<div>
 		<s:form action = "LoginAction">
-			<s:textfield name="user_id"/>
-			<s:password name="password"/>
+
+			<span class= "error">
+				<s:if test="errorId == null && errorId1 == null && errorId2 == null &&
+							errorPassword== null && errorPassword1== null && errorPassword2== null ">
+				<s:property value="errorMessage" /></s:if></span>
+
+				<%--ログインID --%>
+
+					<s:if test="errorId != null">
+						<s:property value="errorId" escape="false" />
+					</s:if>
+
+					<s:if test="errorId1 != null">
+						<s:property value="errorId1" escape="false" />
+					</s:if>
+
+					<s:if test="errorId2 != null">
+						<s:property value="errorId2" escape="false" />
+					</s:if>
+
+
+					<s:textfield name="user_id" placeholder = "userID"/>
+
+
+				<%--ログインPassword --%>
+
+					<s:if test="errorPassword != null">
+						<s:property value="errorPassword" escape="false" />
+					</s:if>
+
+					<s:if test="errorPassword1 != null">
+						<s:property value="errorPassword1" escape="false" />
+					</s:if>
+
+					<s:if test="errorPassword2 != null">
+						<s:property value="errorPassword2" escape="false" />
+					</s:if>
+
+
+					<s:password name="password" placeholder = "password"/>
+
+
+
+
+
+
 			<s:submit value="ログイン"/>
 		</s:form>
 	</div>
