@@ -88,7 +88,7 @@
 				</s:if>
 			</div>
 
-				<s:if test = "purchaseHistoryDTO ==null">
+				<s:if test = "purchaseHistoryDTOList==null">
 					<h1>購入情報はありません</h1>
 						<br>
 					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
@@ -123,10 +123,10 @@
 							チェック済の履歴は削除できます
 								<input type = "hidden" name="deleteFlg" value="1">
 								<s:submit value=" 削除 " method="execute"/>
+
 						</div>
 					</s:form>
 						<br>
-
 
 
 
