@@ -31,9 +31,9 @@
 									<option value="3">dango</option>
 								</select>
 							</td>
-							
+
 							<td>
-								<input type="text" name="searchWord" placeholder = "Search" 
+								<input type="text" name="searchWord" placeholder = "Search"
 								maxlength="16" class="searchBox" />
 
 								<input type="image" src="./img/searchIcon.png"
@@ -79,7 +79,7 @@
 	</header>
 
 	<div class= "main">
-<s:if test= "#session =! null"><s:property value= "dto.familyName" />さん、こんにちは</s:if>
+<s:if test= "#session =! null"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
 	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
 
 	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>

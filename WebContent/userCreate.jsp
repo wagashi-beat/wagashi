@@ -88,35 +88,86 @@
 	<table class= "form-table">
 
 
-	<s:if test= "error">
-		<s:property value= "#session.error" escape= "false" /></s:if>
+	<s:if test= "errorList != null || errorIdList != null || errorPasswordList != null ||
+				 errorFamilyList != null || errorFirstList != null errorFamilyKanaList != null ||
+				 errorFirstKanaList != null || errorEmailList != null">
+		<s:property value= "error" escape= "false" /></s:if>
+
+
+
+		<s:if test= "errorIdList != null">
+			<s:iterator value= "errorIdList">
+				<tr><th></th><td><s:property value= "errorId" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
 
 		<tr><th></th><td class= "mes">半角英数字　３～１６文字以内</td></tr>
-		<tr><th>ユーザーＩＤ：</th><td><input type= "text" name= "user_id" <s:if test= "session != null">value= '<s:property value= "familyName" />'</s:if> placeholder= ""></td></tr>
+		<tr><th>ユーザーＩＤ：</th><td><input type= "text" name= "user_id" <s:if test= "session != null">value= '<s:property value= "user_id" />'</s:if> placeholder= ""></td></tr>
+
+
+		<s:if test= "errorPasswordList != null">
+			<s:iterator value= "errorPasswordList">
+				<tr><th></th><td><s:property value= "errorPassword" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
 
 		<tr class="bar"><th></th><td class= "mes">半角英数字　３文字以上</td></tr>
 		<tr><th>パスワード：</th><td><input type= "password" name= "password" value= "" placeholder= "パスワード"></td></tr>
 		<tr></tr>
+
+
+		<s:if test= "errorFamilyList != null">
+			<s:iterator value= "errorFamilyList">
+				<tr><th></th><td><s:property value= "errorFamily" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
 
 		<tr class="bar"><th></th><td class= "mes">半角英数・ひらがな・カタカナ・漢字　１～１６文字</td></tr>
 		<tr><th>苗字：</th><td><input type= "text" name= "familyName" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> placeholder= "山田"></td></tr>
 		<tr></tr>
 
 
+		<s:if test= "errorFirstList != null">
+			<s:iterator value= "errorFirstList">
+				<tr><th></th><td><s:property value= "errorFirst" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
+
 		<tr class="bar"><th></th><td class= "mes">半角英数・ひらがな・カタカナ・漢字　１～１６文字</td></tr>
-		<tr><th>名前：</th><td><input type= "text" name= "firstName" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> placeholder= "太郎"></td></tr>
+		<tr><th>名前：</th><td><input type= "text" name= "firstName" <s:if test= "session != null"> value= '<s:property value= "firstName" />'</s:if> placeholder= "太郎"></td></tr>
 		<tr></tr>
+
+
+		<s:if test= "errorFamilyKanaList != null">
+			<s:iterator value= "errorFamilyKanaList">
+				<tr><th></th><td><s:property value= "errorFamilyKana" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
 
 		<tr class="bar"><th></th><td class= "mes">ひらがな　１～１６文字</td></tr>
-		<tr><th>みょうじ：</th><td><input type= "text" name= "familyNameKana" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> placeholder= "やまだ"></td></tr>
+		<tr><th>みょうじ：</th><td><input type= "text" name= "familyNameKana" <s:if test= "session != null"> value= '<s:property value= "familyNameKana" />'</s:if> placeholder= "やまだ"></td></tr>
 		<tr></tr>
+
+
+		<s:if test= "errorFirstKanaList != null">
+			<s:iterator value= "errorFirstKanaList">
+				<tr><th></th><td><s:property value= "errorFirstKana" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
 
 		<tr class="bar"><th></th><td class= "mes">ひらがな　１～１６文字以内</td></tr>
-		<tr><th>なまえ：</th><td><input type= "text" name= "firstNameKana" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> placeholder= "なまえ"></td></tr>
+		<tr><th>なまえ：</th><td><input type= "text" name= "firstNameKana" <s:if test= "session != null"> value= '<s:property value= "firstNameKana" />'</s:if> placeholder= "なまえ"></td></tr>
 		<tr></tr>
 
+
+		<s:if test= "errorEmailList != null">
+			<s:iterator value= "errorEmailList">
+				<tr><th></th><td><s:property value= "errorEmail" escape= "false" /></td></tr>
+			</s:iterator>
+		</s:if>
+
 		<tr class="bar"><th></th><td class= "mes">半角英数字　１１～３２文字以内</td></tr>
-		<tr><th>メールアドレス：</th><td><input type= "text" name= "email" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> placeholder= "xxx@co.jp"></td></tr>
+		<tr><th>メールアドレス：</th><td><input type= "text" name= "email" <s:if test= "session != null"> value= '<s:property value= "email" />'</s:if> placeholder= "xxx@co.jp"></td></tr>
 		<tr></tr>
 
 		<tr class="bar"><th>性別：</th><td>

@@ -40,9 +40,11 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 					totalPrice+=dto.getPrice();
 				}
 			}
+
+			else if(destinationDTO == null) {
+				result= "Destination";
+			}
 		}
-
-
 
 		return result;
 	}
