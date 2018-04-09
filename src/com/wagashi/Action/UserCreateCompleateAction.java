@@ -44,6 +44,7 @@ public class UserCreateCompleateAction extends ActionSupport implements SessionA
 	}
 
 
+
 	public String getUserId() {
 		return userId;
 	}
