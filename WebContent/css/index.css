@@ -60,7 +60,7 @@ header {
     border: 1px solid white;
     border-radius: 0 5px 5px 0;
     color: #fff;
-    width: 45px;
+    width: 31px;
     height: 31px;
 }
 
@@ -86,20 +86,22 @@ header {
 
 
 header .menu {
+	float:right;
 	font-size: 15px;
 	list-style: none;
+	line-height:30px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	width:600px;
-	max-width: 600px;
+	max-width: 500px;
 	height: 40px;
 }
 
 ul li a{
 	float: left;
 	width: 75px;
-	height: 30px;
+	height: 40px;
 	padding: 10px;
 	text-align: center;
 	border: none;
@@ -109,7 +111,7 @@ ul li a{
 
 
 ul li:hover a {
-	width: 71px;
+	width: 70px;
 	height: 26px;
     border: 2px solid #535353;
     border-radius: 5px 5px 5px 5px;
