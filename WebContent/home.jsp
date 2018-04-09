@@ -79,7 +79,7 @@
 	</header>
 
 	<div class= "main">
-<s:if test= "#session =! null"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
+<s:if test= "#session.loginUser"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
 	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
 
 	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>
