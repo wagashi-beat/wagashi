@@ -52,19 +52,19 @@
     		<a href= '<s:url action= "HomeMoveAction" />'>ホーム</a>
     	</li>
 
-    	<li class= "acount">
+    	<s:if test= "#session.loginUser == null"><li class= "acount">
     		<a href= '<s:url action= "UserCreatePageAction" />'>新規登録</a>
-    	</li>
+    	</li></s:if>
 
     	<s:if test= "#session.loginUser == null"><li class= "acount">
     		<a href= '<s:url action= "LoginMoveAction" />'>ログイン</a>
     	</li></s:if>
 
-    	<s:if test= "#session.loginUser"><li class= "acount">
+    	<s:if test= "session.loginUser"><li class= "acount">
     		<a href= '<s:url action= "MyPageAction" />'>マイページ</a>
     	</li></s:if>
 
-    	<s:if test= "#session.loginUser"><li class= "acount">
+    	<s:if test= "session.loginUser"><li class= "acount">
     		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
     	</li></s:if>
 
@@ -79,7 +79,7 @@
 	</header>
 
 	<div class= "main">
-<s:if test= "#session.loginUser"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
+	<s:if test= "#session.loginUser"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
 	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
 
 	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>

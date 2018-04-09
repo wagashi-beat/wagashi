@@ -87,16 +87,16 @@
 		<s:form action="CartAction">
 			<s:iterator value="cartDTOList">
 				<tr>
-					<td><img src="<s:property value='session.d_image_file_path'/>"></td>
+					<td><img src='<s:property value="imageFilePath" />' ></td>
 				</tr>
 				<tr>
-					<td><s:property value="session.d_product_name"/>
+					<td><s:property value="productName"/>
 				</tr>
 				<tr>
 					<td><s:property value="productCount"/>点</td>
 				</tr>
 				<tr>
-					<td><s:property value="session.d_product_price"/>円</td>
+					<td><s:property value="price"/>円</td>
 				</tr>
 				<tr>
 					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
