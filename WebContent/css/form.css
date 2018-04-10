@@ -33,12 +33,18 @@ table,th,td{
 	text-align:left;
 }
 
+
 input#submit_button{
+	margin:30px;
 	background-color:#DE8B47;
-	margin-left:350px;
+	posision:absolute;
 }
 
 input#back_button{
+	margin:30px;
+	float:left;
 	background-color:#DE8B47;
-	margin-left:250px;
+	posision:absolute;
+
 }
+

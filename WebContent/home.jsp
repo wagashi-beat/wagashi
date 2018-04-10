@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/home.css">
 	<title>ホーム画面(テスト)</title>
 </head>
 
@@ -84,20 +85,27 @@
     </header>
 
 	<div class= "main">
+	<h4>和菓子通販サイト　Wagashi　へようこそ！</h4>
 	<s:if test= "#session.loginUser"><s:property value= "#session.user_id" />さん、こんにちは</s:if>
-	<p><a href="<s:url action='LoginMoveAction'/>">ログイン画面</a></p>
-
-	<p><a href= "<s:url action= 'UserCreatePageAction' /> ">ユーザー登録</a>
-
-	<p><a href="<s:url action='MyPageAction'/>">マイページ画面</a></p>
-
-	<p><a href= "<s:url action= 'LogoutAction' /> ">ログアウト</a></p>
-
-	<a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a>
-
-	<p><a href="<s:url action='CartAction'/>">カート画面</a>
+	<s:if test= "#session.loginUser == null">
 
 
+	<a href="<s:url action='LoginMoveAction'/>" class="login">ログインはこちら</a></s:if>
+
+    <s:if test= "#session.loginUser == null">
+	<a href= "<s:url action= 'UserCreatePageAction' /> " class="create">新規登録</a></s:if>
+
+	<s:if test= "session.loginUser">
+    <p><a href="<s:url action='MyPageAction'/>" class="mypage">マイページ</a></p></s:if>
+
+    <s:if test= "session.loginUser">
+	<p><a href= "<s:url action= 'DestinationCreateAction' /> " class="dist">宛先登録</a></p></s:if>
+
+	<p><a href="<s:url action='CartAction'/>" class="cartlink">カート</a></p>
+
+	<s:if test= "session.loginUser">
+	<p><a href= "<s:url action= 'LogoutAction' /> " class="logout">ログアウト</a></p></s:if>
+    </div>
 </body>
 </html>
 
