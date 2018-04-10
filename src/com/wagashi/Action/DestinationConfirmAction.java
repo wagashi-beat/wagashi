@@ -46,7 +46,7 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 		int errorCount= 0;
 
 
-	//姓
+	// 姓
 		if (familyName.equals("")) {
 			errorFamilyName = "姓を入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
