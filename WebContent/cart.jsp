@@ -81,11 +81,15 @@
 
 
 	<div class= "main">
-	<p>チェックした商品はカートから削除されます。</p>
+
+			<s:iterator value="cartDTOList">
 
 	<table>
+
+
+			<s:if test= "cartDTOList">
 		<s:form action="CartAction">
-			<s:iterator value="cartDTOList">
+			<p>チェックした商品はカートから削除されます。</p>
 				<tr>
 					<td><img src='<s:property value="imageFilePath" />' ></td>
 				</tr>
@@ -103,13 +107,23 @@
 				</tr>
 				<input type="hidden" name="deleteFlg" value="1"/>
 				<s:submit value=" 削除 " method="execute"/>
-			</s:iterator>
 
 		</s:form>
 		<s:form action="SettlementConfirmAction">
 			<s:submit value=" 購入 " method="execute"/>
 		</s:form>
+		</s:if>
+
+
+			<s:if test= "session.cartMes">
+			<s:property value= "session.cartMes" />
+			<h1>カートに商品が入っていません。</h1>
+			</s:if>
+
+
+
 	</table>
+			</s:iterator>
 	</div>
 </body>
 </html>

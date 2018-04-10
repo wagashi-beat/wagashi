@@ -25,26 +25,29 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 
 	public String execute() throws SQLException {
 
+
 		String result = ERROR;
 		if(session.containsKey("user_id")){
 			DestinationDAO destinationDAO = new DestinationDAO();
 			destinationDTO=destinationDAO.getDestination(session.get("user_id").toString());
 			System.out.println(destinationDTO.getAddress());
 
-			if(!(destinationDTO==null)){
+			if(!(destinationDTO.getAddress() == null)){
 				CartDAO cartDAO=new CartDAO();
 				cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 				result = SUCCESS;
 
 				for(CartDTO dto:cartDTOList){
 					totalPrice+=dto.getPrice();
+
 				}
 			}
 
-			else if(destinationDTO == null) {
+			else if (destinationDTO.getAddress() == null){
 				result= "Destination";
 			}
 		}
+
 
 		return result;
 	}
