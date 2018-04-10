@@ -12,8 +12,7 @@
 
 <body>
 	<!-- ここから前頁共通 -->
-	 <header>
-	<div class = "amazon">
+		<header class = "amazon">
 	    <div class = "logo">
 	    	<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
 	    </div>
@@ -46,9 +45,6 @@
 				</table>
 
 			</div>
-	</div>
-
-	<div class="container">
 
     <ul class= "menu">
 
@@ -56,32 +52,31 @@
     		<a href= '<s:url action= "HomeMoveAction" />'>ホーム</a>
     	</li>
 
-    	<s:if test= "#session.loginUser == null"><li class= "acount">
+    	<li class= "acount">
     		<a href= '<s:url action= "UserCreatePageAction" />'>新規登録</a>
-    	</li></s:if>
+    	</li>
 
-    	<s:if test= "#session.loginUser == null"><li class= "acount">
+    	<li class= "acount">
     		<a href= '<s:url action= "LoginMoveAction" />'>ログイン</a>
-    	</li></s:if>
+    	</li>
 
-    	<s:if test= "session.loginUser"><li class= "acount">
+    	<li class= "acount">
     		<a href= '<s:url action= "MyPageAction" />'>マイページ</a>
-    	</li></s:if>
+    	</li>
 
-    	<s:if test= "session.loginUser"><li class= "acount">
+    	<li class= "acount">
     		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
-    	</li></s:if>
+    	</li>
 
     	<li class= "acount">
     	<div class= "cart">
-    		<a href= '<s:url action= "CartAction" />'><img src= "./img/cartIcon.png" height= "25px" id= "cartIcon"></a>
+    		<a href= '<s:url action= "CartAction" />'><img src= "./img/cartIcon.png" height= "35px" id= "cartIcon"></a>
   		 </div>
   		 </li>
   		 </ul>
 
 
-    </div>
-    </header>
+	</header>
 
 
 	<!-- ここまで -->

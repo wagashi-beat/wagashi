@@ -12,7 +12,7 @@
 
 <body>
 	<!-- ここから前頁共通 -->
-	 <header>
+				 <header>
 	<div class = "amazon">
 	    <div class = "logo">
 	    	<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
