@@ -1,9 +1,9 @@
 @CHARSET "UTF-8";
 
-header {
+.amazon {
 	width: 100%;
-	height: 110px;
-	position: absolute;
+	height: 85px;
+	position: fixed;
 	top: 0;
 	left: 0;
 	background-color: #2F3039;
@@ -21,10 +21,10 @@ header {
 }
 
 
-.search{
-	height: 33px;
+.amazon .search{
+	height: 25px;
 	position: absolute;
-    margin-top: 10px;
+    margin-top: 35px;
     background-color:#fff;
     border:1px solid #aaa;
     border-radius:6px;
@@ -36,20 +36,20 @@ header {
 .search .category{
 	border-radius:6px;
 	border: none;
-	height: 31px;
+	height: 25px;
 	width: 130px;
 }
 
 
 .search input[type=text]{
-	height: 31px;
+	height: 25px;
     border: none;
     width: 300px;
 }
 
 .search input[type= text]:focus {
     border:1px solid #FEAD51;
-    height: 29px;
+    height: 23px;
     width: 298px;
 }
 
@@ -60,8 +60,8 @@ header {
     border: 1px solid white;
     border-radius: 0 5px 5px 0;
     color: #fff;
-    width: 31px;
-    height: 31px;
+    width: 25px;
+    height: 25px;
 }
 
 #searchButton .searchIcon {
@@ -82,45 +82,49 @@ header {
 
 }
 
-
-
-
-header .menu {
-	float:right;
-	font-size: 15px;
-	list-style: none;
-	line-height:30px;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width:600px;
-	max-width: 500px;
+header .container {
+	width: 100%;
 	height: 40px;
+	position:fixed;
+	top: 85px;
+	left: 0;
+	background-color: #3F4049;
+}
+
+
+.container .menu {
+	float:right;
+	list-style: none;
+	line-height:43px;
+    position:fixed;
+	top:69px;
+	right: 0;
+	width:absolute;
 }
 
 ul li a{
-	float: left;
-	width: 75px;
+	float: right;
+	font-size:15px;
+	width: 85px;
 	height: 40px;
-	padding: 10px;
 	text-align: center;
-	border: none;
 	color: white;
 	text-decoration: none;
+	background-color:#3F4049;
 }
 
 
 ul li:hover a {
-	width: 70px;
-	height: 26px;
-    border: 2px solid #535353;
-    border-radius: 5px 5px 5px 5px;
+	width: 85px;
+	height: 40px;
+	background-color:#DE8B47;
+
 }
 
 
 #cartIcon {
 	right: 0;
-	padding-bottom: 10px;
+	padding-top:10px
 }
 
 
