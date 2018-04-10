@@ -70,7 +70,7 @@
     	</li>
 
     	<li class= "acount">
-    		<a href= '<s:url action= "LogoutAction" />'>ログアウト</a>
+    		<a href= '<s:url action= "LogoutAction" />'>ログアウトa</a>
     	</li>
 
     	<li class= "acount">
