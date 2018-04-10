@@ -79,7 +79,6 @@
   		 </li>
   		 </ul>
 
-
     </div>
     </header>
 	<!-- ここまで -->
@@ -89,15 +88,14 @@
 
 
 	<table>
-		<s:form action="CartAction">
-					<s:iterator value="cartDTOList">
-
+		<s:iterator value="cartDTOList">
 			<p>チェックした商品はカートから削除されます。</p>
 				<tr>
-					<td><img src='<s:property value="imageFilePath" />' ></td>
+					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
+						<input type="hidden" name="deleteFlg" value="1"/></td>
 				</tr>
 				<tr>
-					<td><s:property value="productName"/>
+					<td><s:property value="productName"/></td>
 				</tr>
 				<tr>
 					<td><s:property value="productCount"/>点</td>
@@ -106,18 +104,18 @@
 					<td><s:property value="price"/>円</td>
 				</tr>
 				<tr>
-					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
+					<td><img src='<s:property value="imageFilePath" />' ></td>
 				</tr>
-				<input type="hidden" name="deleteFlg" value="1"/>
+
 				<s:submit value=" 削除 " method="execute"/>
-</s:iterator>
-		</s:form>
+		</s:iterator>
+
 		<s:form action="SettlementConfirmAction">
 			<s:submit value=" 購入 " method="execute"/>
 		</s:form>
 
 
-			<s:if test= "cartDTOList == ''">
+			<s:if test= "cartDTOList == null">
 			<h1>カートに商品が入っていません。</h1>
 			</s:if>
 

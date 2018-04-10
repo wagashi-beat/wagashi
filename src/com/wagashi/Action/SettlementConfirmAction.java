@@ -30,7 +30,6 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 		if(session.containsKey("user_id")){
 			DestinationDAO destinationDAO = new DestinationDAO();
 			destinationDTO=destinationDAO.getDestination(session.get("user_id").toString());
-			System.out.println(destinationDTO.getAddress());
 
 			if(!(destinationDTO.getAddress() == null)){
 				CartDAO cartDAO=new CartDAO();

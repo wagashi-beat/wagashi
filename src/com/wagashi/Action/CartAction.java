@@ -18,15 +18,10 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
 	private int productId;
-
 	private int productCount;
-
 	private int price;
-
 	private String addFlg;
-
 	private String deleteFlg;
-
 
 	private Collection<String> deleteList;
 	//aaa
@@ -40,7 +35,8 @@ public class CartAction extends ActionSupport implements SessionAware{
 		if(session.containsKey("user_id")){
 
 			if(!(addFlg==null)){
-				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
+				cartDAO.loginGetCartInfo(session.get("user_id").toString());
+				cartDTOList= cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price);
 
 				for(CartDTO dto: cartDTOList){
 					if(dto.getProductId()== productId){
@@ -51,10 +47,9 @@ public class CartAction extends ActionSupport implements SessionAware{
 						return result;
 					}
 				}
+			}
 
-				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price);
-
-			}else if(!(deleteFlg==null)&&!(deleteList==null)){
+			else if(!(deleteFlg==null)&&!(deleteList==null)){
 				for(String check:deleteList){
 					int id= Integer.parseInt(check);
 					cartDAO.loginCartDelete(session.get("user_id").toString(), id);
@@ -79,21 +74,20 @@ public class CartAction extends ActionSupport implements SessionAware{
 				}
 				cartDAO.noLoginCartAdd(session.get("temp_user_id").toString(), productId, productCount, price);
 
-			}else if(!(deleteFlg==null)&&!(deleteList==null)){
-
+			}else if(!(deleteFlg==null) && !(deleteList==null)){
 				for(String check:deleteList){
 					int id= Integer.parseInt(check);
 					cartDAO.noLoginCartDelete(session.get("temp_user_id").toString(), id);
 				}
+
 			}else if(deleteFlg== null) {
 				result= "cart";
 			}
 
 			result= SUCCESS;
 		}
-
+		System.out.println(cartDTOList);
 		return result;
-
 	}
 
 
