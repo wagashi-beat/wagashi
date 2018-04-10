@@ -2,8 +2,7 @@ package com.wagashi.DTO;
 
 public class CartDTO extends ProductInfoDTO{
 
-	private String userId;
-	private String tempUserId;
+
 	private int productId;
 	private String productName;
 //購入個数
@@ -12,21 +11,6 @@ public class CartDTO extends ProductInfoDTO{
 	private String imageFilePath;
 	private String imageFileName;
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getTempUserId() {
-		return tempUserId;
-	}
-
-	public void setTempUserId(String tempUserId) {
-		this.tempUserId = tempUserId;
-	}
 
 	public int getProductId() {
 		return productId;

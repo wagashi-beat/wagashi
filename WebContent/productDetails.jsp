@@ -5,9 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/productList.css">
-<link rel="stylesheet" href="./css/craftdenki.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
 <title>商品詳細画面</title>
 
 
