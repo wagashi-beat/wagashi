@@ -86,8 +86,6 @@
 
 	<div class= "main">
 
-
-
 	<table>
 		<s:form action="CartAction">
 					<s:iterator value="cartDTOList">
