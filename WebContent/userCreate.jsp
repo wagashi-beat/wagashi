@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
-	<link rel= "stylesheet" type= "text/css" href= "./css/userCreate.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/form.css">
 	<title>新規登録画面</title>
 </head>
 
@@ -87,6 +87,7 @@
 	<!-- ここまで -->
 
 	<div class= "main">
+	<h5>ユーザ情報を入力してください</h5>
 	<s:form action= "UserCreateConfirmAction">
 
 	<div class= "form-style">
@@ -185,9 +186,12 @@
 		<input type= "radio" name= "sex" value= "1"  />女
 		</s:if></td></tr>
 
-		<tr class="bar"><th></th><td><s:submit value= "完了" class= "submit" /></td></tr>
+		<tr class="bar"><th></th><td></td></tr>
+		
 
 		</table>
+		<input id="submit_button" type="submit" name="submit" value="完了">
+
 
 	</div>
 	</s:form>

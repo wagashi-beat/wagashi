@@ -8,6 +8,7 @@
 
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/form.css">
 	<title>新規登録確認画面</title>
 	</head>
 
@@ -90,18 +91,21 @@
 	<div class= "main">
 	<s:form action= "UserCreateCompleateAction">
 		<h3>以下の内容で登録しますか？</h3>
-			<h5>
-				ユーザーID：<s:property value= "session.user_id" /><br>
-				パスワード：<s:property value= "session.password" /><br>
-				苗字：<s:property value= "session.familyName" /><br>
-				名前：<s:property value= "session.firstName" /><br>
-				みょうじ：<s:property value= "session.familyNameKana" /><br>
-				なまえ：<s:property value= "session.firstNameKana" /><br>
-				性別；<s:if test= "sex== 0">男性</s:if><s:if test= "sex== 1">女性</s:if>
-				メールアドレス：<s:property value= "session.email" /><br>
-			</h5>
+			<table class="confirm-table">
 
-			<h4><input type= "button" value= "修正" onClick= "history.back()" /><s:submit value= "登録" /></h4></s:form>
+				<tr><th>ユーザーID：</th><td><s:property value= "session.user_id" /></td></tr>
+				<tr><th>パスワード：</th><td><s:property value= "session.password" /></td></tr>
+				<tr><th>苗字：</th><td><s:property value= "session.familyName" /></td></tr>
+				<tr><th>名前：</th><td><s:property value= "session.firstName" /></td></tr>
+				<tr><th>みょうじ：</th><td><s:property value= "session.familyNameKana" /></td></tr>
+				<tr><th>なまえ：</th><td><s:property value= "session.firstNameKana" /></td></tr>
+				<tr><th>性別：</th><td><s:if test= "sex== 0">男性</s:if><s:if test= "sex== 1">女性</s:if></td></tr>
+				<tr><th>メールアドレス：</th><td><s:property value= "session.email" /></td></tr>
+			</table>
+
+			<input id="back_button" type= "button" value= "修正" onClick= "history.back()" />
+			<input id="submit_button" type="submit" name="submit" value="登録">
+			</s:form>
 
 	</div>
 

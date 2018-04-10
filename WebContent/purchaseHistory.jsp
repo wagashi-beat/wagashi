@@ -83,7 +83,7 @@
     </div>
     </header>
 	<!-- ここまで -->
-				<br>
+		   <div class="main">
 
 
 			<div id="error">
@@ -132,7 +132,7 @@
 
 				</s:elseif></s:form>
 
-						<br>
+				</div>
 
 
 

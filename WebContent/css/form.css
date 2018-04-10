@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+.main{
+	color:#2F3039;
+
+}
+
+.main h5{
+	font-size:13px;
+
+}
+
+.main h4{
+	font-size:15px;
+}
+
+.main h3{
+	font-size:18px;
+}
+
+.main .mes{
+	color:#DE8B47;;
+	font-size:12px;
+}
+
+table,th,td{
+	border:solid 0px;
+}
+
+.main th{
+	font-size:12px;
+	padding:7px;
+	text-align:left;
+}
+
+input#submit_button{
+	background-color:#DE8B47;
+	margin-left:350px;
+}
+
+input#back_button{
+	background-color:#DE8B47;
+	margin-left:250px;
+}
