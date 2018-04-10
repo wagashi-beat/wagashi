@@ -88,14 +88,9 @@
 				</s:if>
 			</div>
 
-				<s:if test = "purchaseHistoryDTOList==null">
-					<h1>購入情報はありません</h1>
-						<br>
-					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
-
-				</s:if>
 			 	<h1 class="cart">購入履歴</h1>
 				 	<s:form method = "delete" action = "PurchaseHistoryAction">
+				 	<s:if test = "purchaseHistoryDTOList">
 						<s:iterator value="purchaseHistoryDTOList">
 							<table>
 								<tr>
@@ -125,7 +120,14 @@
 								<s:submit value=" 削除 " method="execute"/>
 
 						</div>
-					</s:form>
+						</s:if>
+					<s:elseif test = "purchaseHistoryDTOList == null">
+					<h1>購入情報はありません</h1>
+						<br>
+					マイページへ<a href='<s:url action="MyPageAction" />'>戻る</a>
+
+				</s:elseif></s:form>
+
 						<br>
 
 

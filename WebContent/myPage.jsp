@@ -126,7 +126,9 @@
 	</table>
 
 	</div>
-	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴</a>
+	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴</a></p>
+	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p>
+	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更はこちら</a></p>
 
 </body>
 </html>
