@@ -86,14 +86,11 @@
 	<div class= "main">
 
 
-
-	<table>
-		<s:iterator value="cartDTOList">
 			<p>チェックした商品はカートから削除されます。</p>
-				<tr>
-					<td>削除<s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
-						<input type="hidden" name="deleteFlg" value="1"/></td>
-				</tr>
+
+	<s:if test= "cartDTOList">
+		<s:iterator value="cartDTOList">
+	<table>
 				<tr>
 					<td><s:property value="productName"/></td>
 				</tr>
@@ -106,22 +103,23 @@
 				<tr>
 					<td><img src='<s:property value="imageFilePath" />' ></td>
 				</tr>
-
-				<s:submit value=" 削除 " method="execute"/>
+				<tr>
+					<td><s:form action= "CartAction"><s:checkbox name="deleteList" value="checked" fieldValue="%{productId}"/>
+						<input type="hidden" name="deleteFlg" value="1"/>
+						<s:submit value=" 削除 " method="execute"/></s:form></td>
+				</tr>
+</table>
 		</s:iterator>
 
 		<s:form action="SettlementConfirmAction">
 			<s:submit value=" 購入 " method="execute"/>
 		</s:form>
-
-
-			<s:if test= "cartDTOList == null">
+</s:if>
+			<s:else>
 			<h1>カートに商品が入っていません。</h1>
-			</s:if>
+			</s:else>
 
 
-
-	</table>
 	</div>
 </body>
 </html>

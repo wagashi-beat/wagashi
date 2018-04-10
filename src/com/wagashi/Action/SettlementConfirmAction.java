@@ -45,6 +45,10 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 			else if (destinationDTO.getAddress() == null){
 				result= "Destination";
 			}
+
+			else if(cartDTOList== null) {
+				result= "home";
+			}
 		}
 
 

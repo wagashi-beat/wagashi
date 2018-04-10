@@ -146,7 +146,7 @@ public class CartDAO {
 
 
 	//ログイン時同じ商品の統合
-	public void updateCartAdd(String userId,int productId,int updateCount){
+	public void updateCartAdd(int updateCount, String userId,int productId){
 		String sql="UPDATE cart_info SET product_count=? WHERE user_id=? AND product_id=?";
 
 		try{
