@@ -1,30 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+ <%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/productList.css">
-<link rel="stylesheet" href="./css/craftdenki.css">
-<title>商品詳細画面</title>
-
-
-<script type="text/javascript">
-	function goCartInsertAction() {
-		document.getElementById('form').action = "CartInsertAction";
-	}
-
-	function goFavoriteAction() {
-		document.getElementById('form').action = "FavoriteAction";
-	}
-</script>
-
+	<meta charset="UTF-8">
+	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<title>マイページ</title>
 </head>
+
+
 <body>
-	<!-- ヘッダー-->
-	 <header>
+	<!-- ここから前頁共通 -->
+		 <header>
 	<div class = "amazon">
 	    <div class = "logo">
 	    	<a href= '<s:url action= "HomeMoveAction" />'><img src= "./img/logo (3).png" height= "65px"></a>
@@ -94,6 +83,8 @@
 
     </div>
     </header>
+
+ <body>
 
 	<div class="main">
 		<h3>商品詳細</h3>
