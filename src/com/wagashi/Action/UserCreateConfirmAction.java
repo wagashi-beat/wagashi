@@ -58,11 +58,14 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		// エラー
 		if (user_id.equals("") || password.equals("") ||
 				familyName.equals("") || firstName.equals("") ||
-				familyNameKana.equals("") || firstNameKana.equals("") ||
 				email.equals("")) {
-			error= "未入力項目があります。";
-			session.put("error", error);
-			errorCount++;
+			if (!familyName.matches("^[0-9a-zA-Z]+$") && familyNameKana.equals("")) {
+				if (!firstName.matches("^[0-9a-zA-Z]+$") && firstNameKana.equals("")) {
+					error= "未入力項目があります。";
+					session.put("error", error);
+					errorCount++;
+				}
+			}
 		}
 
 		else {

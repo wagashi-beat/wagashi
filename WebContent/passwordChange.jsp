@@ -81,15 +81,29 @@
 
 	<div class= "main">
 	<s:form action= "PasswordChangeConfirmAction">
+
+	<s:if test= "session.errorNew != ''">
+		<s:property value= "errorNew"/></s:if>
 		<table>
-			<tr><th>ログインＩＤ：</th>
-				<td><input type= "text" value= "" name= "userId" /></td></tr>
+				<s:if test= "errorNewIdList != null">
+					<s:iterator value= "errorNewIdList">
+						<tr><th></th><td><s:property value= "errorNewId" escape= "false" /></td></tr>
+					</s:iterator>
+				</s:if>
+				<tr><th>ログインＩＤ：</th>
+					<td><input type= "text" value= "" name= "userId" /></td></tr>
 
-			<tr><th>新しいパスワード：</th>
-				<td><input type= "password" value= "" name= "newPassword" /></td></tr>
+				<s:if test= "errorNewPassList != null">
+					<s:iterator value= "errorNewPassList">
+						<tr><th></th><td><s:property value= "errorNewPass" escape= "false" /></td></tr>
+					</s:iterator>
+				</s:if>
 
-			<tr><th></th>
-				<td><s:submit value= "へんこう" /></td></tr>
+				<tr><th>新しいパスワード：</th>
+					<td><input type= "password" value= "" name= "newPassword" /></td></tr>
+
+					<tr><th></th>
+						<td><s:submit value= "へんこう" /></td></tr>
 		</table>
 	</s:form>
 
