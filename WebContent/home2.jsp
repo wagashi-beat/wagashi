@@ -12,7 +12,7 @@
 
 
 <body>
-    <!-- ここから前項共通 -->
+    <!-- ここから前項共通  -->
     <header>
 	<div class = "amazon">
 	    <div class = "logo">
