@@ -89,6 +89,8 @@
 	<!-- ここまで -->
 
 	<div class= "main">
+	<div class="cont1"></div>
+	<div class="cont2">
 	<s:form action= "UserCreateCompleateAction">
 		<h3>以下の内容で登録しますか？</h3>
 			<table class="confirm-table">
@@ -106,7 +108,7 @@
 			<input id="back_button" type= "button" value= "修正" onClick= "history.back()" />
 			<input id="submit_button" type="submit" name="submit" value="登録">
 			</s:form>
-
+    </div>
 	</div>
 
 </body>

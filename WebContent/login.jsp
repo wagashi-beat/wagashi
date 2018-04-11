@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/login.css">
 	<title>ログイン画面</title>
 </head>
 
@@ -83,12 +84,12 @@
     </div>
     </header>
 
-	<!--  ここまで  -->
+	<!-- ここまで -->
 
 
 	<div class= "main">
 
-	<h1>ログイン</h1>
+	<h4>ログイン</h4>
 
 	<div>
 		<s:form action = "LoginAction">
@@ -101,44 +102,44 @@
 				<%--ログインID --%>
 
 					<s:if test="errorId != null">
-						<s:property value="errorId" escape="false" />
+						<a><s:property value="errorId" escape="false" /></a>
 					</s:if>
 
 					<s:if test="errorId1 != null">
-						<s:property value="errorId1" escape="false" />
+						<a><s:property value="errorId1" escape="false" /></a>
 					</s:if>
 
 					<s:if test="errorId2 != null">
-						<s:property value="errorId2" escape="false" />
+						<a><s:property value="errorId2" escape="false" /></a><br>
 					</s:if>
 
 
-					<s:textfield name="user_id" placeholder = "userID"/>
+					<input type="text" name="user_id" placeholder = "userID"/><br>
 
 
 				<%--ログインPassword --%>
 
 					<s:if test="errorPassword != null">
-						<s:property value="errorPassword" escape="false" />
+						<a><s:property value="errorPassword" escape="false" /></a>
 					</s:if>
 
 					<s:if test="errorPassword1 != null">
-						<s:property value="errorPassword1" escape="false" />
+						<a><s:property value="errorPassword1" escape="false" /></a>
 					</s:if>
 
 					<s:if test="errorPassword2 != null">
-						<s:property value="errorPassword2" escape="false" />
+						<a><s:property value="errorPassword2" escape="false" /></a><br>
 					</s:if>
 
 
-					<s:password name="password" placeholder = "password"/>
+					<input type="password" name="password" placeholder = "password"/><br>
 
 
 
 
 
 
-			<s:submit value="ログイン"/>
+			<input id="submit_button" type="submit" name="submit" value="ログイン"/>
 		</s:form>
 	</div>
 

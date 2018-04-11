@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/mypage.css">
 	<title>マイページ</title>
 </head>
 
@@ -89,28 +90,41 @@
 
 	<div class= "main">
 
+	<div class="cont1">
+	<h4>マイページメニュー</h4>
+    <p><a href= '<s:url action= "CartAction" />'>カート</a></p>
+	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴履歴</a></p>
+	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p>
+	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更</a></p>
+
+	</div>
+
+	<div class="cont2">
+
+	<h5>登録情報</h5>
+
 	<table>
 
 			<tr>
-				<td>USER ID</td> <td><s:property value="dto.userId"/></td>
+				<th>ユーザーID</th> <td><s:property value="dto.userId"/></td>
 			</tr>
 			<tr>
-				<td>FIRST NAME</td> <td><s:property value="dto.firstName"/></td>
+				<th>苗字</th> <td><s:property value="dto.firstName"/></td>
 			</tr>
 			<tr>
-				<td>FAMILY NAME</td> <td><s:property value="dto.familyName"/></td>
+				<th>名前</th> <td><s:property value="dto.familyName"/></td>
 			</tr>
 			<tr>
-				<td>FIRST NAME KANA</td> <td><s:property value="dto.firstNameKana"/></td>
+				<th>みょうじ</th> <td><s:property value="dto.firstNameKana"/></td>
 			</tr>
 			<tr>
-				<td>FAMILY NAME KANA</td> <td><s:property value="dto.familyNameKana"/></td>
+				<th>なまえ</th> <td><s:property value="dto.familyNameKana"/></td>
 			</tr>
 			<tr>
-				<td>SEX</td> <td><s:property value="dto.sex"/></td>
+				<th>性別</th> <td><s:property value="dto.sex"/></td>
 			</tr>
 			<tr>
-				<td>EMAIL</td> <td><s:property value="dto.email"/></td>
+				<th>E-メール</th> <td><s:property value="dto.email"/></td>
 			</tr>
 			<!-- <tr>
 				<td>ADDRESS</td> <td><s:property value="#session.address"/></td>
@@ -120,20 +134,19 @@
 			</tr>-->
 
 			<tr>
-				<td>ADDRESS</td> <td><s:property value = "dto.address"/></td>
+				<th>住所</th> <td><s:property value = "dto.address"/></td>
 			</tr>
 
 			<tr>
-				<td>TEL NUMBER</td> <td><s:property value = "dto.telNumber"/></td>
+				<th>電話番号</th> <td><s:property value = "dto.telNumber"/></td>
 			</tr>
 
 
 	</table>
+	</div>
 
 	</div>
-	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴</a></p>
-	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p>
-	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更はこちら</a></p>
+
 
 </body>
 </html>
