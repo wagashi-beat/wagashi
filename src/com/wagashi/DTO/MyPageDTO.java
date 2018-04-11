@@ -3,7 +3,7 @@ package com.wagashi.DTO;
 
 
 public class MyPageDTO {
-	private String userId;
+	private String user_id;
 
 	private String familyName;
 
@@ -21,13 +21,14 @@ public class MyPageDTO {
 
 	private String telNumber;
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
+
 
 	public String getFamilyName() {
 		return familyName;

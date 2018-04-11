@@ -22,16 +22,18 @@ public class DestinationCompleateAction extends ActionSupport implements Session
 	private DestinationDAO dao= new DestinationDAO();
 
 	public String execute() throws SQLException {
-		dao.destinationCreate(session.get("user_id").toString(),
+		dao.destinationCreate(
 				session.get("familyName").toString(),
 				session.get("firstName").toString(),
 				session.get("familyNameKana").toString(),
 				session.get("firstNameKana").toString(),
 				session.get("address").toString(),
 				session.get("telNumber").toString(),
-				session.get("email").toString());
+				session.get("email").toString(),
+				session.get("user_id").toString());
 
 		String ret= SUCCESS;
+
 		return ret;
 	}
 

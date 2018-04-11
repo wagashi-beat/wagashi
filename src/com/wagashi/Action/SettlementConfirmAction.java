@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.wagashi.DAO.CartDAO;
 import com.wagashi.DAO.DestinationDAO;
 import com.wagashi.DTO.CartDTO;
-import com.wagashi.DTO.DestinationDTO;
+import com.wagashi.DTO.MyPageDTO;
 
 
 public class SettlementConfirmAction extends ActionSupport implements SessionAware{
@@ -18,7 +18,7 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 
 	private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
-	private DestinationDTO destinationDTO = new DestinationDTO();
+	private MyPageDTO myPageDTO = new MyPageDTO();
 
 	private int totalPrice;
 
@@ -29,9 +29,9 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 		String result = ERROR;
 		if(session.containsKey("user_id")){
 			DestinationDAO destinationDAO = new DestinationDAO();
-			destinationDTO=destinationDAO.getDestination(session.get("user_id").toString());
+			myPageDTO=destinationDAO.getDestination(session.get("user_id").toString());
 
-			if(!(destinationDTO.getAddress() == null)){
+			if(!(myPageDTO.getAddress() == null)){
 				CartDAO cartDAO=new CartDAO();
 				cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 				result = SUCCESS;
@@ -42,7 +42,7 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 				}
 			}
 
-			else if (destinationDTO.getAddress() == null){
+			else if (myPageDTO.getAddress() == null){
 				result= "Destination";
 			}
 
@@ -76,13 +76,14 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	}
 
 
-	public DestinationDTO getDestinationDTO() {
-		return destinationDTO;
+
+	public MyPageDTO getMyPageDTO() {
+		return myPageDTO;
 	}
 
 
-	public void setDestinationDTO(DestinationDTO destinationDTO) {
-		this.destinationDTO = destinationDTO;
+	public void setMyPageDTO(MyPageDTO myPageDTO) {
+		this.myPageDTO = myPageDTO;
 	}
 
 

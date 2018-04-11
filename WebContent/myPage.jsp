@@ -94,7 +94,10 @@
 	<h4>マイページメニュー</h4>
     <p><a href= '<s:url action= "CartAction" />'>カート</a></p>
 	<p><a href="<s:url action='PurchaseHistoryAction'/>">購入履歴</a></p>
-	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p>
+	<s:if test= "session.address == null">
+	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p></s:if>
+	<s:elseif test= "#session.address != null">
+	<p><a href= '<s:url action= "DestinationCreateAction" />'>住所変更</a></p></s:elseif>
 	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更</a></p>
 
 	</div>
@@ -106,7 +109,7 @@
 	<table>
 
 			<tr>
-				<th>ユーザーID</th> <td><s:property value="dto.userId"/></td>
+				<th>ユーザーID</th> <td><s:property value="dto.user_id"/></td>
 			</tr>
 			<tr>
 				<th>苗字</th> <td><s:property value="dto.firstName"/></td>

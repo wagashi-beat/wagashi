@@ -26,12 +26,20 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 		if(session.containsKey("user_id")){
 
-		dto=myPageDAO.getUserInfo(session.get("user_id").toString());
+		dto= myPageDAO.getUserInfo(session.get("user_id").toString());
 
 		result=SUCCESS;
 
+		session.put("familyName", dto.getFamilyName());
+		session.put("firstName", dto.getFirstName());
+		session.put("familyNameKana", dto.getFamilyName());
+		session.put("firstNameKana", dto.getFamilyNameKana());
+		session.put("address", dto.getAddress());
+		session.put("telNumber", dto.getTelNumber());
+		session.put("email", dto.getEmail());
+
 		}
-		System.out.println(dto.getFamilyName());
+
 
 		return result;
 	}

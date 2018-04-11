@@ -45,7 +45,6 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 		String result= ERROR;
 		int errorCount= 0;
 
-
 	// 姓
 		if (familyName.equals("")) {
 			errorFamilyName = "姓を入力してください。";
@@ -75,34 +74,33 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 			errorCount++;
 		}
 	//姓ふりがな
-		if(familyNameKana.equals("")){
-			errorFamilyNameKana ="姓(ふりがな)を入力してください。";
-			errorFamilyNameKanaList.add(errorFamilyNameKana);
-			errorCount++;
-		}else if(familyNameKana.length() < 1 || familyNameKana.length() > 16) {
-			errorFamilyNameKana = "姓(ふりがな)は1文字以上１６文字以下で入力してください。";
-			errorFamilyNameKanaList.add(errorFamilyNameKana);
-			errorCount++;
-		}else if (!familyNameKana.matches("^[ぁ-ゞ]+$")){
-			errorFamilyNameKana = "姓(ふりがな)はひらがなで入力してください。";
-			errorFamilyNameKanaList.add(errorFamilyName);
-			errorCount++;
+		if (!(familyName.matches("^[a-zA-Z]+$") && familyNameKana.equals(""))){
+			if(familyNameKana.length()<1 || familyNameKana.length()>16){
+				errorFamilyNameKana = "姓(ふりがな)は1文字以上１６文字以下で入力してください。";
+				errorFamilyNameKanaList.add(errorFamilyNameKana);
+				errorCount++;
+			}
 
+			if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
+				errorFamilyNameKana = "姓(ふりがな)はひらがなで入力してください。";
+				errorFamilyNameKanaList.add(errorFamilyNameKana);
+				errorCount++;
+			}
 		}
-	//名ふりがな
-		if(firstNameKana.equals("")){
-			errorFirstNameKana ="名(ふりがな)を入力してください。";
-			errorFirstNameKanaList.add(errorFirstNameKana);
-			errorCount++;
-		}else if(firstNameKana.length() < 1 || firstNameKana.length() > 16) {
-			errorFirstNameKana = "名(ふりがな)は1文字以上１６文字以下で入力してください。";
-			errorFirstNameKanaList.add(errorFirstNameKana);
-			errorCount++;
-		}else if (!firstNameKana.matches("^[ぁ-ゞ]+$")){
-			errorFirstNameKana = "名(ふりがな)はひらがなで入力してください。";
-			errorFirstNameKanaList.add(errorFirstNameKana);
-			errorCount++;
 
+	//名ふりがな
+		if (!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals("")){
+			if(firstNameKana.length()<1 || firstNameKana.length()>16){
+				errorFirstNameKana = "名(ふりがな)は1文字以上１６文字以下で入力してください。";
+				errorFirstNameKanaList.add(errorFirstNameKana);
+				errorCount++;
+			}
+
+			else if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
+				errorFirstNameKana = "名(ふりがな)はひらがなで入力してください。";
+				errorFirstNameKanaList.add(errorFirstNameKana);
+			errorCount++;
+			}
 		}
 
 	//住所
@@ -110,8 +108,8 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 			errorAddress = "住所を入力してください。";
 			errorAddressList.add(errorAddress);
 			errorCount++;
-		}else if(address.length() < 15 || familyNameKana.length() > 50){
-			errorAddress = "住所は15文字以上50文字以下で入力してください。";
+		}else if(address.length() < 10 || familyNameKana.length() > 50){
+			errorAddress = "住所は10文字以上50文字以下で入力してください。";
 			errorAddressList.add(errorAddress);
 			errorCount++;
 		}else if(!address.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
@@ -140,8 +138,8 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 			errorTelNumber = "電話番号を入力してください。";
 			errorTelNumberList.add(errorTelNumber);
 			errorCount++;
-		} else if(telNumber.length() < 11 || telNumber.length() > 13){
-			errorTelNumber = "電話番号は11桁以上13桁以内で入力してください。";
+		} else if(telNumber.length() < 10 || telNumber.length() > 13){
+			errorTelNumber = "電話番号は10桁以上13桁以内で入力してください。";
 			errorTelNumberList.add(errorTelNumber);
 			errorCount++;
 		} else if (!telNumber.matches("^[0-9]+$")) {

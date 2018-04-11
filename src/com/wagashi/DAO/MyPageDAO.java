@@ -15,18 +15,18 @@ public class MyPageDAO {
 
 	//ユーザー情報取得メソッド
 
-	public MyPageDTO getUserInfo(String userId)throws SQLException{
+	public MyPageDTO getUserInfo(String user_id)throws SQLException{
 		MyPageDTO dto = new MyPageDTO();
 
 		String sql="select * from user_info where user_id = ?";
 
 		try{
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
-			preparedStatement.setString(1,userId);
+			preparedStatement.setString(1, user_id);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if(resultSet.next()){
-				dto.setUserId(resultSet.getString("user_id"));
+				dto.setUser_id(resultSet.getString("user_id"));
 				dto.setFamilyName(resultSet.getString("first_name"));
 				dto.setFirstName(resultSet.getString("family_name"));
 				dto.setFamilyNameKana(resultSet.getString("first_name_kana"));
