@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.main{
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.main input{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.main #submit_button{
+	margin:20px;
+	background-color:#DE8B47;
+
+}

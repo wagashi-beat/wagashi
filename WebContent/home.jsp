@@ -96,15 +96,11 @@
 	<a href= "<s:url action= 'UserCreatePageAction' /> " class="create">新規登録</a></s:if>
 
 	<s:if test= "session.loginUser">
-    <p><a href="<s:url action='MyPageAction'/>" class="mypage">マイページ</a></p></s:if>
+    <a href="<s:url action='MyPageAction'/>" class="mypage">マイページ</a></s:if>
 
-    <s:if test= "session.loginUser">
-	<p><a href= "<s:url action= 'DestinationCreateAction' /> " class="dist">宛先登録</a></p></s:if>
-
-	<p><a href="<s:url action='CartAction'/>" class="cartlink">カート</a></p>
 
 	<s:if test= "session.loginUser">
-	<p><a href= "<s:url action= 'LogoutAction' /> " class="logout">ログアウト</a></p></s:if>
+	<a href= "<s:url action= 'LogoutAction' /> " class="logout">ログアウト</a></s:if>
     </div>
 </body>
 </html>
