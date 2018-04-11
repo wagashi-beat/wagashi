@@ -93,7 +93,7 @@
 	<div class="cont1">
 	<h4>マイページメニュー</h4>
     <p><a href= '<s:url action= "CartAction" />'>カート</a></p>
-	<p><a href="<s:url action='PurchaseHistoryAction'/>">履歴履歴</a></p>
+	<p><a href="<s:url action='PurchaseHistoryAction'/>">購入履歴</a></p>
 	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p>
 	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更</a></p>
 
