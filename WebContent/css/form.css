@@ -1,8 +1,12 @@
 @CHARSET "UTF-8";
 
 .main{
+	display:block;
 	color:#2F3039;
-
+	width:350px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 
@@ -18,17 +22,19 @@ table,th,td{
 .main th{
 	font-size:12px;
 	padding:7px;
-	text-align:left;
+	text-align:right;
 }
 
 
-input#submit_button{
+.main input#submit_button{
+    display:block;
 	margin:30px;
 	background-color:#DE8B47;
-	posision:absolute;
+	margin-left:auto;
+	margin-right:auto;
 }
 
-input#back_button{
+.main input#back_button{
 	margin:30px;
 	float:left;
 	background-color:#DE8B47;
