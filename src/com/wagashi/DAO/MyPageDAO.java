@@ -27,10 +27,10 @@ public class MyPageDAO {
 
 			if(resultSet.next()){
 				dto.setUser_id(resultSet.getString("user_id"));
-				dto.setFamilyName(resultSet.getString("first_name"));
-				dto.setFirstName(resultSet.getString("family_name"));
-				dto.setFamilyNameKana(resultSet.getString("first_name_kana"));
-				dto.setFirstNameKana(resultSet.getString("family_name_kana"));
+				dto.setFamilyName(resultSet.getString("family_name"));
+				dto.setFirstName(resultSet.getString("first_name"));
+				dto.setFamilyNameKana(resultSet.getString("family_name_kana"));
+				dto.setFirstNameKana(resultSet.getString("first_name_kana"));
 				dto.setSex(resultSet.getString("sex"));
 				dto.setEmail(resultSet.getString("email"));
 				dto.setAddress(resultSet.getString("address"));

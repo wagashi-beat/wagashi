@@ -124,6 +124,7 @@
 		</s:if>
 		<input type= "text" name= "firstNameKana" value= '<s:property value= "session.firstNameKana" />' placeholder="名ふりがな"><br>
 
+
 		<s:if test="errorEmailList != null">
 			<s:iterator value="errorEmailList" var = "errorEmail">
 				<s:property value="errorEmail" /><br>

@@ -112,16 +112,16 @@
 				<th>ユーザーID</th> <td><s:property value="dto.user_id"/></td>
 			</tr>
 			<tr>
-				<th>苗字</th> <td><s:property value="dto.firstName"/></td>
+				<th>苗字</th> <td><s:property value="dto.familyName"/></td>
 			</tr>
 			<tr>
-				<th>名前</th> <td><s:property value="dto.familyName"/></td>
+				<th>名前</th> <td><s:property value="dto.firstName"/></td>
 			</tr>
 			<tr>
-				<th>みょうじ</th> <td><s:property value="dto.firstNameKana"/></td>
+				<th>みょうじ</th> <td><s:property value="dto.familyNameKana"/></td>
 			</tr>
 			<tr>
-				<th>なまえ</th> <td><s:property value="dto.familyNameKana"/></td>
+				<th>なまえ</th> <td><s:property value="dto.firstNameKana"/></td>
 			</tr>
 			<tr>
 				<th>性別</th> <td><s:property value="dto.sex"/></td>
