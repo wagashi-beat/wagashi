@@ -32,8 +32,8 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 		session.put("familyName", dto.getFamilyName());
 		session.put("firstName", dto.getFirstName());
-		session.put("familyNameKana", dto.getFamilyName());
-		session.put("firstNameKana", dto.getFamilyNameKana());
+		session.put("familyNameKana", dto.getFamilyNameKana());
+		session.put("firstNameKana", dto.getFirstNameKana());
 		session.put("address", dto.getAddress());
 		session.put("telNumber", dto.getTelNumber());
 		session.put("email", dto.getEmail());

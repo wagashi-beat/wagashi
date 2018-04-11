@@ -103,7 +103,7 @@
 		<p>合計 <s:property value="totalPrice"/>
 			<table>
 			<tr>
-				<td>住所</td><td><s:property value="destinationDTO.getAddress()"/></td>
+				<td>住所</td><td><s:property value="myPageDTO.getAddress()"/></td>
 			</tr>
 			</table>
 
