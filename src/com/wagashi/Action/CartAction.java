@@ -58,7 +58,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 						}
 					}
 
-					else if(deleteFlg== null) {
+					else{
 						result= "cart";
 					}
 				result = SUCCESS;
@@ -93,10 +93,26 @@ public class CartAction extends ActionSupport implements SessionAware{
 				result= "cart";
 			}
 
+			else {
+				for(int i = 0; i < cartDTOList.size(); i++){
+					if(deleteFlg!=null){
+						for(String check:deleteList){
+							int id= Integer.parseInt(check);
+							cartDAO.loginCartDelete(session.get("user_id").toString(), id);
+							result= "cart";
+						}
+					}
+					else{
+						result= "cart";
+					}
+				}
+
 			result= SUCCESS;
+			}
 		}
 		System.out.println(cartDTOList);
 		return result;
+
 	}
 
 

@@ -90,55 +90,54 @@
 
 
 	<s:form action= "DestinationConfirmAction">
-		<input type= "text" name= "familyName"placeholder="姓" <s:if test= "session != null"> value= '<s:property value= "familyName" />'</s:if> ><br>
+		<input type= "text" name= "familyName" placeholder="姓" value= '<s:property value= "dto.familyName" />' ><br>
 		<s:if test="errorFamilyNameList != null">
 			<s:iterator value="errorFamilyNameList" var = "errorFamilyName">
 				<s:property value="errorFamilyName" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "firstName" value= "" placeholder="名"<s:property value= "#session.firstName" />><br>
+		<input type= "text" name= "firstName" value= '<s:property value= "dto.firstName" />' placeholder="名"><br>
 		<s:if test="errorFirstNameList != null">
 			<s:iterator value="errorFirstNameList" var = "errorFirstName">
 				<s:property value="errorFirstName" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "familyNameKana" value= "" placeholder="姓ふりがな"<s:property value= "#session.familyNameKana" />><br>
+		<input type= "text" name= "familyNameKana" value= '<s:property value= "dto.familyNameKana" />' placeholder="姓ふりがな"><br>
 		<s:if test="errorFamilyNameKanaList != null">
 			<s:iterator value="errorFamilyNameKanaList" var = "errorFamilyNameKana">
 				<s:property value="errorFamilyNameKana" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "firstNameKana" value= "" placeholder="名ふりがな"<s:property value= "#session.firstNameKana" />><br>
+		<input type= "text" name= "firstNameKana" value= '<s:property value= "dto.firstNameKana" />' placeholder="名ふりがな"><br>
 		<s:if test="errorFirstNameKanaList != null">
 			<s:iterator value="errorFirstNameKanaList" var = "errorFirstNameKana">
 				<s:property value="errorFirstNameKana" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "email" value= "" placeholder="メールアドレス"<s:property value= "#session.email" /> ><br>
+		<input type= "text" name= "email" value= '<s:property value= "dto.email" />' placeholder="メールアドレス" ><br>
 		<s:if test="errorEmailList != null">
 			<s:iterator value="errorEmailList" var = "errorEmail">
 				<s:property value="errorEmail" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "address" value= "" placeholder= "住所"><br>
+		<input type= "text" name= "address" value= '<s:property value= "dto.address" />' placeholder= "住所"><br>
 		<s:if test="errorAddressList != null">
 			<s:iterator value="errorAddressList" var = "errorAddress">
 				<s:property value="errorAddress" /><br>
 			</s:iterator>
 		</s:if>
 
-		<input type= "text" name= "telNumber" value= "" placeholder= "電話番号"><br>
+		<input type= "text" name= "telNumber" value= '<s:property value= "dto.telNumber" />' placeholder= "電話番号"><br>
 		<s:if test="errorTelNumberList != null">
 			<s:iterator value="errorTelNumberList" var = "errorTelNumber">
 				<s:property value="errorTelNumber" /><br>
 			</s:iterator>
 		</s:if>
-
 
 		<s:submit value= "宛先登録" />
 		</s:form>

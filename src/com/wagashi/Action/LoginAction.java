@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.wagashi.DAO.CartDAO;
 import com.wagashi.DAO.LoginDAO;
 import com.wagashi.DTO.CartDTO;
 import com.wagashi.DTO.LoginDTO;
@@ -30,6 +31,8 @@ private String errorPassword;
 private String errorPassword1;
 
 private String errorPassword2;
+
+private String errorMessage;
 
 
 private String result;
@@ -111,8 +114,8 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			System.out.println(session.get("user_id").toString());
 
 			//未ログイン時のカート情報統合
-			/*  CartDAO cartDAO = new CartDAO();
-			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("tempUserId").toString());
+			  CartDAO cartDAO = new CartDAO();
+			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("temp_user_id").toString());
 			loginCartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 			if(!(cartDTOList==null)){
 
@@ -120,7 +123,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 					for(CartDTO lcdto:loginCartDTOList){
 						if(dto.getProductId()==lcdto.getProductId()){
 							int updateCount=dto.getProductCount()+lcdto.getProductCount();
-							cartDAO.updateCartAdd(session.get("user_id").toString(),dto.getProductId(), updateCount);
+							cartDAO.updateCartAdd(dto.getProductId(),session.get("user_id").toString(), updateCount);
 							dto=null;
 
 							result= SUCCESS;
@@ -130,7 +133,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 					if(!(dto==null)){
 						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
 						result= SUCCESS;
-						}
+					}
 
 				}
 			}
@@ -138,15 +141,18 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			else {
 				result= SUCCESS;
 			}
-			}*/
 
-			session.remove("tempUserId");
+
+			session.remove("temp_user_id");
 			return result;
 
 		}
+		else {
+			setErrorMessage("IDまたはパスワードが異なるよ～(○・▽・○)");
+			result= ERROR;
+			return result;
 
-
-		return result;
+		}
 	}
 
 
@@ -360,6 +366,44 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 	public void setLoginDTO(LoginDTO loginDTO) {
 		this.loginDTO = loginDTO;
 	}
+
+
+
+
+
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+
+
+
+
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+
+
+
+
+
+	public LoginDAO getLoginDAO() {
+		return loginDAO;
+	}
+
+
+
+
+
+
+	public void setLoginDAO(LoginDAO loginDAO) {
+		this.loginDAO = loginDAO;
+	}
+
+
 
 }
 //aa
