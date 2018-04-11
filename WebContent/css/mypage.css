@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+.main{
+	width:500px;
+	height:auto;
+	text-align:center:
+	
+}
+
+.main .cont1{
+	float:left;
+	width:auto;
+	height:auto;
+	padding-right:60px;
+
+}
+
+.main .cont2{
+	display:block;
+	float:left;
+	width:auto;
+	top:0;
+	left:300px;
+	height:auto;
+}
+
+table,th,td{
+	border:solid 0px;
+}
+
+.main th{
+	font-size:12px;
+	padding:7px;
+	text-align:left;
+}
+
+
+input#submit_button{
+	margin:30px;
+	background-color:#DE8B47;
+	posision:absolute;
+}
