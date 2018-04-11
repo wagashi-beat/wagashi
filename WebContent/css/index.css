@@ -124,6 +124,7 @@ header .container {
 
 
 .container .menu {
+	display:block;
 	float:right;
 	list-style: none;
 	line-height:43px;
@@ -134,7 +135,8 @@ header .container {
 }
 
 ul li a{
-	float: right;
+	display:block;
+	float: left;
 	font-size:15px;
 	width: 85px;
 	height: 40px;

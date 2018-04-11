@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/form.css">
 	<title>宛先登録画面</title>
 </head>
 
@@ -87,6 +88,7 @@
 
 
 	<div class= "main">
+	<h4>宛先情報を入力してください</h4>
 
 
 	<s:form action= "DestinationConfirmAction">
@@ -139,7 +141,7 @@
 			</s:iterator>
 		</s:if>
 
-		<s:submit value= "宛先登録" />
+		<input id="submit_button" type="submit" name="submit" value="登録">
 		</s:form>
 
 	</div>

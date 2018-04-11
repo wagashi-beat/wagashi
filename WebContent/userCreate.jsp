@@ -87,7 +87,7 @@
 	<!-- ここまで -->
 
 	<div class= "main">
-	<h5>ユーザ情報を入力してください</h5>
+	<h4>ユーザ情報を入力してください</h4>
 	<s:form action= "UserCreateConfirmAction">
 
 	<div class= "form-style">
@@ -187,7 +187,7 @@
 		</s:if></td></tr>
 
 		<tr class="bar"><th></th><td></td></tr>
-		
+
 
 		</table>
 		<input id="submit_button" type="submit" name="submit" value="完了">
