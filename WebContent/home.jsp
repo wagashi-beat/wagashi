@@ -27,10 +27,10 @@
 						<tr>
 							<td>
 								<select name="category" id="select1">
-									<option value="0" selected="selected">すべての団子</option>
+									<option value="0" selected="selected">すべての和菓子</option>
 									<option value="1">団子</option>
-									<option value="2">だんご</option>
-									<option value="3">dango</option>
+									<option value="2">餅</option>
+									<option value="3">練りきり</option>
 								</select>
 							</td>
 
