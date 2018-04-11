@@ -36,17 +36,31 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 			if(!(addFlg==null)){
 				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price);
-				cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
+				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 				for(CartDTO dto: cartDTOList){
 					if(dto.getProductId()== productId){
-						int updateCount = productCount + dto.getProductCount();
+						int updateCount= productCount + dto.getProductCount();
 						cartDAO.updateCartAdd(productId, session.get("user_id").toString(), updateCount);
 
-						result=SUCCESS;
+						result= SUCCESS;
 						return result;
 					}
 				}
+				result= "cart";
+				return result;
 			}
+
+
+		}else if(!(deleteFlg==null) && !(deleteList==null)){
+			for(String check:deleteList){
+				int id= Integer.parseInt(check);
+				cartDAO.noLoginCartDelete(session.get("user_id").toString(), id);
+			}
+
+		}else if(deleteFlg != "1") {
+			result= "cart";
+		}
+
 
 			else {
 				for(int i = 0; i < cartDTOList.size(); i++){
@@ -64,41 +78,32 @@ public class CartAction extends ActionSupport implements SessionAware{
 				result = SUCCESS;
 				}
 			}
-		}
+
 
 
 
 		//未ログイン時の処理
 		if(session.containsKey("temp_user_id")){
 			if(!(addFlg== null)){
+				cartDAO.noLoginCartAdd(session.get("temp_user_id").toString(), productId, productCount, price);
 				cartDTOList= cartDAO.noLoginGetCartInfo(session.get("temp_user_id").toString());
 
 				for(CartDTO dto:cartDTOList){
 					if(dto.getProductId()==productId){
 						int updateCount = productCount + dto.getProductCount();
-						cartDAO.noLoginUpdateCartAdd(session.get("temp_user_id").toString(), productId, updateCount);
+						cartDAO.noLoginUpdateCartAdd(productId, session.get("temp_user_id").toString(), updateCount);
 						result= SUCCESS;
 						return result;
 					}
 				}
-				cartDAO.noLoginCartAdd(session.get("temp_user_id").toString(), productId, productCount, price);
-
-			}else if(!(deleteFlg==null) && !(deleteList==null)){
-				for(String check:deleteList){
-					int id= Integer.parseInt(check);
-					cartDAO.noLoginCartDelete(session.get("temp_user_id").toString(), id);
-				}
-
-			}else if(deleteFlg != "1") {
-				result= "cart";
 			}
 
 			else {
 				for(int i = 0; i < cartDTOList.size(); i++){
-					if(deleteFlg!=null){
-						for(String check:deleteList){
+					if(deleteFlg != null){
+						for(String check: deleteList){
 							int id= Integer.parseInt(check);
-							cartDAO.loginCartDelete(session.get("user_id").toString(), id);
+							cartDAO.noLoginCartDelete(session.get("temp_user_id").toString(), id);
 							result= "cart";
 						}
 					}
@@ -110,6 +115,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 			result= SUCCESS;
 			}
 		}
+		
 		System.out.println(cartDTOList);
 		return result;
 

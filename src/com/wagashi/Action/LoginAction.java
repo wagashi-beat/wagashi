@@ -52,13 +52,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 	public String execute() throws SQLException {
 
 		result = ERROR;
-
-		if(session.containsKey("user_id")){
-			result = ERROR;
-			return result;
-		}
-
-		int ErrorCount=0;
+		int ErrorCount= 0;
 
 		//未入力メッセージ
 
@@ -104,6 +98,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 
 		loginDTO = loginDAO.getUserInfo(user_id, password);
 		session.put("loginUser", loginDTO);
+		System.out.println(session.get("loginUser"));
 
 		if(((LoginDTO) session.get("loginUser")).getLoginFlg()) {
 			result = SUCCESS;
@@ -153,6 +148,8 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			return result;
 
 		}
+
+
 	}
 
 

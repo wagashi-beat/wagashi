@@ -58,15 +58,13 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		// エラー
 		if (user_id.equals("") || password.equals("") ||
 				familyName.equals("") || firstName.equals("") ||
-				email.equals("")) {
-			if (!familyName.matches("^[0-9a-zA-Z]+$") && familyNameKana.equals("")) {
-				if (!firstName.matches("^[0-9a-zA-Z]+$") && firstNameKana.equals("")) {
+				email.equals("") ||
+				(!(familyName.matches("^[a-zA-Z]+$")) && familyNameKana.equals("")) ||
+				(!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals(""))) {
 					error= "未入力項目があります。";
 					session.put("error", error);
 					errorCount++;
 				}
-			}
-		}
 
 		else {
 			// ユーザーID
@@ -141,31 +139,35 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 
 
 			//姓ふりがな
-			if(familyNameKana.length()<1 || familyNameKana.length()>16){
-				errorFamilyKana = "1文字以上16文字以下で入力してください。";
-				errorFamilyKanaList.add(errorFamilyKana);
-				errorCount++;
-			}
+			if (!(familyName.matches("^[a-zA-Z]+$") && familyNameKana.equals(""))){
+				if(familyNameKana.length()<1 || familyNameKana.length()>16){
+					errorFamilyKana = "1文字以上16文字以下で入力してください。";
+					errorFamilyKanaList.add(errorFamilyKana);
+					errorCount++;
+				}
 
-			if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
-				errorFamilyKana = "ひらがなで入力してください。";
-				errorFamilyKanaList.add(errorFamilyKana);
-				errorCount++;
+				if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
+					errorFamilyKana = "ひらがなで入力してください。";
+					errorFamilyKanaList.add(errorFamilyKana);
+					errorCount++;
+				}
 			}
 
 
 
 			//名前ふりがな
-			if(firstNameKana.length()<1 || firstNameKana.length()>16){
-				errorFirstKana = "1文字以上16文字以下で入力してください。";
-				errorFirstKanaList.add(errorFirstKana);
-				errorCount++;
-			}
+			if (!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals("")){
+				if(firstNameKana.length()<1 || firstNameKana.length()>16){
+					errorFirstKana = "1文字以上16文字以下で入力してください。";
+					errorFirstKanaList.add(errorFirstKana);
+					errorCount++;
+				}
 
-			if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
+				else if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
 				errorFirstKana = "ひらがなで入力してください。";
 				errorFirstKanaList.add(errorFirstKana);
 				errorCount++;
+				}
 			}
 
 

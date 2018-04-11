@@ -39,9 +39,9 @@ public class CartDAO {
 
 
 	//未ログイン時のカート追加メソッド
-	public void noLoginCartAdd (String temp_user_id, int productId, int productCount, int price) throws SQLException{
-
+	public ArrayList<CartDTO> noLoginCartAdd (String temp_user_id, int productId, int productCount, int price) throws SQLException{
 		String sql= "insert into cart_info(temp_user_id, product_id, product_count, price, regist_date) values (?, ?, ?, ?, ?)";
+		ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 
 		try{
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -55,6 +55,7 @@ public class CartDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		return cartDTOList;
 	}
 
 
@@ -162,7 +163,7 @@ public class CartDAO {
 
 
 	//未ログイン時同じ商品の統合
-	public void noLoginUpdateCartAdd(String temp_user_id, int productId, int updateCount){
+	public void noLoginUpdateCartAdd(int updateCount, String temp_user_id, int productId){
 		String sql= "UPDATE cart_info SET product_count= ? WHERE temp_user_id= ? AND product_id= ?";
 
 		try{
