@@ -119,10 +119,9 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 
 
 
-			System.out.println(session.get("user_id").toString());
 
 			//未ログイン時のカート情報統合
-			  CartDAO cartDAO = new CartDAO();
+			CartDAO cartDAO = new CartDAO();
 			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("temp_user_id").toString());
 			loginCartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 			if(!(cartDTOList==null)){
@@ -149,6 +148,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			else {
 				result= SUCCESS;
 			}
+
 
 
 			session.remove("temp_user_id");

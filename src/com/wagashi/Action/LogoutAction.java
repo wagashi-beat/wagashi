@@ -17,7 +17,7 @@ public class LogoutAction extends ActionSupport implements SessionAware{
 
 		session.clear();
 
-		session.put("tempUserId", randomId.getTempUserId());
+		session.put("temp_user_id", randomId.getTempUserId());
 		return ret;
 
 	}
