@@ -28,6 +28,7 @@ update_date datetime
 
 
 
+
 -- -----------↓商品情報テーブル↓----------------------------
 drop table if exists product_info;
 create table product_info(
@@ -46,7 +47,7 @@ status tinyint DEFAULT 0,
 regist_date datetime,
 update_date datetime,
 item_stock int DEFAULT 0,
-current_cost double -- ----------------- NEW -------------------
+current_cost double
 );
 
 
@@ -64,37 +65,16 @@ update_date datetime,
 total_price int
 );
 
-drop table if exists favorite_info;
-
-create table favorite_info(
-id int not null primary key auto_increment,
-user_id varchar(16),
-product_id int,
-regist_date datetime,
-unique(user_id,product_id)
-);
-
-drop table if exists review_info;
-
-create table review_info(
-id int not null primary key auto_increment,
-user_id varchar(16),
-product_id int,
-buy_item_date datetime,
-review_id varchar(255),
-evaluation_count int
-);
-
 
 -- -----------↓購入履歴テーブル↓----------------------------
 drop table if exists purchase_history_info;
 create table purchase_history_info(
 id int not null primary key auto_increment,
-user_id varchar(16), -- unique消しました
+user_id varchar(16),
 product_id int,
 product_count int,
 price int,
-at_cost double, -- ----------------- NEW -------------------
+at_cost double,
 regist_date datetime,
 update_date datetime,
 status int default 0,
@@ -525,11 +505,5 @@ INSERT INTO purchase_history_info(-- ------購入履歴テーブルへ----------
 INSERT INTO m_category VALUES(1,1,"団子","団子です","2016/01/01","2016/01/01");
 INSERT INTO m_category VALUES(2,2,"餅","餅です","2016/01/01","2016/01/01");
 INSERT INTO m_category VALUES(3,3,"練りもの","練りものです","2016/01/01","2016/01/01");
-
-
-
-
-INSERT INTO favorite_info VALUES(1,"test",1,"2016/01/01");
-INSERT INTO favorite_info VALUES(2,"test1",2,"2016/01/01");
 
 
