@@ -52,7 +52,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 				}
 			}
 
-			
+
 			else if(deleteFlg != null && deleteList != null){
 				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
@@ -199,7 +199,6 @@ public class CartAction extends ActionSupport implements SessionAware{
 	public void setDeleteList(Collection<String> deleteList) {
 		this.deleteList = deleteList;
 	}
-
 
 
 }
