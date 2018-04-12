@@ -120,10 +120,11 @@
 	<a href= "<s:url action= 'LogoutAction' /> " class="logout">ログアウト</a></s:if>
 
 
-	<div id= "result"></div>
-	<input type= "button" value= "おみくじ" onclick= "omikuji()" />
 
+	<input type= "button" value= "おみくじ" onclick= "omikuji()" />
+	<div id= "result"></div>
     </div>
+
 
 
 
@@ -133,35 +134,54 @@
 
     	   function omikuji(){
     	        document.getElementById("result").innerHTML = "大吉";
-    	        var num = Math.floor(Math.random()*5+1 );
+    	        var num = Math.floor(Math.random()*100+1 );
 
     	        if(num==1){
     	            document.querySelector("#result").innerHTML = "大吉";
-    	            document.querySelector("#result").style.backgroundColor = "yellow";
+    	            document.querySelector("#result").style.backgroundColor = "#EC6060";
     	            setTimeout(countup, 1000);
 
     	        }else if(num==2){
-    	            document.querySelector("#result").innerHTML = "中吉";
-    	            document.querySelector("#result").style.backgroundColor = "pink";
-    	            setTimeout(countup, 1000);
-
-    	        }else if(num==3){
-    	            document.querySelector("#result").innerHTML = "小吉";
-    	            document.querySelector("#result").style.backgroundColor = "red";
-    	            setTimeout(countup, 1000);
-
-    	        }else if(num==4){
-    	            document.querySelector("#result").innerHTML = "凶";
-    	            document.querySelector("#result").style.backgroundColor = "green";
-    	            setTimeout(countup, 1000);
-
-    	        }else if(num==5){
     	            document.querySelector("#result").innerHTML = "大凶";
-    	            document.querySelector("#result").style.backgroundColor = "red";
+    	            document.querySelector("#result").style.backgroundColor = "#413054";
     	            setTimeout(countup, 1000);
 
-    	        }
+    	        }else if(num >2 && num <= 53){
+    	        	for (num= 3; num <= 53; num++){
+    	            document.querySelector("#result").innerHTML = "小吉";
+    	            document.querySelector("#result").style.backgroundColor = "#9AFE83";
+    	            setTimeout(countup, 1000);
+    	        	}
+
+    	        }else if(num > 54 && num <= 74){
+    	        	for (num= 54; num <= 74; num++){
+    	            document.querySelector("#result").innerHTML = "吉";
+    	            document.querySelector("#result").style.backgroundColor = "#FCAD5A";
+    	            setTimeout(countup, 1000);
+    	        	}
+
+    	        }else if(num > 74 && num <= 80){
+    	        	for (num= 74; num <= 80; num++){
+    	            document.querySelector("#result").innerHTML = "凶";
+    	            document.querySelector("#result").style.backgroundColor = "#4B5683";
+    	            setTimeout(countup, 1000);
+    	        	}
+
+    	        }else if(num > 80 && num <= 91) {
+       	        	for (num= 81; num <= 91; num++){
+    	            document.querySelector("#result").innerHTML = "末吉";
+    	            document.querySelector("#result").style.backgroundColor = "#66667D";
+    	            setTimeout(countup, 1000);
+
+       	        }
+        	        }else if(num > 91 && num <= 100) {
+           	        	for (num= 91; num <= 100; num++){
+        	            document.querySelector("#result").innerHTML = "中吉";
+        	            document.querySelector("#result").style.backgroundColor = "#FCAD5A";
+        	            setTimeout(countup, 1000);
+        	        }
     	    }
+    	   }
 
     	</script>
 
