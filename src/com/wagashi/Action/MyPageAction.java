@@ -36,7 +36,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		session.put("firstNameKana", dto.getFirstNameKana());
 		session.put("address", dto.getAddress());
 		session.put("telNumber", dto.getTelNumber());
-		session.put("email", dto.getEmail());
 
 		}
 

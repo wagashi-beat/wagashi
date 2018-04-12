@@ -9,6 +9,23 @@
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
 	<link rel= "stylesheet" type= "text/css" href= "./css/home.css">
 	<title>ホーム画面(テスト)</title>
+
+	<style type="text/css">
+	       #result{
+            margin: 30px auto;
+            width: 200px;
+            height: 150px;
+            border-radius: 50px;
+            line-height: 180px;
+            color:black;
+            font-size: 50px;
+            font-weight: bold;
+            background-color: greenyellow;
+            box-shadow: 0, 2px, 10px rgba(0,0,0,0.3);
+            background-color: aqua
+        }
+
+	</style>
 </head>
 
 <body>
@@ -101,7 +118,53 @@
 
 	<s:if test= "session.loginUser">
 	<a href= "<s:url action= 'LogoutAction' /> " class="logout">ログアウト</a></s:if>
+
+
+	<div id= "result"></div>
+	<input type= "button" value= "おみくじ" onclick= "omikuji()" />
+
     </div>
+
+
+
+    <script type="text/javascript">
+
+    	var count= 0;
+
+    	   function omikuji(){
+    	        document.getElementById("result").innerHTML = "大吉";
+    	        var num = Math.floor(Math.random()*5+1 );
+
+    	        if(num==1){
+    	            document.querySelector("#result").innerHTML = "大吉";
+    	            document.querySelector("#result").style.backgroundColor = "yellow";
+    	            setTimeout(countup, 1000);
+
+    	        }else if(num==2){
+    	            document.querySelector("#result").innerHTML = "中吉";
+    	            document.querySelector("#result").style.backgroundColor = "pink";
+    	            setTimeout(countup, 1000);
+
+    	        }else if(num==3){
+    	            document.querySelector("#result").innerHTML = "小吉";
+    	            document.querySelector("#result").style.backgroundColor = "red";
+    	            setTimeout(countup, 1000);
+
+    	        }else if(num==4){
+    	            document.querySelector("#result").innerHTML = "凶";
+    	            document.querySelector("#result").style.backgroundColor = "green";
+    	            setTimeout(countup, 1000);
+
+    	        }else if(num==5){
+    	            document.querySelector("#result").innerHTML = "大凶";
+    	            document.querySelector("#result").style.backgroundColor = "red";
+    	            setTimeout(countup, 1000);
+
+    	        }
+    	    }
+
+    	</script>
+
 </body>
 </html>
 

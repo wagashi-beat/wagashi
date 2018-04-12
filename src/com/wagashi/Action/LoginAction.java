@@ -90,15 +90,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		loginDTO = loginDAO.getUserInfo(user_id, password);
 		session.put("loginUser", loginDTO);
-		System.out.println(session.get("loginUser"));
 
 		if(((LoginDTO) session.get("loginUser")).getLoginFlg()) {
 			result = SUCCESS;
 
 			session.put("user_id",loginDTO.getLoginId());
 			session.put("password",loginDTO.getLoginPassword());
-
-
 
 			//未ログイン時のカート情報統合
 			CartDAO cartDAO = new CartDAO();
@@ -121,11 +118,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice(), dto.getId());
 						result= SUCCESS;
 					}
-
 				}
-			}
 
-			else {
+			} else {
 				result= SUCCESS;
 			}
 
@@ -143,7 +138,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			setErrorMessage("IDまたはパスワードが異なるよ～(○・▽・○)");
 			result= ERROR;
 			return result;
-
 		}
 
 

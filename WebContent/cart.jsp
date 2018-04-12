@@ -105,11 +105,11 @@
 				</tr>
 				<tr>
 					<td><s:checkbox name="deleteList" value="checked" fieldValue="%{id}"/>
-						<input type="hidden" name="deleteFlg" value="1"/>
-						<s:submit value=" 削除 " method="execute"/></td>
+						<input type="hidden" name="deleteFlg" value="1"/></td>
 				</tr>
 </table>
 		</s:iterator>
+						<s:submit value=" 削除 " method="execute"/>
 
 		<s:form action="SettlementConfirmAction">
 			<s:submit value=" 購入 " method="execute"/>

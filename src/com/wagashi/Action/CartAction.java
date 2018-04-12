@@ -39,39 +39,40 @@ public class CartAction extends ActionSupport implements SessionAware{
 			if(!(addFlg==null)){
 				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price, id);
 				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
+
 				for(CartDTO dto: cartDTOList){
 					if(dto.getProductId()== productId){
 						int updateCount= productCount + dto.getProductCount();
 						cartDAO.updateCartAdd(productId, session.get("user_id").toString(), updateCount);
+						cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
 						result= SUCCESS;
 						return result;
 					}
 				}
-				result= "cart";
-				return result;
 			}
 
+			
 			else if(deleteFlg != null && deleteList != null){
 				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
-
-				for (int i= 0; i< cartDTOList.size(); i++) {
-					for(String check:deleteList){
-						long id= Long.parseLong(check);
-						cartDelete((int) id);
-						System.out.println(id);
-						result= "cart";
+					for(int i = 0; i < cartDTOList.size(); i++){
+						if(deleteFlg != null){
+							for(String check: deleteList){
+								long id= Long.parseLong(check);
+								cartDelete((int) id);
+								cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
+								result= "cart";
+							}
+						}
+						else{
+							result= "cart";
+						}
 					}
-				}
 
-				result= "cart";
-			}
-			else if(deleteFlg != "1") {
-			result= "cart";
+				result= SUCCESS;
 			}
 		}
-
 
 
 
@@ -98,7 +99,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 					if(deleteFlg != null){
 						for(String check: deleteList){
 							int id= Integer.parseInt(check);
-							cartDAO.noLoginCartDelete(session.get("temp_user_id").toString(), id);
+							cartDAO.loginCartDelete(session.get("user_id").toString(), id);
 							result= "cart";
 						}
 					}
@@ -113,7 +114,6 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 		System.out.println(cartDTOList);
 		return result;
-
 	}
 
 	public void cartDelete(int id) throws SQLException {
