@@ -113,7 +113,7 @@
 
 		 <!-- ログアウト機能 -->
 		 <action name= "LogoutAction" class= "com.wagashi.Action.LogoutAction" method= "execute">
-		 	<result name= "success">home.jsp</result>
+		 	<result name= "success">logout.jsp</result>
 		 </action>
 
 		 <!-- ホーム画面遷移 -->
