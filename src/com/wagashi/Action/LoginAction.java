@@ -62,8 +62,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		//文字エラーメッセージ
 
 
-		if(user_id.length()<1||user_id.length()>8 && !user_id.equals("")){
-			setErrorId1("IDは１文字以上８文字以下で入力してください");
+		if(user_id.length()<3||user_id.length()>8 && !user_id.equals("")){
+			setErrorId1("IDは3文字以上8文字以下で入力してください");
 			ErrorCount++;
 		}
 
@@ -72,12 +72,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			ErrorCount++;
 		}
 
-		if(password.length()<1||password.length()>16 && !password.equals("")){
-			setErrorPassword1("１文字以上１６文字以内で入力してください");
+		if(password.length()<3||password.length()>16 && !password.equals("")){
+			setErrorPassword1("3文字以上16文字以内で入力してください");
 			ErrorCount++;
 		}
 
-		if (!password.matches("^[0-9a-zA-Z]+$") && !(user_id.equals(""))) {
+		if (!password.matches("^[0-9a-zA-Z]+$") && !(password.equals(""))) {
 			setErrorPassword2("IDは半角英数字で入力してください");
 			ErrorCount++;
 		}
@@ -97,15 +97,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 			session.put("user_id",loginDTO.getLoginId());
 			session.put("password",loginDTO.getLoginPassword());
-
-			session.put("myPageFam", myPageDTO.getFamilyName());
-			session.put("myPageFir", myPageDTO.getFirstName());
-			session.put("myPageFamKana", myPageDTO.getFamilyNameKana());
-			session.put("myPageFirKana", myPageDTO.getFirstNameKana());
-			session.put("myPageAdd", myPageDTO.getAddress());
-			session.put("myPageEmail", myPageDTO.getEmail());
-			session.put("myPageTel", myPageDTO.getTelNumber());
-
 
 
 

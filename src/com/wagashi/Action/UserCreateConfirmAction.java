@@ -74,8 +74,8 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				errorCount++;
 			}
 
-			if (user_id.length()<3 || user_id.length()>16) {
-				errorId= "3文字以上16文字以内で入力してください。";
+			if (user_id.length()<3 || user_id.length()>8) {
+				errorId= "3文字以上8文字以内で入力してください。";
 				errorIdList.add(errorId);
 				errorCount++;
 			}

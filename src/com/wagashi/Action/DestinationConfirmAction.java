@@ -23,7 +23,7 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 
 	public Map<String, Object> session;
 
-	private String error;
+	private String errorDes;
 	private String errorFamilyName;
 	private String errorFirstName;
 	private String errorFamilyNameKana;
@@ -45,114 +45,107 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 		String result= ERROR;
 		int errorCount= 0;
 
-	// 姓
-		if (familyName.equals("")) {
-			errorFamilyName = "姓を入力してください。";
-			errorFamilyNameList.add(errorFamilyName);
-			errorCount++;
-		}else if(familyName.length() < 1 || familyName.length() > 16){
-			errorFamilyName = "姓は１文字以上１６文字以下で入力してください。";
-			errorCount++;
-		}else if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")){
-			errorFamilyName = "姓は半角英数、ひらがな、カタカナ、漢字で入力してください。";
-			errorFamilyNameList.add(errorFamilyName);
-			errorCount++;
-		}
 
-	//名
-		if(firstName.equals("")){
-			errorFirstName ="名前を入力してください。";
-			errorFirstNameList.add(errorFirstName);
-			errorCount++;
-		}else if(firstName.length() < 1 || firstName.length() > 16) {
-			errorFirstName = "名前は１文字以上１６文字以下";
-			errorFirstNameList.add(errorFirstName);
-			errorCount++;
-		}else if(!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")) {
-			errorFirstName = "名前は半角英字、ひらがな、カタカナ、漢字で入力してください。";
-			errorFirstNameList.add(errorFirstName);
-			errorCount++;
-		}
-	//姓ふりがな
-		if (!(familyName.matches("^[a-zA-Z]+$") && familyNameKana.equals(""))){
-			if(familyNameKana.length()<1 || familyNameKana.length()>16){
-				errorFamilyNameKana = "姓(ふりがな)は1文字以上１６文字以下で入力してください。";
-				errorFamilyNameKanaList.add(errorFamilyNameKana);
+		// エラー
+		if (familyName.equals("") || firstName.equals("") ||
+				(!(familyName.matches("^[a-zA-Z]+$")) && familyNameKana.equals("")) ||
+				(!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals("")) ||
+				address.equals("") || email.equals("") || telNumber.equals("")) {
+					errorDes= "未入力項目があります。";
+					session.put("errorDes", errorDes);
+					errorCount++;
+				}
+
+		else {
+			// 姓
+			if(familyName.length() < 1 || familyName.length() > 16){
+				errorFamilyName = "姓は１文字以上１６文字以下で入力してください。";
+				errorCount++;
+			}else if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")){
+				errorFamilyName = "姓は半角英数、ひらがな、カタカナ、漢字で入力してください。";
+				errorFamilyNameList.add(errorFamilyName);
 				errorCount++;
 			}
 
-			if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
-				errorFamilyNameKana = "姓(ふりがな)はひらがなで入力してください。";
-				errorFamilyNameKanaList.add(errorFamilyNameKana);
+			//名
+			if(firstName.length() < 1 || firstName.length() > 16) {
+				errorFirstName = "名前は１文字以上１６文字以下で入力してください。";
+				errorFirstNameList.add(errorFirstName);
 				errorCount++;
-			}
-		}
-
-	//名ふりがな
-		if (!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals("")){
-			if(firstNameKana.length()<1 || firstNameKana.length()>16){
-				errorFirstNameKana = "名(ふりがな)は1文字以上１６文字以下で入力してください。";
-				errorFirstNameKanaList.add(errorFirstNameKana);
+			}else if(!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")) {
+				errorFirstName = "名前は半角英字、ひらがな、カタカナ、漢字で入力してください。";
+				errorFirstNameList.add(errorFirstName);
 				errorCount++;
 			}
 
-			else if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
-				errorFirstNameKana = "名(ふりがな)はひらがなで入力してください。";
-				errorFirstNameKanaList.add(errorFirstNameKana);
-			errorCount++;
+			//姓ふりがな
+			if (!(familyName.matches("^[a-zA-Z]+$") && familyNameKana.equals(""))){
+				if(familyNameKana.length()<1 || familyNameKana.length()>16){
+					errorFamilyNameKana = "姓(ふりがな)は1文字以上１６文字以下で入力してください。";
+					errorFamilyNameKanaList.add(errorFamilyNameKana);
+					errorCount++;
+				}
+
+				if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
+					errorFamilyNameKana = "姓(ふりがな)はひらがなで入力してください。";
+					errorFamilyNameKanaList.add(errorFamilyNameKana);
+					errorCount++;
+				}
+			}
+
+			//名ふりがな
+			if (!(firstName.matches("[a-zA-Z]+$")) && firstNameKana.equals("")){
+				if(firstNameKana.length()<1 || firstNameKana.length()>16){
+					errorFirstNameKana = "名(ふりがな)は1文字以上１６文字以下で入力してください。";
+					errorFirstNameKanaList.add(errorFirstNameKana);
+					errorCount++;
+				}
+
+				else if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
+					errorFirstNameKana = "名(ふりがな)はひらがなで入力してください。";
+					errorFirstNameKanaList.add(errorFirstNameKana);
+					errorCount++;
+				}
+			}
+
+			//住所
+			if(address.length() < 10 || familyNameKana.length() > 50){
+				errorAddress = "住所は10文字以上50文字以下で入力してください。";
+				errorAddressList.add(errorAddress);
+				errorCount++;
+			}else if(!address.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
+				errorAddress = "住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
+				errorAddressList.add(errorAddress);
+				errorCount++;
+			}
+
+			//メールアドレス
+			if(email.length() < 10 || email.length() > 32){
+				errorEmail = "メールアドレスは10文字以上32文字以下で入力してください。";
+				errorEmailList.add(errorEmail);
+				errorCount++;
+			}else if(!email.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
+				errorEmail = "正しいメールアドレスの形式で入力してください。";
+				errorEmailList.add(errorEmail);
+				errorCount++;
+			}
+
+			//電話番号
+			if(telNumber.length() < 10 || telNumber.length() > 13){
+				errorTelNumber = "電話番号は10桁以上13桁以内で入力してください。";
+				errorTelNumberList.add(errorTelNumber);
+				errorCount++;
+			} else if (!telNumber.matches("^[0-9]+$")) {
+				errorTelNumber = "電話番号は半角数字で入力してください。";
+				errorTelNumberList.add(errorTelNumber);
+				errorCount++;
+
 			}
 		}
-
-	//住所
-		if(address.equals("")) {
-			errorAddress = "住所を入力してください。";
-			errorAddressList.add(errorAddress);
-			errorCount++;
-		}else if(address.length() < 10 || familyNameKana.length() > 50){
-			errorAddress = "住所は10文字以上50文字以下で入力してください。";
-			errorAddressList.add(errorAddress);
-			errorCount++;
-		}else if(!address.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
-			errorAddress = "住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
-			errorAddressList.add(errorAddress);
-			errorCount++;
-		}
-
-	//メールアドレス
-		if(email.equals("")) {
-			errorEmail = "メールアドレスを入力してください。";
-			errorEmailList.add(errorEmail);
-			errorCount++;
-		}else if(email.length() < 10 || email.length() > 32){
-			errorEmail = "メールアドレスは10文字以上32文字以下で入力してください。";
-			errorEmailList.add(errorEmail);
-			errorCount++;
-		}else if(!email.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
-			errorEmail = "正しいメールアドレスの形式で入力してください。";
-			errorEmailList.add(errorEmail);
-			errorCount++;
-		}
-
-	//電話番号
-		if(telNumber.equals("")){
-			errorTelNumber = "電話番号を入力してください。";
-			errorTelNumberList.add(errorTelNumber);
-			errorCount++;
-		} else if(telNumber.length() < 10 || telNumber.length() > 13){
-			errorTelNumber = "電話番号は10桁以上13桁以内で入力してください。";
-			errorTelNumberList.add(errorTelNumber);
-			errorCount++;
-		} else if (!telNumber.matches("^[0-9]+$")) {
-			errorTelNumber = "電話番号は半角数字で入力してください。";
-			errorTelNumberList.add(errorTelNumber);
-			errorCount++;
-		}
-
-
 
 
 		if (errorCount>0) {
-			session.put("error", error);
+			session.put("errorDes", errorDes);
 			result= ERROR;
 		}
 
@@ -246,110 +239,132 @@ public class DestinationConfirmAction extends ActionSupport implements SessionAw
 		this.errorList = errorList;
 	}
 
-	public String getError() {
-		return error;
-	}
-
 	public List<String> getErrorFamilyNameList() {
 		return errorFamilyNameList;
 	}
-
-
 
 	public void setErrorFamilyNameList(List<String> errorFamilyNameList) {
 		this.errorFamilyNameList = errorFamilyNameList;
 	}
 
-
-
 	public List<String> getErrorFirstNameList() {
 		return errorFirstNameList;
 	}
-
-
 
 	public void setErrorFirstNameList(List<String> errorFirstNameList) {
 		this.errorFirstNameList = errorFirstNameList;
 	}
 
-
-
 	public List<String> getErrorFamilyNameKanaList() {
 		return errorFamilyNameKanaList;
 	}
-
-
 
 	public void setErrorFamilyNameKanaList(List<String> errorFamilyNameKanaList) {
 		this.errorFamilyNameKanaList = errorFamilyNameKanaList;
 	}
 
-
-
 	public List<String> getErrorFirstNameKanaList() {
 		return errorFirstNameKanaList;
 	}
-
-
 
 	public void setErrorFirstNameKanaList(List<String> errorFirstNameKanaList) {
 		this.errorFirstNameKanaList = errorFirstNameKanaList;
 	}
 
-
-
 	public List<String> getErrorAddressList() {
 		return errorAddressList;
 	}
-
-
 
 	public void setErrorAddressList(List<String> errorAddressList) {
 		this.errorAddressList = errorAddressList;
 	}
 
-
-
 	public List<String> getErrorEmailList() {
 		return errorEmailList;
 	}
-
-
 
 	public void setErrorEmailList(List<String> errorEmailList) {
 		this.errorEmailList = errorEmailList;
 	}
 
-
-
 	public List<String> getErrorTelNumberList() {
 		return errorTelNumberList;
 	}
-
-
 
 	public void setErrorTelNumberList(List<String> errorTelNumberList) {
 		this.errorTelNumberList = errorTelNumberList;
 	}
 
-
-
-	public void setError(String error) {
-		this.error = error;
-	}
-
-
-
 	public String getUser_id() {
 		return user_id;
 	}
-
-
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
+	public String getErrorDes() {
+		return errorDes;
+	}
 
+	public void setErrorDes(String errorDes) {
+		this.errorDes = errorDes;
+	}
+
+	public String getErrorFamilyName() {
+		return errorFamilyName;
+	}
+
+	public void setErrorFamilyName(String errorFamilyName) {
+		this.errorFamilyName = errorFamilyName;
+	}
+
+	public String getErrorFirstName() {
+		return errorFirstName;
+	}
+
+	public void setErrorFirstName(String errorFirstName) {
+		this.errorFirstName = errorFirstName;
+	}
+
+	public String getErrorFamilyNameKana() {
+		return errorFamilyNameKana;
+	}
+
+	public void setErrorFamilyNameKana(String errorFamilyNameKana) {
+		this.errorFamilyNameKana = errorFamilyNameKana;
+	}
+
+	public String getErrorFirstNameKana() {
+		return errorFirstNameKana;
+	}
+
+	public void setErrorFirstNameKana(String errorFirstNameKana) {
+		this.errorFirstNameKana = errorFirstNameKana;
+	}
+
+	public String getErrorAddress() {
+		return errorAddress;
+	}
+
+	public void setErrorAddress(String errorAddress) {
+		this.errorAddress = errorAddress;
+	}
+
+	public String getErrorEmail() {
+		return errorEmail;
+	}
+
+	public void setErrorEmail(String errorEmail) {
+		this.errorEmail = errorEmail;
+	}
+
+	public String getErrorTelNumber() {
+		return errorTelNumber;
+	}
+
+	public void setErrorTelNumber(String errorTelNumber) {
+		this.errorTelNumber = errorTelNumber;
+	}
 
 }
