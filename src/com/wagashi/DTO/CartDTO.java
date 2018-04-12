@@ -10,6 +10,7 @@ public class CartDTO extends ProductInfoDTO{
 	private int price;
 	private String imageFilePath;
 	private String imageFileName;
+	public int id;
 
 
 	public int getProductId() {
@@ -58,6 +59,14 @@ public class CartDTO extends ProductInfoDTO{
 
 	public void setImageFileName(String imageFileName) {
 		this.imageFileName = imageFileName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

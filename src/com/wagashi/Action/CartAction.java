@@ -20,22 +20,24 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private int productId;
 	private int productCount;
 	private int price;
+	private int id;
 	private String addFlg;
-	private String deleteFlg;
+	private String deleteFlg= "";
+
+	CartDAO cartDAO = new CartDAO();
 
 	private Collection<String> deleteList;
 	//aaa
 
 
 	public String execute() throws SQLException{
-		String result=ERROR;
-		CartDAO cartDAO = new CartDAO();
+		String result= ERROR;
 
 		//ログイン時の処理
 		if(session.containsKey("user_id")){
 
 			if(!(addFlg==null)){
-				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price);
+				cartDAO.loginCartAdd(session.get("user_id").toString(), productId, productCount, price, id);
 				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 				for(CartDTO dto: cartDTOList){
 					if(dto.getProductId()== productId){
@@ -50,34 +52,27 @@ public class CartAction extends ActionSupport implements SessionAware{
 				return result;
 			}
 
+			else if(deleteFlg != null && deleteList != null){
+				cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
-		}else if(!(deleteFlg==null) && !(deleteList==null)){
-			for(String check:deleteList){
-				int id= Integer.parseInt(check);
-				cartDAO.noLoginCartDelete(session.get("user_id").toString(), id);
+
+				for (int i= 0; i< cartDTOList.size(); i++) {
+					for(String check:deleteList){
+						long id= Long.parseLong(check);
+						cartDelete((int) id);
+						System.out.println(id);
+						result= "cart";
+					}
+				}
+
+				result= "cart";
 			}
-
-		}else if(deleteFlg != "1") {
+			else if(deleteFlg != "1") {
 			result= "cart";
+			}
 		}
 
 
-			else {
-				for(int i = 0; i < cartDTOList.size(); i++){
-					if(deleteFlg!=null){
-						for(String check:deleteList){
-							int id= Integer.parseInt(check);
-							cartDAO.loginCartDelete(session.get("user_id").toString(), id);
-							result= "cart";
-						}
-					}
-
-					else{
-						result= "cart";
-					}
-				result = SUCCESS;
-				}
-			}
 
 
 
@@ -115,10 +110,14 @@ public class CartAction extends ActionSupport implements SessionAware{
 			result= SUCCESS;
 			}
 		}
-		
+
 		System.out.println(cartDTOList);
 		return result;
 
+	}
+
+	public void cartDelete(int id) throws SQLException {
+		cartDAO.loginCartDelete(session.get("user_id").toString(), id);
 	}
 
 

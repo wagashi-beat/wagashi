@@ -161,6 +161,7 @@
 
 				<input type="hidden" name="addFlg" value="1" />
 				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
+				<input type= "hidden" name= "id" value= '<s:property value= "id" />' >
 
 						<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
 							<s:hidden name="product_id" value="%{session.d_product_id}" />

@@ -26,7 +26,6 @@ public class CategoryDAO {
 
 			while (rs.next()) {
 				CategoryDTO dto = new CategoryDTO();
-				dto.setId(rs.getString("id"));
 				dto.setCategoryId(rs.getString("category_id"));
 				dto.setCategoryName(rs.getString("category_name"));
 				dto.setCategoryDescription(rs.getString("category_description"));

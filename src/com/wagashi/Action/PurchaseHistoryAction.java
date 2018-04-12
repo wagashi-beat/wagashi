@@ -32,6 +32,7 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 			return "ERROR";
 		}
 		if(deleteFlg != null && checkList != null){
+
 			purchaseHistoryDTOList = purchaseHistoryDAO.getPurchaseHistory(session.get("user_id").toString());
 			//購入履歴情報リストをまわす
 	        	for(int i=0;i<purchaseHistoryDTOList.size();i++){

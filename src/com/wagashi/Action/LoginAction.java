@@ -118,7 +118,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					}
 
 					if(!(dto==null)){
-						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
+						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice(), dto.getId());
 						result= SUCCESS;
 					}
 

@@ -17,9 +17,9 @@ public class CartDAO {
 	private DateUtil dateUtil= new DateUtil();
 
 	//ログイン時のカート追加メソッド
-	public ArrayList<CartDTO> loginCartAdd (String user_id, int productId, int productCount, int price) throws SQLException{
+	public ArrayList<CartDTO> loginCartAdd (String user_id, int productId, int productCount, int price, int id) throws SQLException{
 
-	String sql= "insert into cart_info(user_id, product_id, product_count, price, regist_date) values (?, ?, ?, ?, ?)";
+	String sql= "insert into cart_info(user_id, product_id, product_count, price, id) values (?, ?, ?, ?, ?)";
 	ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 		try{
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class CartDAO {
 			preparedStatement.setInt(2, productId);
 			preparedStatement.setInt(3, productCount);
 			preparedStatement.setInt(4, price);
-			preparedStatement.setString(5,dateUtil.getDate());
+			preparedStatement.setInt(5, id);
 
 			preparedStatement.execute();
 
@@ -77,6 +77,7 @@ public class CartDAO {
 					dto.setPrice(resultSet.getInt("product_count")*resultSet.getInt("price"));
 					dto.setImageFilePath(resultSet.getString("image_file_path"));
 					dto.setImageFileName(resultSet.getString("image_file_name"));
+					dto.setId(resultSet.getInt("id"));
 					cartDTOList.add(dto);
 				}
 			}catch(SQLException e){
@@ -117,16 +118,18 @@ public class CartDAO {
 
 	//ログイン時のカート内の商品削除
 
-	public void loginCartDelete(String user_id,int productId) throws SQLException{
-		String sql="delete from cart_info where user_id = ? and product_id = ?";
+	public boolean loginCartDelete(String user_id,int id) throws SQLException{
+		String sql="delete from cart_info where user_id = ? and id = ?";
 
 		try{
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			preparedStatement.setString(1, user_id);
-			preparedStatement.setInt(2, productId);
-			preparedStatement.execute();
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+			return true;
 		}catch(SQLException e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 

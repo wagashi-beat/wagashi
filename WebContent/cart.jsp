@@ -87,7 +87,7 @@
 
 
 			<p>チェックした商品はカートから削除されます。</p>
-
+<s:form action= "CartAction">
 	<s:if test= "cartDTOList">
 		<s:iterator value="cartDTOList">
 	<table>
@@ -104,9 +104,9 @@
 					<td><img src='<s:property value="imageFilePath" />' ></td>
 				</tr>
 				<tr>
-					<td><s:form action= "CartAction"><s:checkbox name="deleteList" value="checked" fieldValue="%{id}"/>
+					<td><s:checkbox name="deleteList" value="checked" fieldValue="%{id}"/>
 						<input type="hidden" name="deleteFlg" value="1"/>
-						<s:submit value=" 削除 " method="execute"/></s:form></td>
+						<s:submit value=" 削除 " method="execute"/></td>
 				</tr>
 </table>
 		</s:iterator>
@@ -119,7 +119,7 @@
 			<h1>カートに商品が入っていません。</h1>
 			</s:else>
 
-
+</s:form>
 	</div>
 </body>
 </html>

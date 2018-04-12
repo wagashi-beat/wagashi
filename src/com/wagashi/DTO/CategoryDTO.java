@@ -1,19 +1,12 @@
 package com.wagashi.DTO;
 
 public class CategoryDTO {
-	private String id;
 	private String categoryId;
 	private String categoryName;
 	private String categoryDescription;
 	private String insertDate;
 	private String updateDate;
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getCategoryId() {
 		return categoryId;
 	}
@@ -44,6 +37,5 @@ public class CategoryDTO {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
 
 }
