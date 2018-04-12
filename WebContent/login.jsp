@@ -114,7 +114,7 @@
 					</s:if>
 
 
-					<input type="text" name="user_id" placeholder = "userID"/><br>
+					<input type="text" name="user_id" placeholder = "userID" value= '<s:property value= "#session.loginMemoryId" />' /><br>
 
 
 				<%--ログインPassword --%>
@@ -132,11 +132,11 @@
 					</s:if>
 
 
-					<input type="password" name="password" placeholder = "password"/><br>
+					<input type="password" name="password" placeholder = "password" checked= "checked" /><br>
 
 
 
-
+			<input type= "checkbox" name= "loginMemory" value= "true" />
 
 
 			<input id="submit_button" type="submit" name="submit" value="ログイン"/>

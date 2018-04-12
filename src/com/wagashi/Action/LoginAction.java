@@ -15,40 +15,29 @@ import com.wagashi.DTO.MyPageDTO;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
-private String user_id;
+	private String user_id;
+	private String password;
 
-private String password;
+	private String errorId;
+	private String errorId1;
+	private String errorId2;
+	private String errorId3;
+	private String errorPassword;
+	private String errorPassword1;
+	private String errorPassword2;
+	private String errorMessage;
 
-private String errorId;
+	private String loginMemory= "";
+	private String result;
 
-private String errorId1;
+	public Map<String,Object> session;
 
-private String errorId2;
+	private LoginDAO loginDAO = new LoginDAO();
+	private LoginDTO loginDTO = new LoginDTO();
+	private MyPageDTO myPageDTO= new MyPageDTO();
 
-private String errorId3;
-
-private String errorPassword;
-
-private String errorPassword1;
-
-private String errorPassword2;
-
-private String errorMessage;
-
-
-private String result;
-
-public Map<String,Object> session;
-
-private LoginDAO loginDAO = new LoginDAO();
-
-private LoginDTO loginDTO = new LoginDTO();
-
-private MyPageDTO myPageDTO= new MyPageDTO();
-
-private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
-
-private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
+	private ArrayList<CartDTO> cartDTOList = new ArrayList<CartDTO>();
+	private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 
 
 
@@ -150,7 +139,11 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			}
 
 
-
+			if (loginMemory.equals("true")) {
+				session.put("loginMemory", true);
+			} else {
+				session.put("loginMemory", false);
+			}
 			session.remove("temp_user_id");
 			return result;
 
@@ -161,6 +154,7 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 			return result;
 
 		}
+
 
 	}
 
@@ -303,6 +297,15 @@ private ArrayList<CartDTO> loginCartDTOList = new ArrayList<CartDTO>();
 	public void setMyPageDTO(MyPageDTO myPageDTO) {
 		this.myPageDTO = myPageDTO;
 	}
+
+	public String getLoginMemory() {
+		return loginMemory;
+	}
+
+	public void setLoginMemory(String loginMemory) {
+		this.loginMemory = loginMemory;
+	}
+
 
 
 }
