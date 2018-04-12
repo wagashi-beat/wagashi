@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
-	<title>宛先登録完了画面</title>
+	<title>ログアウト完了画面</title>
 </head>
 
 <body>
@@ -90,7 +90,7 @@
 	<div class= "main">
 
 	<h4>ログアウトしました</h4>
-	<a href= '<s:url action= "HomeMoveAction" />' class="links">ホームへ</a>
+	<a href= '<s:url action= "HomeMoveAction" />'>ホームへ</a>
 	</div>
 
 </body>

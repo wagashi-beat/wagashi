@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/form.css">
 	<title>パスワード再設定</title>
 </head>
 
@@ -85,6 +86,7 @@
 	<!-- ここまで -->
 
 	<div class= "main">
+	<h4>パスワード再設定</h4>
 	<s:form action= "PasswordChangeConfirmAction">
 
 	<s:if test= "session.errorNew != ''">
@@ -108,7 +110,7 @@
 					<td><input type= "password" value= "" name= "newPassword" /></td></tr>
 
 					<tr><th></th>
-						<td><s:submit value= "へんこう" /></td></tr>
+						<td><input id="submit_button" type="submit" name="submit" value="変更"></td></tr>
 		</table>
 	</s:form>
 

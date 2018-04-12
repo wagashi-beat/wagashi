@@ -90,9 +90,8 @@
 
 	<div class= "main">
 
-	<div class="cont1">
+
 	<h4>マイページメニュー</h4>
-    <p><a href= '<s:url action= "CartAction" />'>カート</a></p>
 	<p><a href="<s:url action='PurchaseHistoryAction'/>">購入履歴</a></p>
 	<s:if test= "session.address == null">
 	<p><a href= "<s:url action= 'DestinationCreateAction' /> ">宛先登録</a></p></s:if>
@@ -100,34 +99,34 @@
 	<p><a href= '<s:url action= "DestinationCreateAction" />'>住所変更</a></p></s:elseif>
 	<p><a href= '<s:url action= "PasswordChangeAction" />'>パスワード変更</a></p>
 
-	</div>
 
-	<div class="cont2">
+
+
 
 	<h5>登録情報</h5>
 
-	<table>
+	<table class="userInfo">
 
 			<tr>
-				<th>ユーザーID</th> <td><s:property value="dto.user_id"/></td>
+				<th>ユーザーID:</th> <td><s:property value="dto.user_id"/></td>
 			</tr>
 			<tr>
-				<th>苗字</th> <td><s:property value="dto.familyName"/></td>
+				<th>苗字:</th> <td><s:property value="dto.familyName"/></td>
 			</tr>
 			<tr>
-				<th>名前</th> <td><s:property value="dto.firstName"/></td>
+				<th>名前:</th> <td><s:property value="dto.firstName"/></td>
 			</tr>
 			<tr>
-				<th>みょうじ</th> <td><s:property value="dto.familyNameKana"/></td>
+				<th>みょうじ:</th> <td><s:property value="dto.familyNameKana"/></td>
 			</tr>
 			<tr>
-				<th>なまえ</th> <td><s:property value="dto.firstNameKana"/></td>
+				<th>なまえ:</th> <td><s:property value="dto.firstNameKana"/></td>
 			</tr>
 			<tr>
-				<th>性別</th> <td><s:property value="dto.sex"/></td>
+				<th>性別:</th> <td><s:property value="dto.sex"/></td>
 			</tr>
 			<tr>
-				<th>E-メール</th> <td><s:property value="dto.email"/></td>
+				<th>E-メール:</th> <td><s:property value="dto.email"/></td>
 			</tr>
 			<!-- <tr>
 				<td>ADDRESS</td> <td><s:property value="#session.address"/></td>
@@ -137,18 +136,18 @@
 			</tr>-->
 
 			<tr>
-				<th>住所</th> <td><s:property value = "dto.address"/></td>
+				<th>住所:</th> <td><s:property value = "dto.address"/></td>
 			</tr>
 
 			<tr>
-				<th>電話番号</th> <td><s:property value = "dto.telNumber"/></td>
+				<th>電話番号:</th> <td><s:property value = "dto.telNumber"/></td>
 			</tr>
 
 
 	</table>
 	</div>
 
-	</div>
+
 
 
 </body>

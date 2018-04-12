@@ -28,7 +28,6 @@ update_date datetime
 
 
 
-
 -- -----------↓商品情報テーブル↓----------------------------
 drop table if exists product_info;
 create table product_info(
