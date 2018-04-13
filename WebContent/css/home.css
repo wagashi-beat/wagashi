@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+.main a:link{
+	color:white;
+}
+
+.main a:visited{
+	color:white;
+}
+
 .main{
 	color:#2F3039;
 	text-align:center;

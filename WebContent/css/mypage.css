@@ -12,17 +12,6 @@
 	margin-top:30px;
 }
 
-.main p{
-	text-align:center;
-}
-
-.main a:link{
-	color:#ce7B37;
-}
-
-.main a:visited{
-	color:#ce7B37;
-}
 
 .main .userInfo{
 	display:inline-block;

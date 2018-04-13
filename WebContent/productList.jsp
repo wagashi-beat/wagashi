@@ -7,6 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+	<link rel= "stylesheet" type= "text/css" href= "./css/productList.css">
+
 
 <title>商品一覧画面</title>
 
@@ -91,13 +93,12 @@
 
 			<!-- 検索時のメッセージ(sano -->
 			<s:if test="searchMessage != ''">
-				<h2>
+				<h5>
 					<s:property value="searchMessage" escape="false" />
-				</h2>
+				</h5>
 			</s:if>
 
-
-
+            <div class="containpro">
 			<ul class="thumbnail clearFix">
 				<!-- 表示件数1ページ目 -->
 
@@ -109,7 +110,7 @@
 				 </s:url>">
 
 
-						<li class="list1">
+					<li class="list1">
 							<dl>
 								<dt>
 									<img class="image" src="<s:property value='image_file_path'/>"
@@ -139,6 +140,7 @@
 					</a>
 				</s:iterator>
 			</ul>
+			</div>
 
 
 			<div class="pageSelect">${pageSelect +1}</div>

@@ -169,6 +169,17 @@ ul li:hover a {
 
 .main {
 	padding-top: 100px;
-	margin: 40px;
+}
+
+.main p{
+	text-align:center;
+}
+
+.main a:link{
+	color:#ce7B37;
+}
+
+.main a:visited{
+	color:#ae5B17;
 }
 
