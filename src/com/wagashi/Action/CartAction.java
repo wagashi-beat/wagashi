@@ -29,8 +29,6 @@ public class CartAction extends ActionSupport implements SessionAware{
 	CartDTO cartDTO= new CartDTO();
 
 	private Collection<String> deleteList;
-	//aaa
-
 	public String execute() throws SQLException{
 		String result= ERROR;
 
