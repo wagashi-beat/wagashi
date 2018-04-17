@@ -114,7 +114,7 @@
 							<dl>
 								<dt>
 									<img class="image" src="<s:property value='image_file_path'/>"
-										alt="Photo" width="250" height="200">
+										alt="Photo" width="200" height="160">
 								</dt>
 								<table class="detailsTable">
 									<tr>
