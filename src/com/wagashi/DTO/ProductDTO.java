@@ -21,7 +21,7 @@ public class ProductDTO {
 	private String product_name;
 	private String product_name_kana;
 	private String product_description;
-	private String image_file_path;
+	private String imageFilePath;
 	private String image_file_name;
 	private String release_date;
 	private String release_company;
@@ -112,14 +112,14 @@ public class ProductDTO {
 		this.price = price;
 	}
 
-	public String getImage_file_path() {
-		return image_file_path;
-	}
 
-	public void setImage_file_path(String image_file_path) {
-		this.image_file_path = image_file_path;
-	}
 
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
+	}
 	public String getImage_file_name() {
 		return image_file_name;
 	}

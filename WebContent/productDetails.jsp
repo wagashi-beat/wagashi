@@ -98,58 +98,59 @@
 	<div class="main">
 		<h3>商品詳細</h3>
 		<div class="DetailsList">
+					<s:iterator value= "productDTOList">
+		<s:form action= "CartAction">
+
 			<div class="detailsList">
+
 				<div class="img">
+
 					<img class="image"
-						src="<s:property value='session.d_image_file_path'/>" alt="Photo"
+						src="<s:property value='imageFilePath'/>" alt="Photo"
 						width="300" height="240">
 				</div>
 				<table class="detailsTable">
 					<tr>
 						<td class="nowrap">商品名かな</td>
 						<td>:</td>
-						<td><s:property value="session.d_product_name_kana" /></td>
+						<td><s:property value="product_name_kana" /></td>
 					</tr>
 					<tr>
 						<td class="nowrap">商品名</td>
 						<td>:</td>
-						<td><s:property value="session.d_product_name" /></td>
+						<td><s:property value="product_name" /></td>
 					</tr>
 					<tr>
 						<td class="nowrap">商品詳細</td>
 						<td>:</td>
-						<td><s:property value="session.d_product_description" /></td>
+						<td><s:property value="product_description" /></td>
 					</tr>
 					<tr>
 						<td class="nowrap">価格</td>
 						<td>:</td>
-						<td>￥<s:property value="session.d_product_price" /> 円
+						<td>￥<s:property value="price" /> 円
 						</td>
 					</tr>
 					<tr>
 						<td class="nowrap">発売日</td>
 						<td>:</td>
-						<td><s:property value="session.d_release_date" /></td>
+						<td><s:property value="release_date" /></td>
 					</tr>
 					<tr>
 						<td class="nowrap">販売会社</td>
 						<td>:</td>
-						<td><s:property value="session.d_release_company" /></td>
+						<td><s:property value="release_company" /></td>
 					</tr>
 					<tr>
 						<td class="nowrap">在庫</td>
 						<td>:</td>
-						<td><s:property value="session.d_item_stock" /> 個</td>
+						<td><s:property value="item_stock" /> 個</td>
 					</tr>
 				</table>
 			</div>
 
 
 
-
-			<s:form action="CartAction" >
-
-				<input type="hidden" name="price" value='<s:property value="price"/>'>
 		購入個数
 					<select name="productCount">
 								<option value="1">1</option>
@@ -160,14 +161,15 @@
 					</select>
 
 				<input type="hidden" name="addFlg" value="1" />
-				<input type="hidden" name="productId" value='<s:property value="productId"/>'>
 				<input type= "hidden" name= "id" value= '<s:property value= "id" />' >
+				<input type= "hidden" name= "price" value= '<s:property value= "price" />'>
+				<input type="hidden" name="product_id" value='<s:property value="product_id"/>'>
 
-						<div class="botan"><s:submit value="カートに入れる" method="execute"/></div>
-							<s:hidden name="product_id" value="%{session.d_product_id}" />
 
-					</s:form>
+						<div class="botan"><s:submit value="カートに入れる" /></div>
 
+			</s:form>
+		</s:iterator>
 
 		<h3>おすすめ関連商品</h3>
 

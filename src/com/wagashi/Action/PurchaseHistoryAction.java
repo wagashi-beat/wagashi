@@ -23,6 +23,7 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	private String message;
 	//チェックボックスの判定に使用
     private Collection<String> checkList;
+    private String imageFilePath;
 
 	public ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
 	PurchaseHistoryDAO purchaseHistoryDAO = new PurchaseHistoryDAO();
@@ -34,6 +35,8 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 		if(deleteFlg != null && checkList != null){
 
 			purchaseHistoryDTOList = purchaseHistoryDAO.getPurchaseHistory(session.get("user_id").toString());
+			System.out.println(imageFilePath);
+
 			//購入履歴情報リストをまわす
 	        	for(int i=0;i<purchaseHistoryDTOList.size();i++){
 	        		//チェック済の数だけ削除をまわす
@@ -106,5 +109,15 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	public void setPurchaseHistoryDTOList(ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList) {
 		this.purchaseHistoryDTOList = purchaseHistoryDTOList;
 	}
+
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
+	}
+
+
 
 }

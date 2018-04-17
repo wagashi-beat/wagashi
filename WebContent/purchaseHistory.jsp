@@ -99,15 +99,15 @@
 							<table>
 								<tr>
 									<td class="sample01"><s:checkbox name="checkList" value="checked" fieldValue="%{id}"/><!-- fieldValueを使ってcheckListにidを入れる --></td>
-									<td><img src="<s:property value='session.d_image_file_path'/>" id="cartImg"></td>
+									<td><img src="<s:property value='imageFilePath'/>" id="cartImg"></td>
 
 									<td>
-									<s:property value="session.d_product_name" />&nbsp;(<s:property value="session.d_product_name_kana" />)
+									<s:property value="productName" />&nbsp;(<s:property value="productNameKana"/>)
 									<br>
 									<br>
 
-									<s:property value="getPrice()" />円&nbsp;<s:property value="productCount"/>点
-									<s:property value="getProductName()" />
+									<s:property value="price" />円&nbsp;<s:property value="productCount"/>点
+
 									<br>
 									<br>
 								</tr>

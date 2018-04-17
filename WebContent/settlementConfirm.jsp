@@ -90,6 +90,9 @@
 			<table>
 			<s:iterator value="cartDTOList">
 				<tr>
+					<td><img src= '<s:property value= "imageFilePath" />'></td>
+					</tr>
+				<tr>
 					<td><s:property value="productName"/>
 				</tr>
 				<tr>

@@ -113,7 +113,7 @@
 					<li class="list1">
 							<dl>
 								<dt>
-									<img class="image" src="<s:property value='image_file_path'/>"
+									<img class="image" src="<s:property value='imageFilePath'/>"
 										alt="Photo" width="200" height="160">
 								</dt>
 								<table class="detailsTable">

@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.wagashi.DAO.CartDAO;
 import com.wagashi.DAO.LoginDAO;
 import com.wagashi.DTO.CartDTO;
 import com.wagashi.DTO.LoginDTO;
@@ -97,7 +96,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			session.put("user_id",loginDTO.getLoginId());
 			session.put("password",loginDTO.getLoginPassword());
 
-			//未ログイン時のカート情報統合
+			/*//未ログイン時のカート情報統合
 			CartDAO cartDAO = new CartDAO();
 			cartDTOList=cartDAO.noLoginGetCartInfo(session.get("temp_user_id").toString());
 			loginCartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
@@ -115,7 +114,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					}
 
 					if(!(dto==null)){
-						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice(), dto.getId());
+						cartDAO.loginCartAdd(session.get("user_id").toString(), dto.getProductId(), dto.getProductCount(), dto.getPrice());
 						result= SUCCESS;
 					}
 				}
@@ -123,6 +122,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			} else {
 				result= SUCCESS;
 			}
+			*/
 
 
 			if (loginMemory.equals("true")) {

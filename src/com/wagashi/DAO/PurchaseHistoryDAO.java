@@ -15,7 +15,7 @@ public class PurchaseHistoryDAO {
 	Connection connection = dbConnector.getConnection();
 
 	public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String user_id) throws SQLException {
-		ArrayList<PurchaseHistoryDTO> purchaseHistoryDTO = new ArrayList<PurchaseHistoryDTO>();
+		ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
 
 		String sql = "SELECT * FROM purchase_history_info LEFT JOIN product_info ON purchase_history_info.product_id = product_info.product_id WHERE user_id  =? ";
 
@@ -33,13 +33,13 @@ public class PurchaseHistoryDAO {
 				dto.setPrice(resultSet.getString("price"));
 				dto.setProductCount(resultSet.getInt("product_Count"));
 				dto.setId(resultSet.getInt("id"));
-				purchaseHistoryDTO.add(dto);
+				purchaseHistoryDTOList.add(dto);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 
-		return purchaseHistoryDTO;
+		return purchaseHistoryDTOList;
 	}
 
 	//チェックの入った商品履歴を削除

@@ -21,25 +21,29 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	private MyPageDTO myPageDTO = new MyPageDTO();
 
 	private int totalPrice;
-
+	DestinationDAO destinationDAO = new DestinationDAO();
+	CartDAO cartDAO=new CartDAO();
 
 	public String execute() throws SQLException {
 
 
 		String result = ERROR;
 		if(session.containsKey("user_id")){
-			DestinationDAO destinationDAO = new DestinationDAO();
+
 			myPageDTO=destinationDAO.getDestination(session.get("user_id").toString());
+			cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
 			if(!(myPageDTO.getAddress() == null)){
-				CartDAO cartDAO=new CartDAO();
-				cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
+
 				result = SUCCESS;
 
 				for(CartDTO dto:cartDTOList){
 					totalPrice+=dto.getPrice();
 
 				}
+				cartDTOList=cartDAO.loginGetCartInfo(session.get("user_id").toString());
+
+				result= SUCCESS;
 			}
 
 			else if (myPageDTO.getAddress() == null){
@@ -95,5 +99,6 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
 
 }

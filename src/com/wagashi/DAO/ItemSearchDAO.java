@@ -40,7 +40,7 @@ public class ItemSearchDAO {
 						dto.setProduct_description(resultSet.getString("product_description"));
 						dto.setCategory_id(resultSet.getInt("category_id"));
 						dto.setPrice(resultSet.getInt("price"));
-						dto.setImage_file_path(resultSet.getString("image_file_path"));
+						dto.setImageFilePath(resultSet.getString("image_file_path"));
 						dto.setImage_file_name(resultSet.getString("image_file_name"));
 						dto.setRelease_date(resultSet.getString("release_date"));
 						dto.setRelease_company(resultSet.getString("release_company"));
@@ -77,7 +77,7 @@ public class ItemSearchDAO {
 						dto.setProduct_description(resultSet.getString("product_description"));
 						dto.setCategory_id(resultSet.getInt("category_id"));
 						dto.setPrice(resultSet.getInt("price"));
-						dto.setImage_file_path(resultSet.getString("image_file_path"));
+						dto.setImageFilePath(resultSet.getString("image_file_path"));
 						dto.setImage_file_name(resultSet.getString("image_file_name"));
 						dto.setRelease_date(resultSet.getString("release_date"));
 						dto.setRelease_company(resultSet.getString("release_company"));
@@ -114,7 +114,7 @@ public class ItemSearchDAO {
 						dto.setProduct_description(resultSet.getString("product_description"));
 						dto.setCategory_id(resultSet.getInt("category_id"));
 						dto.setPrice(resultSet.getInt("price"));
-						dto.setImage_file_path(resultSet.getString("image_file_path"));
+						dto.setImageFilePath(resultSet.getString("image_file_path"));
 						dto.setImage_file_name(resultSet.getString("image_file_name"));
 						dto.setRelease_date(resultSet.getString("release_date"));
 						dto.setRelease_company(resultSet.getString("release_company"));
@@ -152,7 +152,7 @@ public class ItemSearchDAO {
 						dto.setProduct_description(resultSet.getString("product_description"));
 						dto.setCategory_id(resultSet.getInt("category_id"));
 						dto.setPrice(resultSet.getInt("price"));
-						dto.setImage_file_path(resultSet.getString("image_file_path"));
+						dto.setImageFilePath(resultSet.getString("image_file_path"));
 						dto.setImage_file_name(resultSet.getString("image_file_name"));
 						dto.setRelease_date(resultSet.getString("release_date"));
 						dto.setRelease_company(resultSet.getString("release_company"));

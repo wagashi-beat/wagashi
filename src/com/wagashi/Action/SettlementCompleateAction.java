@@ -14,21 +14,22 @@ import com.wagashi.DTO.CartDTO;
 
 public class SettlementCompleateAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
-	private ArrayList<CartDTO> cartList= new ArrayList<CartDTO>();
+	private ArrayList<CartDTO> cartDTOList= new ArrayList<CartDTO>();
 	private CartDAO cartDAO= new CartDAO();
 	private SettlementDAO settlementDAO= new SettlementDAO();
+	private String imageFilePath;
 
 
 	public String execute() throws SQLException {
 		String ret= ERROR;
 
 		if (session.containsKey("user_id")){
-			cartList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
+			cartDTOList= cartDAO.loginGetCartInfo(session.get("user_id").toString());
 
 			// cart情報登録
-			for (CartDTO dto: cartList){
+			for (CartDTO dto: cartDTOList){
 				settlementDAO.settlementComp(session.get("user_id").toString(),
-						dto.getProductId(),
+						dto.getProduct_id(),
 						dto.getProductCount(),
 						dto.getPrice());
 			}
@@ -39,7 +40,7 @@ public class SettlementCompleateAction extends ActionSupport implements SessionA
 			ret= SUCCESS;
 			return ret;
 			}
-
+		ret= SUCCESS;
 			return ret;
 		}
 
@@ -59,12 +60,28 @@ public class SettlementCompleateAction extends ActionSupport implements SessionA
 		this.settlementDAO = settlementDAO;
 	}
 
-	public ArrayList<CartDTO> getCartList() {
-		return cartList;
+	public ArrayList<CartDTO> getCartDTOList() {
+		return cartDTOList;
 	}
 
-	public void setCartList(ArrayList<CartDTO> cartList) {
-		this.cartList = cartList;
+	public void setCartDTOList(ArrayList<CartDTO> cartDTOList) {
+		this.cartDTOList = cartDTOList;
+	}
+
+	public CartDAO getCartDAO() {
+		return cartDAO;
+	}
+
+	public void setCartDAO(CartDAO cartDAO) {
+		this.cartDAO = cartDAO;
+	}
+
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
 	}
 
 

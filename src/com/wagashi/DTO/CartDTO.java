@@ -3,7 +3,7 @@ package com.wagashi.DTO;
 public class CartDTO extends ProductInfoDTO{
 
 
-	private int productId;
+	private int product_id;
 	private String productName;
 //購入個数
 	private int productCount;
@@ -13,12 +13,12 @@ public class CartDTO extends ProductInfoDTO{
 	public int id;
 
 
-	public int getProductId() {
-		return productId;
+	public int getProduct_id() {
+		return product_id;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
 
 	public int getProductCount() {

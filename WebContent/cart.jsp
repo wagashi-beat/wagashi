@@ -87,9 +87,10 @@
 
 
 			<p>チェックした商品はカートから削除されます。</p>
-<s:form action= "CartAction">
+
 	<s:if test= "cartDTOList">
 		<s:iterator value="cartDTOList">
+		<s:form action= "CartAction">
 	<table>
 				<tr>
 					<td><s:property value="productName"/></td>
@@ -108,9 +109,10 @@
 						<input type="hidden" name="deleteFlg" value="1"/></td>
 				</tr>
 </table>
-		</s:iterator>
-						<s:submit value=" 削除 " method="execute"/>
 
+						<s:submit value=" 削除 " method="execute"/>
+						</s:form>
+		</s:iterator>
 		<s:form action="SettlementConfirmAction">
 			<s:submit value=" 購入 " method="execute"/>
 		</s:form>
@@ -119,7 +121,7 @@
 			<h1>カートに商品が入っていません。</h1>
 			</s:else>
 
-</s:form>
+
 	</div>
 </body>
 </html>

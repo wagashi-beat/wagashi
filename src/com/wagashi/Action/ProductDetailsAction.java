@@ -34,8 +34,8 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 	private List<Integer> stockList = new ArrayList<Integer>();
 
 	// 商品詳細情報｢リスト
-	public ProductDTO detail = new ProductDTO();
-	public List<ProductDTO> detailsList = new ArrayList<ProductDTO>();
+	public ArrayList<ProductDTO> productDTOList= new ArrayList<ProductDTO>();
+	public ProductDTO productDTO= new ProductDTO();
 
 	// お勧めリスト情報
 	public List<ProductDTO> sugestList = new ArrayList<ProductDTO>();
@@ -52,28 +52,30 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 		// 商品詳細情報取得メソッド
 		//aaa
 		try {
+			productDTOList= productDetailsDAO.getProductDetailsInfo(product_id);
 
-			detail = productDetailsDAO.getProductDetailsInfo(product_id);
-			if (detail != null) {
-				session.put("d_image_file_path", detail.getImage_file_path());
-				session.put("d_product_name_kana", detail.getProduct_name_kana());
-				session.put("d_product_name", detail.getProduct_name());
-				session.put("d_product_description", detail.getProduct_description());
-				session.put("d_product_price", detail.getPrice());
-				session.put("d_release_date", detail.getRelease_date());
-				session.put("d_release_company", detail.getRelease_company());
-				session.put("d_item_stock", detail.getItem_stock());
-				session.put("d_product_id", detail.getProduct_id());
-				session.put("d_product_count", detail.getProduct_count());
-				session.put("d_category_id", detail.getCategory_id());
+			if (productDTO != null) {
+					session.put("d_image_file_path", productDTO.getImageFilePath());
+					session.put("d_product_name_kana", productDTO.getProduct_name_kana());
+					session.put("d_product_name", productDTO.getProduct_name());
+					session.put("d_product_description", productDTO.getProduct_description());
+					session.put("d_product_price", productDTO.getPrice());
+					session.put("d_release_date", productDTO.getRelease_date());
+					session.put("d_release_company", productDTO.getRelease_company());
+					session.put("d_item_stock", productDTO.getItem_stock());
+					session.put("d_product_id", productDTO.getProduct_id());
+					session.put("d_product_count", productDTO.getProduct_count());
+					session.put("d_category_id", productDTO.getCategory_id());
 			} else {
-
-				return ERROR;
+				String result = ERROR;
+				return result;
 			}
 
-		} catch (Exception e) {
+		} catch (Exception e){
 			e.printStackTrace();
 		}
+
+
 
 		// おすすめリスト情報取得
 		try {
@@ -94,7 +96,7 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 		}*/
 
 		// 1から在庫数までの選択表示用List
-		for (int i = 1; i <= detail.getItem_stock(); i++) {
+		for (int i = 1; i <= productDTO.getItem_stock(); i++) {
 			stockList.add(i);
 
 		}
@@ -103,7 +105,7 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 			return ERROR;
 		}
 
-		price = detail.getPrice();
+		price = productDTO.getPrice();
 
 		String result = SUCCESS;
 		return result;
@@ -177,14 +179,6 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 		this.stockList = stockList;
 	}
 
-	public List<ProductDTO> getDetailsList() {
-		return detailsList;
-	}
-
-	public void setDetailsList(List<ProductDTO> detailsList) {
-		this.detailsList = detailsList;
-	}
-
 	public ProductDetailsDAO getProductDetailsDAO() {
 		return productDetailsDAO;
 	}
@@ -216,5 +210,35 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 	public void setError(String error) {
 		this.error = error;
 	}
+
+
+	public List<ProductDTO> getSugestList() {
+		return sugestList;
+	}
+
+	public void setSugestList(List<ProductDTO> sugestList) {
+		this.sugestList = sugestList;
+	}
+
+	public ArrayList<ProductDTO> getProductDTOList() {
+		return productDTOList;
+	}
+
+	public void setProductDTOList(ArrayList<ProductDTO> productDTOList) {
+		this.productDTOList = productDTOList;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
+
+
+
+
 
 }
